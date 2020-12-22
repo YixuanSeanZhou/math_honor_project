@@ -1,7 +1,7 @@
 # Math Honor Project
 ## Updates
 
-### Recommendations
+### Recommendations for traveling 
 
 - Potato Chips
 - Balboa Park
