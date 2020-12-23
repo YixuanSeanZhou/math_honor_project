@@ -1,0 +1,255 @@
+\newif\ifpictures
+\picturestrue
+
+\newif\ifjournal
+\journaltrue
+
+\newif\ifArXiv
+\ArXivfalse
+
+\documentclass[12pt]{amsart}
+\usepackage{amssymb,amsmath}
+ \usepackage{amsopn}
+ \usepackage{xspace}
+  \usepackage{hyperref}
+ \usepackage[dvips]{graphicx}
+\usepackage[arrow,matrix,curve]{xy}
+\usepackage {color, tikz}
+\usepackage{wasysym}
+
+
+\headheight=8pt
+\topmargin=30pt 
+\textheight=611pt     \textwidth=456pt
+\oddsidemargin=6pt   \evensidemargin=6pt
+
+\numberwithin{equation}{section}
+\newtheorem{thm}{Theorem}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{remark}[thm]{Remark}
+
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[thm]{Definition}
+\newtheorem{example}[thm]{Example}
+
+\numberwithin{thm}{section}
+
+
+\newcounter{FNC}[page]
+\def\newfootnote#1{{\addtocounter{FNC}{2}$^\fnsymbol{FNC}$%
+     \let\thefootnote\relax\footnotetext{$^\fnsymbol{FNC}$#1}}}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\B}{\mathbb{B}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\TP}{\mathbb{TP}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\tri}{\triangle}
+\newcommand{\lf}{\left}
+\newcommand{\ri}{\right}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow} 
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lera}{\Leftrightarrow}
+\newcommand{\ovl}{\overline}
+\newcommand{\wh}{\widehat}
+\newcommand{\lan}{\langle}
+\newcommand{\ran}{\rangle}
+
+\newcommand\cA{{\ensuremath{\mathcal{A}}}\xspace}
+\newcommand\cB{{\ensuremath{\mathcal{B}}}\xspace}
+\newcommand\cC{{\ensuremath{\mathcal{C}}}\xspace}
+\newcommand\cD{{\ensuremath{\mathcal{D}}}\xspace}
+\newcommand\cE{{\ensuremath{\mathcal{E}}}\xspace}
+\newcommand\cF{{\ensuremath{\mathcal{F}}}\xspace}
+\newcommand\cG{{\ensuremath{\mathcal{G}}}\xspace}
+\newcommand\cH{{\ensuremath{\mathcal{H}}}\xspace}
+\newcommand\cI{{\ensuremath{\mathcal{I}}}\xspace}
+\newcommand\cJ{{\ensuremath{\mathcal{J}}}\xspace}
+\newcommand\cK{{\ensuremath{\mathcal{K}}}\xspace}
+\newcommand\cL{{\ensuremath{\mathcal{L}}}\xspace}
+\newcommand\cM{{\ensuremath{\mathcal{M}}}\xspace}
+\newcommand\cN{{\ensuremath{\mathcal{N}}}\xspace}
+\newcommand\cO{{\ensuremath{\mathcal{O}}}\xspace}
+\newcommand\cP{{\ensuremath{\mathcal{P}}}\xspace}
+\newcommand\cQ{{\ensuremath{\mathcal{Q}}}\xspace}
+\newcommand\cR{{\ensuremath{\mathcal{R}}}\xspace}
+\newcommand\cS{{\ensuremath{\mathcal{S}}}\xspace}
+\newcommand\cT{{\ensuremath{\mathcal{T}}}\xspace}
+\newcommand\cU{{\ensuremath{\mathcal{U}}}\xspace}
+\newcommand\cV{{\ensuremath{\mathcal{V}}}\xspace}
+\newcommand\cW{{\ensuremath{\mathcal{W}}}\xspace}
+\newcommand\cX{{\ensuremath{\mathcal{X}}}\xspace}
+\newcommand\cY{{\ensuremath{\mathcal{Y}}}\xspace}
+\newcommand\cZ{{\ensuremath{\mathcal{Z}}}\xspace}
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\alp}{\alpha}
+\newcommand{\lam}{\lambda}
+\newcommand{\kro}{\delta}
+\newcommand{\sig}{\sigma}
+\newcommand{\Sig}{\Sigma}
+\newcommand{\lap}{\Delta}
+\newcommand{\Gam}{\Gamma}
+
+
+\definecolor{DarkGreen}{rgb}{0,0.65,0}
+\newcommand{\yixuan}[1]{{\color{orange} \sf $\clubsuit\clubsuit\clubsuit$ Yixuan: [#1]}}
+\newcommand{\mareike}[1]{{\color{cyan} \sf $\clubsuit\clubsuit\clubsuit$ Mareike: [#1]}}
+\newcommand{\assum}{{\color{red} \sf $(\clubsuit)$}}
+\newcommand{\durch}[1]{\textcolor{red}{\sout{#1}}}
+
+
+\newcommand{\struc}[1]{{\color{blue} #1}}
+\newcommand{\alert}[1]{{\color{red} #1}}
+
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\tconv}{tconv}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\lin}{lin}
+\DeclareMathOperator{\trop}{trop}
+\DeclareMathOperator{\aff}{aff}
+\DeclareMathOperator{\LP}{LP}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\New}{New}
+\DeclareMathOperator{\tdeg}{tdeg}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\re}{re}
+\DeclareMathOperator{\im}{im} 
+\DeclareMathOperator{\odd}{odd} 
+\DeclareMathOperator{\even}{even} 
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Circ}{Circ}
+
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\RE}{Re}
+\DeclareMathOperator{\IM}{Im}
+\DeclareMathOperator{\w}{\wedge}
+\DeclareMathOperator{\val}{val}
+\DeclareMathOperator{\Val}{Val}
+\DeclareMathOperator{\coA}{\text{co}\cA}
+\DeclareMathOperator{\coL}{\text{co}\cL}
+\DeclareMathOperator{\eq}{eq}
+\DeclareMathOperator{\app}{app}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ini}{in}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\SOS}{SOS}
+\DeclareMathOperator{\prep}{Prep}
+
+\DeclareMathOperator{\verti}{Vert}
+\DeclareMathOperator{\coeffs}{coeffs}
+
+
+\def\endexa{\hfill$\hexagon$}
+
+\title{Honors Project}
+
+\author{Author 1} \author{Author 2} %\author{}
+
+\address{Author 1 address\medskip}
+\email{email}
+
+\address{Author 2 address\medskip}
+\email{email}
+
+
+
+%\subjclass[2010]{Primary: 14P10, 90C25; Secondary: 12D05, 52B20}
+\keywords{some keywords go here}
+
+
+\begin{document}
+ 
+
+\begin{abstract}
+Short description
+\end{abstract}
+
+\maketitle
+
+
+\section{Introduction}
+Motivation, what do you want to do etc. 
+
+ \cite{Blekherman:Parrilo:Thomas,Laurent:Survey}
+
+
+
+
+
+
+\section{Preliminaries}
+\label{Sec:Preliminaries}
+
+Here background definitions etc will be put. 
+YOu can do it in several subsections (like notation, bla, blabla)
+
+
+\section{Main stuff}
+
+
+\begin{prop}
+
+\end{prop}
+
+\begin{proof}
+
+\end{proof}
+
+maybe a theorem
+
+
+\begin{thm}
+
+\end{thm}
+
+or an example...
+\begin{example}
+
+\end{example}
+
+pictures are always a good idea...
+%\begin{figure}
+
+%\end{figure}
+
+
+\section{Maybe another section}
+
+
+\section{Resume, Outlook, or/and Open Problems}
+\label{Sec:Outlook}
+
+
+what did you do, what questions are still open, natural next steps etc. 
+
+%\section*{Acknowledgements}
+%We thank the anonymous referees for their helpful comments.
+
+
+\bibliographystyle{amsalpha}
+\bibliography{main}
+
+\end{document}
