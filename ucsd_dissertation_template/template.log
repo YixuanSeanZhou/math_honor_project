@@ -1,0 +1,100 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.4.1)  22 DEC 2020 12:47
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**"/Users/weisun/Desktop/UCSD/Honor Project Dressler/math_honor_project/ucsd_dissertation_template/template.tex"
+(/Users/weisun/Desktop/UCSD/Honor Project Dressler/math_honor_project/ucsd_dissertation_template/template.tex
+LaTeX2e <2018-04-01> patch level 2
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+(/Users/weisun/Desktop/UCSD/Honor Project Dressler/math_honor_project/ucsd_dissertation_template/ucsd.cls
+Document Class: ucsd 2008/05/13 V1.1 University of California, San Diego, Mathematics Dissertation Class
+(/Users/weisun/Desktop/UCSD/Honor Project Dressler/math_honor_project/ucsd_dissertation_template/uct12.clo)
+\descriptionmargin=\dimen102
+\c@part=\count80
+\c@chapter=\count81
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@subparagraph=\count86
+\@chapterlength=\skip41
+\@subsectionlength=\skip42
+\@subsubsectionlength=\skip43
+\@paragraphlength=\skip44
+\@subparagraphlength=\skip45
+\@figurelength=\skip46
+\@tablelength=\skip47
+\c@figure=\count87
+\c@table=\count88
+) (/Users/weisun/Desktop/UCSD/Honor Project Dressler/math_honor_project/ucsd_dissertation_template/template.aux)
+\openout1 = `template.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+
+/Users/weisun/Desktop/UCSD/Honor Project Dressler/math_honor_project/ucsd_dissertation_template/template.tex:99: Undefined control sequence.
+\makefrontmatter ...r\newline \fi {\@othermembers 
+                                                  } \end {quote} \begin {cen...
+l.99 \makefrontmatter
+                      % The title, copyright, and signature pages.
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--99
+
+ []
+
+[1
+
+{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 99.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 99.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 99.
+ [3] [4] [5]
+No file template.toc.
+\tf@toc=\write3
+\openout3 = `template.toc'.
+
+[6] [7] [8] [9]
+Chapter 1.
+[1
+
+]
+Appendix A.
+[2
+
+] (/Users/weisun/Desktop/UCSD/Honor Project Dressler/math_honor_project/ucsd_dissertation_template/template.aux) ) 
+Here is how much of TeX's memory you used:
+ 299 strings out of 492649
+ 4419 string characters out of 6129623
+ 62619 words of memory out of 5000000
+ 4255 multiletter control sequences out of 15000+600000
+ 8847 words of font info for 31 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 22i,7n,22p,314b,216s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on "/Users/weisun/Desktop/UCSD/Honor Project Dressler/math_honor_project/ucsd_dissertation_template/template.pdf" (11 pages, 49895 bytes).
+PDF statistics:
+ 52 PDF objects out of 1000 (max. 8388607)
+ 35 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -166,13 +166,13 @@
 
 \title{Honors Project}
 
-\author{Author 1} \author{Author 2} %\author{}
+\author{Yixuan Zhou} \author{Mareike Dressler} %\author{}
 
-\address{Author 1 address\medskip}
-\email{email}
+\address{8514 Villa La Jolla Drive \# 114, La Jolla, CA, 92037\medskip}
+\email{yiz044@ucsd.edu}
 
-\address{Author 2 address\medskip}
-\email{email}
+\address{9500 Gilmam Drive \# 0112, La Jolla, CA, 92093 \medskip}
+\email{mdressler@ucsd.edu}
 
 
 
@@ -190,14 +190,67 @@ Short description
 \maketitle
 
 
-\section{Introduction}
-Motivation, what do you want to do etc. 
+\section{Introduction} 
+Polynomial with real coefficients is a very powerful tool in terms of expressing problems. 
+It has a vast range of applications, in both theory side and engineering side. 
+Deciding the nonegativity of a multivariate polynomial, natually, become 
+a cenctral prblem for many optimizations and feasibility problems. 
+However, it is known that deciding the nonegativity of an arbitrary multivariate 
+polynomial is a NP-hard problem when the degree of the polynomial is greater than or
+equals to 2. Therefore, we restrict our focus to decide whether the polynomial can be 
+expressed in \emph{sum of squares (SOS)} form. 
 
- \cite{Blekherman:Parrilo:Thomas,Laurent:Survey}
+\begin{definition}
+     Sum of Suqares (SOS)
+
+     Let $\mathbb{R}[x]_{n, d}$ denotes the set of polynomials with $n$ real variables with
+     degree at most $d$.
+     A polynomial $p(x) \in \mathbb{R}[x]_{n, 2d}$, 
+     is a \emph{sum of squares} if
+     there exists $q_1(x),...,q_n(x) \in \mathbb{R}[x]_{n, d}$ such that
+     \begin{equation}
+          p(x) = \sum_{i = 1}^{n} q_i ^2 (x)
+     \end{equation}
+\end{definition}
+
+It is clear that if a polynomial $p(x)$ is a SOS, then it is nonegative,
+Thus, SOS is a (proper) subset of the set of nonegative polynomials. 
+
+We are interested in SOS beacuse given a multivariate polynomial, the decision
+problem of whether it can be decomposed into SOS is a polynomial time problem, by using
+\emph{Semidefinite Programing (SDP)}.
 
 
+\begin{thm}
+     A multivariate polynomial $p(x) \in \mathbb{R}[x]_{n, 2d}$ is a sum of squares
+     if and only if there exists $\mathcal{Q} \in \mathcal{S}^{{n+d \choose d}}$ such that
+     
+     \begin{equation}
+          p(x) = [x]_d^T \mathcal{Q} [x]_d \quad \mathcal{Q} \succcurlyeq 0
+     \end{equation}
 
+     Where $[x]_d$ denotes the vector of monomials with degree at most $d$.
+\end{thm}
 
+\cite{Blekherman:Parrilo:Thomas}
+
+As a consequence of the above theorem, whether a multivariate polynomial is SOS can be determined 
+by a \emph{Semidefinite Programming}. Notice that, the size of the semidefinite matrix,
+${n+d \choose d}$, when fixing $d$, grows in polynomial time with respect to $n$, and when 
+fixing $n$, it grows in polynomial time with respect to $d$. Thus, though imposed some 
+limitation, we have "redueced" a NP-Problem to a P problem. 
+
+In the theorem, there is nothing special with monomials other than being a basis of the vector space $\mathbb{R}[x]_{n,2d}$. 
+Instead of using $[x]_d$ to proceed the calculation,
+we can choose any basis of the vector space of polynomials $\mathbb{R}[x]_{n,d}$. 
+For example, we can choose Lagrange basis, Chebychev basis, ... And in the most cases,
+the monomial basis is not the right choice due to its instability of monomials.
+
+In this paper, we will use python program to analyze the computational effeciency and 
+numerical stability of the usage of different bases. In particular, the analysis will
+be focusing on the condition number of the linear system generated when solving the 
+semidefinite program. We further attempt to identify some most effective bases for some particular
+type of polynomials, and will try to justify the reasons.  
 
 
 \section{Preliminaries}
