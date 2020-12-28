@@ -12,4 +12,9 @@ G.~Blekherman, P.A. Parrilo, and R.R. Thomas, \emph{Semidefinite optimization
   and convex algebraic geometry}, MOS-SIAM Series on Optimization, vol.~13,
   SIAM and the Mathematical Optimization Society, Philadelphia, 2013.
 
+\bibitem[Lau09]{Laurent:Survey}
+M.~Laurent, \emph{Sums of squares, moment matrices and optimization over
+  polynomials}, Emerging applications of algebraic geometry, IMA Vol. Math.
+  Appl., vol. 149, Springer, New York, 2009, pp.~157--270.
+
 \end{thebibliography}

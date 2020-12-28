@@ -234,6 +234,8 @@ problem of whether it can be decomposed into SOS is a polynomial time problem, b
 
 \cite{Blekherman:Parrilo:Thomas}
 
+\cite{Laurent:Survey}
+
 As a consequence of the above theorem, whether a multivariate polynomial is SOS can be determined 
 by a \emph{Semidefinite Programming}. Notice that, the size of the semidefinite matrix,
 ${n+d \choose d}$, when fixing $d$, grows in polynomial time with respect to $n$, and when 
@@ -259,8 +261,74 @@ type of polynomials, and will try to justify the reasons.
 Here background definitions etc will be put. 
 YOu can do it in several subsections (like notation, bla, blabla)
 
+\subsection{Notations and Definiations}
+\label{Sec:Notations and Definiations}
 
-\section{Main stuff}
+\begin{definition}
+     Let $\mathbb{R}[x]_{n,d}$ denotes the set of real coefficient 
+     polynmials with $n$ variables and at most $d$ degree.
+\end{definition}
+
+\begin{definition}
+     Let $P_{n, 2d}$ denotes the set of nonegative polynomials with 
+     $n$ variables and at most $2d$ degree, that is 
+     \begin{equation}
+          P_{n, 2d} = \{ p \in \mathbb{R}[x]_{n, 2d}: p(x) \geq 0, \forall x \in \mathbb{R}^d \}
+     \end{equation}
+\end{definition}
+
+\begin{remark}
+     There is no reason to consider the set $P_{n, d}$ when $d$ is odd, since if the 
+     degree of a polynomial is odd, then it will always be nonegative at some point.
+\end{remark}
+
+\begin{definition}
+     Let $\Sigma_{n,2d}$ denotes the set of polynomials with $n$ variables and at most
+     $d$ degree that are \emph{Sum of Suqares}, that is
+     \begin{equation}
+          \Sigma_{n, 2d} = \{ p \in \mathbb{R}[x]_{n, 2d}: \exists \text{ } q_1(x), ..., q_k(x) \in \mathbb{R}[x]_{n,d} \text{ } s.t. \text{ }  p(x) = \sum_{i=1}^k q_i^2(x)\}
+     \end{equation}     
+\end{definition}
+
+\begin{definition}
+     Given a matrix $A \in \mathbb{R}^{n \times m}$, the \emph{pesudo-inverse},
+     which is also knows as the \emph{Moore-Penrose} inverse of $A$, is the matrix
+     $A^+$ satisfying:
+     \begin{itemize}
+          \item $A A^+ A = A$
+          \item $A^+ A A^+ = A^+$
+          \item $(A A^+)^T = A A^+$
+          \item $(A^+ A)^T = A A^+$
+        \end{itemize}
+     Every matrix has its pesudo-inverse, and when $A \in \mathbb{R}^{n \times m}$ is \emph{full rank}, 
+     that is $rank(A) = min\{n, m\}$, $A$ can be expressed in simple algebric form.
+     
+     In particular, when $A$ has linearly independent columns, $A^+$ can be computed as
+     \begin{equation}
+          A^+ = (A^T A)^{-1} A^T
+     \end{equation}
+     In this case, the pesudo-inverse is called the \emph{left inverse} since $A^+ A = I$.
+
+     And when $A$ has linearly independent rows, $A^+$ can be be computed as
+     \begin{equation}
+          A^+ = A^T (A A^T)^{-1}
+     \end{equation}
+     In this case, the pesudo-inverse is called the \emph{right inverse} since $A A^+ = I$. 
+\end{definition}
+
+\begin{definition}
+     Given a matrix $A \in \mathbb{R}^{n \times m}$, the conditional number of $A$, $\kappa(A)$ is defined as
+     \begin{equation}
+          \kappa(A) = ||A||||A^+||
+     \end{equation}
+     for any norm imposed on $A$, for instance \emph{Frobenius norm}.
+\end{definition}
+
+\subsection{Solving Semidefinite Program}
+\label{Sec:Solving Semidefinite Program}
+
+
+\section{Numerical Results}
 
 
 \begin{prop}
@@ -289,7 +357,7 @@ pictures are always a good idea...
 %\end{figure}
 
 
-\section{Maybe another section}
+\section{Maybe Some Proofs}
 
 
 \section{Resume, Outlook, or/and Open Problems}
