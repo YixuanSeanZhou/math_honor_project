@@ -328,15 +328,28 @@ YOu can do it in several subsections (like notation, bla, blabla)
 \end{definition}
 
 \begin{remark}
-     The conditional number 
+     The condition number measure how stable the system is. It can be alternatively defined as
+     \begin{equation}
+          \kappa(A) = \frac{\sigma_{max} (A)}{\sigma_{min} (A)}
+     \end{equation}
+     where the $\sigma$ denotes the singular values of $A$.
+
+     Thus, it can be understand as how stale our system is. 
+     Intuiatively, when the condition number is large, some error in the input along the max direction of the singular value,
+     our result would largly flacuate because the error, maginified by the singular value, will dominate the input that is along
+     the direction of the minimum singular value. 
+     Therefore, the smaller the condition number is, the more stable our system is under flcuations caused by noises.
+     The rigirous explaination of the condition numebr can be found in \cite{Cheney:Kincaid}
 \end{remark}
+
+\subsection{Polynomial Basis}
+\label{Sec:polynomial Basis}
 
 \subsection{Solving Semidefinite Program}
 \label{Sec:Solving Semidefinite Program}
 
 
-\subsection{Polynomial Basis}
-\label{Sec:polynomial Basis}
+
 
 Toy examples maybe
 
