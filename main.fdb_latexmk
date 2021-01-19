@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex main"] 1611029921 "main.aux" "main.bbl" "main" 1611029922
+["bibtex main"] 1611081027 "main.aux" "main.bbl" "main" 1611081029
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/amscls/amsalpha.bst" 1513722769 28675 71ba1b1ee8387ac88670b0ea0eb2399a ""
-  "main.aux" 1611029922 2379 6c29fe8c05203ebf099d49740b8aa5f2 ""
-  "main.bib" 1611029831 1011 672f6fbfa469392a64294e83c0ee0a6a ""
+  "main.aux" 1611081029 2522 b7cd4dbdc10939cd9ed4353368420260 ""
+  "main.bib" 1611074520 1624 5307693a9d322ef5fbf862a0de13bba3 ""
   (generated)
-  "main.bbl"
   "main.blg"
-["pdflatex"] 1611029921 "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.tex" "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf" "main" 1611029922
-  "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.aux" 1611029922 2379 6c29fe8c05203ebf099d49740b8aa5f2 ""
-  "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.tex" 1611029920 13101 677a46818b6919ac5fd42cecbdc3297e ""
+  "main.bbl"
+["pdflatex"] 1611081028 "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.tex" "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf" "main" 1611081029
+  "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.aux" 1611081029 2522 b7cd4dbdc10939cd9ed4353368420260 ""
+  "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.tex" 1611081026 20929 7fa438930efe0ec947a90e36dffc7a57 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -33,6 +33,8 @@
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1480098701 1120 8b7d695260f3cff42e636090a8002094 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1480098701 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmti12.tfm" 1480098701 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
+  "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmti7.tfm" 1480098701 1492 86331993fe614793f5e7e755835c31c5 ""
+  "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmti8.tfm" 1480098701 1504 1747189e0441d1c18f3ea56fafc1c480 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm" 1480098701 768 1321e9409b4137d6fb428ac9dc956269 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/wasy/wasy10.tfm" 1480098718 884 cb2a5aeb15d2c2fa75963576ff22778d ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/wasy/wasy5.tfm" 1480098718 888 4cc43129a7cedbe8878dca9c1b7906f3 ""
@@ -176,14 +178,14 @@
   "/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1523934492 2717033 f61a5287d9c22a39a74f1979fe3f905c ""
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1554180078 4220279 cff7c7dff13d57f8aac227b4d04d1aab ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
-  "main.aux" 1611029922 2379 6c29fe8c05203ebf099d49740b8aa5f2 ""
-  "main.bbl" 1611029921 1032 84b30f8834025be267674613d38c75de "bibtex main"
-  "main.out" 1611029922 564 419fee93d2eec33adf9af93e777afed2 ""
-  "main.tex" 1611029920 13101 677a46818b6919ac5fd42cecbdc3297e ""
+  "main.aux" 1611081029 2522 b7cd4dbdc10939cd9ed4353368420260 ""
+  "main.bbl" 1611081028 1217 9f3fa34069b60fbcd2982202b843da29 "bibtex main"
+  "main.out" 1611081029 564 419fee93d2eec33adf9af93e777afed2 ""
+  "main.tex" 1611081026 20929 7fa438930efe0ec947a90e36dffc7a57 ""
   (generated)
   "main.aux"
   "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf"
-  "main.out"
-  "main.log"
-  "main.pdf"
   "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.log"
+  "main.out"
+  "main.pdf"
+  "main.log"
