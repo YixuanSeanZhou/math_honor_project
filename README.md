@@ -6,6 +6,22 @@ I will also list all the questions / problems in the HELP NEEDED section.
 
 ## Logs
 
+
+### Jan 25 - Feb 1
+
+#### TODO
+
+    - Update the write up to cover the main idea in the master Thesis
+        - Coefficiet Moment Matrix
+    - Update python code to calculate coef moment matrix, and use that to perform compare coeff and form the linear system.
+
+#### DONE
+
+#### HELP NEEDED
+
+    - Same as last week
+
+
 ### Jan 18 - 25
 
 #### TODO
