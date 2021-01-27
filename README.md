@@ -11,11 +11,12 @@ I will also list all the questions / problems in the HELP NEEDED section.
 
 #### TODO
 
-    - Update the write up to cover the main idea in the master Thesis
-        - Coefficiet Moment Matrix
     - Update python code to calculate coef moment matrix, and use that to perform compare coeff and form the linear system.
 
 #### DONE
+
+    - The writing for Preliminaries - Notations and Definiations sections is done. And it is ready for a review.
+        - Note: I didn't proof read, so might be typos and misspellings and etc. 
 
 #### HELP NEEDED
 
