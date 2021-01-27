@@ -266,8 +266,8 @@ type of polynomials, and will try to justify the reasons.
 Here background definitions etc will be put. 
 You can do it in several subsections (like notation, bla, blabla)
 
-\subsection{Notations and Definiations}
-\label{Sec:Notations and Definiations}
+\subsection{Notations and Definitions}
+\label{Sec:Notations and Definitions}
 
 Because we are going to use a lot of tools from lienar algebra, we first introduce some key definiations that we will use in this thesis.
 
@@ -280,9 +280,9 @@ Because we are going to use a lot of tools from lienar algebra, we first introdu
 
      Given a symmetric matrix$A \in \mathbb{R}^{n \times n}$, it can be diagnoalized as \begin{equation} A = P^{-1}DP \end{equation} where $D$ is the diagnoal matrix with all real values, and $P$ is an orthonomal matrix.
      
-     In other word, $A$ has all real eigenvalues, and their correspdoning eigenvectors form an orthonomal basis of $\mathbb{R}^n$.
+     In other word, $A$ has all real eigenvalues, and their corresponding eigenvectors form an orthonomal basis of $\mathbb{R}^n$. \cite{golub1996matrix}
      
-\end{thm}
+\end{thm} 
 
 
 \begin{definition}
@@ -314,6 +314,9 @@ Because we are going to use a lot of tools from lienar algebra, we first introdu
           \item $(A A^+)^T = A A^+$
           \item $(A^+ A)^T = A A^+$
         \end{itemize}
+     
+\end{definition}
+\smallskip
      Every matrix has its pesudo-inverse, and when $A \in \mathbb{R}^{n \times m}$ is \emph{full rank}, 
      that is $rank(A) = min\{n, m\}$, $A$ can be expressed in simple algebric form.
      
@@ -323,12 +326,13 @@ Because we are going to use a lot of tools from lienar algebra, we first introdu
      \end{equation}
      In this case, the pesudo-inverse is called the \emph{left inverse} since $A^+ A = I$.
 
+     \smallskip
      And when $A$ has linearly independent rows, $A^+$ can be be computed as
      \begin{equation}
           A^+ = A^T (A A^T)^{-1}
      \end{equation}
      In this case, the pesudo-inverse is called the \emph{right inverse} since $A A^+ = I$. 
-\end{definition}
+
 
 \begin{definition}
      Given a matrix $A \in \mathbb{R}^{n \times m}$, the condition number of $A$, $\kappa(A)$ is defined as
@@ -352,6 +356,8 @@ Because we are going to use a lot of tools from lienar algebra, we first introdu
      Therefore, the smaller the condition number is, the more stable our system is under flcuations caused by noises.
      The rigirous explaination of the condition numebr can be found in \cite{Cheney:Kincaid}
 \end{remark}
+
+\smallskip
 
 Now with the tools from linear algebra, we are ready to proceed to the realm of real coefficients polynomials.
 
@@ -413,6 +419,7 @@ Now with the tools from linear algebra, we are ready to proceed to the realm of 
      Then the upper triangle of the result form a basis of $P_{2, 2}$.
 \end{example}
 
+\smallskip
 Then the question that we are interested in is given any polynomial $p(x) \in P_{n,2d}$, decide whether it is in $\Sigma_{n, 2d}$. 
 To help solving this decision problem, the following proposition will become very helpful.
 
@@ -458,6 +465,7 @@ To help solving this decision problem, the following proposition will become ver
      On the other hand, if we know $p(x) = \mathcal{B}_{n, d}^T \mathcal{Q} \mathcal{B}_{n, d}$, where $\mathcal{Q}$ is a positive semidefinite matrix, we can just apply the Cholesky decomposition to get $\mathcal{Q} = L^T L$, and recover the SOS form of $p(x)$. \cite{Blekherman:Parrilo:Thomas}
 \end{proof}
 
+\smallskip
 Therefore, we have redueced our problem decision problem to finding this positive semidefinite matrix. It turns out that this can be done via \emph{Semidefinite Programming} \cite{Blekherman:Parrilo:Thomas}
 \begin{definition}
      An \emph{Semidefinite Problem (SDP)} in standard primal form is written as
@@ -473,32 +481,181 @@ Therefore, when we plug in the constraints into a SDP solver, if the result that
      We can do an example here
 \end{example}
 
+\smallskip
 Now, we further examine the constraints. Using the inner product of matrices, there is a natural representation of the constraints using the inner products $\langle \cdot,  \cdot \rangle$ between matrices. That is $\langle A, B \rangle = tr(A^T B)$ 
 
 \begin{prop}
 
-     We pick a basis of $\mathcal{B}_{n, d} = {b_1, ..., b_{n + d \choose d}}$ of $P_{n, d}$, and list it in a vector form $ b =\begin{bmatrix}
+     We pick a basis of $\mathcal{B}_{n, d} = \{b_1, ..., b_{n + d \choose d}\}$ of $P_{n, d}$, and list it in a vector form $ b =\begin{bmatrix}
           b_1 &
           ... &
           b_{ n+ d \choose d}
      \end{bmatrix} ^ T$. Then by remark 2.14, we can form a basis $\mathcal{B}_{n, 2d} = \{b'_1, ..., b'_{n + 2d \choose 2d}\}$ based on the vector $b$. 
      Suppose the $p(x)$ that we are interested in is written in the form $\sum_{i = 1}^{n + 2d \choose 2d } c_i b'_i$.
-     Then, we can reformulate $p(x) = b^T \mathcal{Q} b = \langle Q, b b^T \rangle$ 
+     Then, we can reformulate $p(x) = b^T \mathcal{Q} b = \langle Q, b \cdots b^T \rangle$ 
 \end{prop}
 
+\smallskip
 Because the constrants are linear with respect to $\mathcal{Q}$, we can re-write it into a system on linear equations with respect to the entries of the matrix $\mathcal{Q}$. Thus we can reformulate the constrants as
-$A q = b$, where $q = [q_{1,1}, ..., q_{1, k}, q_{2, 2}, ... ,q_{k, k}]$. And we are interested in the numerical stability of $A$.
+$A q = b$, where $q = [q_{1,1}, ..., q_{1, k}, q_{2, 2}, ... ,q_{k, k}]$. And we are interested in the numerical stability of $A$. 
+
+The stability of $A$ can be measured by the \emph{condition number}. Therefore, we shall seek for the base that minimize $\kappa(A)$. \cite{Recher:Masterthesis}
 
 \begin{definition}
-     We define the $b b^T$ in Proposition 2.19 as the \emph{Moment Matrix}.
+     We call the matrix $b \cdot b^T$ in Proposition 2.19 the \emph{Moment Matrix}.
 \end{definition}
 
+\begin{example}
+     Here is another place to do an example to illustrate Moment Matrix.
+\end{example}
 
+\smallskip
+Utilizing the \emph{Moment Matrix}, 
+we can already measure the numerical stability for the different bases $\mathcal{B}_{n, d}$ that one can choose to carry out the comparing coefficient process to generate the constraints in the \emph{SDP}.
+However, what if the polynomial $p(x)$ used a different base comparing to the \emph{moment matrix}?
+\smallskip
+Given the polynomial $p(x)$ in a basis $\mathcal{B'}_{n, 2d}$, one can find a change of basis matrix to convert write $p(x)$ in $\mathcal{B}_{n, 2d}$ that we will use to compare coefficients.
+This change of coefficients process has its own numerical properties as well. So it would be desired if we can take that into account when analyzing the numerical properties of our constrants. 
+Therefore, we shall introduce the \emph{Coefficient Moment Matrix}. In the remaining part of this section, we shall build our way to it.
+
+\smallskip
+Suppose the \emph{moment matrix} is constructed with the basis $\mathcal{B}_{n, d}$ and the polynomial $p(x)$ is written in the basis $\mathcal{B}'_{n, 2d}$. 
+That is suppose $\mathcal{B}'_(n, 2d) = \{b'_0, ..., b'_k\}$ where $k = {n + 2d \choose 2d} - 1$, we have $p(x) = c_0b'_0 + ... + c_kb'_k$.
+\begin{definition}
+We define the \emph{coefficient extraction map} as the following map,
+\begin{equation}
+     \begin{split}
+     \mathcal{C}: \mathbb{R}[x]_{\leq, 2d} \times \mathbb{R}[x]_{\leq, 2d} \rightarrow \mathbb{R} \\
+     \mathcal{C}(p, b'_j) \mapsto c_j
+     \end{split}
+\end{equation}
+\cite{Recher:Masterthesis}
+\end{definition}
+
+\smallskip
+When fixing $s_j$, we have the \emph{coefficient extraction map} being a linear map with respect to the polynomial $p(x)$. Indeed, we have 
+\begin{equation}
+     \begin{split}
+          \mathcal{C}(\lambda p, b'_j) = \lambda \mathcal{C}(p, b'_j) \quad \lambda \in \mathbb{R}
+          \\
+          \mathcal{C}(p_1 + p_2, b'_j) = \mathcal{C}(p_1, b'_j) + \mathcal{C}(p_2, b_j)
+     \end{split}
+\end{equation}
+
+\begin{remark}
+     When the $\mathcal{B'}_{n, 2d} = \{b'_1,... ,b'_k\}$ is a orthonomal basis, i.e. $\langle b_i, b_j \rangle \delta_{i,j}$ (the Dirac delta function), where the inner product is defined as
+     \begin{equation} 
+          \langle p, q \rangle = \int_a^b p(x) q(x) d\alpha(x)
+     \end{equation}. 
+     There is a natural concretely definiation for the \emph{coefficients extraction map}. 
+     That is
+     \begin{equation}
+          \mathcal{C}(p(x), b'_j) = \langle p(x), b'_j \rangle
+     \end{equation}
+     When the basis is only orthognal, we can still define the \emph{coefficients extration map} concretely as,
+     \begin{equation}
+          \mathcal{C}(p(x), b'_j) = \frac{1}{||b'_j||}\langle p(x), b'_j \rangle 
+     \end{equation}
+     where the norm $|| \cdot ||$ is induced by the corresponding inner product.
+\end{remark}
+
+\begin{remark}
+     We should actually write the \emph{coefficient extraction map} as $\mathcal{C}_{\mathcal{B'}_{n,2d}}$,
+     since it depends on the base itself. However, when the base is clear, we just write it as $\mathcal{C}$.
+\end{remark}
+
+\smallskip 
+We can generalize the \emph{coefficients extraction map} to take in a matrix as the first argument, and just entry-wise apply the map. With an abuse of notation, we have 
+\begin{definition}
+     Given a matrix of polyomials $(p_{i, j}(x))_{i, j}$ all in the bases Let the \emph{coefficient extration map} be defined as 
+     \begin{equation}
+          \begin{split}
+               \mathcal{C}: \mathbb{R}[x]_{\leq n, 2d}^{m \times n} \times \mathbb{R}[x]_{\leq n, 2d} \rightarrow \mathbb{R}^{m \times n} & \\
+               \mathcal{C}(
+                    \begin{bmatrix} 
+                         p_{1, 1} & ... & p_{1, n} \\
+                         & \vdots \\
+                         p_{m, 1} & ... & p_{m, n} \\
+                    \end{bmatrix}, b'_j
+               ) = \begin{bmatrix} 
+                    \mathcal{C}(p_{1, 1}, b'_j) & ... &  \mathcal{C}(p_{1, n}, b'_j) \\
+                    & \vdots \\
+                    \mathcal{C}(p_{m, 1}, b'_j) & ... &  \mathcal{C}(p_{m, n}, b'_j) \\
+                    \end{bmatrix}
+          \end{split}
+     \end{equation}
+\end{definition}
+
+\begin{remark}
+     And immediate result from the above definition is that, given $Q \in \mathbb{R}^{m \times m}$, $M \in \mathbb{R}[x]_{n, 2d}^{m \times m}$, 
+     and a basis $\mathcal{B}'_{n, 2d} = \{b'_1, ..., b'_k\}$, the matrix inner product provides the following relation,
+     \begin{equation}
+          \mathcal{C}(\langle Q, M \rangle, b'_j) = \langle Q, \mathcal{C}(M, b'_j) \rangle
+     \end{equation}
+\end{remark}
+
+\smallskip
+Notice that, let $\mathcal{B}_{n, d} = \{b_0,...,b_l\}$, where $l = {n + d \choose d} - 1$, 
+let $\vec{b} = [b_1, ..., b_l]^T$, $M = \vec{b} \cdot \vec{b}^T \in \mathbb{R}^{l, l}$. 
+Then given $p(x)$ in $\mathcal{B}'_{n, 2d} = \{b'_0, ..., b'_k\}$, $p = c_0,b'_0 + ... + c_k b'_k$, 
+given $Q \in \mathbb{R}^{l, l}$ be the change of basis matrix from $\mathcal{B}_{n, 2d}$ to $\mathcal{B}'_{n, 2d}$, 
+where $\mathcal{B}_{n, 2d}$ is generated by $\mathcal{B}_{n, d}$ using remark 2.14, we have
+\begin{equation}
+     c_j = \mathcal{C}(p, b'_j) = \mathcal{C}(\langle Q, M \rangle, b'_j ) = \langle Q, \mathcal{C}(M, b'_j) \rangle
+\end{equation}
 
 \begin{definition}
-     
+Define the matrix $\mathcal{A}_j = \mathcal{C}(M, b'_j)$ be the \emph{coefficient moment matrix} of $b'_j$.
 \end{definition}
 
+\begin{prop}
+     $\mathcal{A}_j$ is symmetric, because $M$ is symmetric.
+\end{prop}
+
+\smallskip
+Recall, the \emph{SOS} problem is to decide, given a polynomial $p(x)$, 
+whether there exists a $Q \curlyeqprec 0$ such that $p = \vec{b}^TQ \vec{b}$, where $\vec{b}$ be the vector generated by $\mathcal{B}_{n, d}$.
+Suppose $p(x)$ is given in $\mathcal{B'}_{n, 2d}$, we can then reformulate the constraints $\vec{b}^TQ \vec{b}$ using the \emph{coefficient moment matrix} as
+\begin{equation}
+     \langle Q, \mathcal{A}_j \rangle = c_j \quad \forall j = 0,...,{n + 2d \choose 2d} - 1
+\end{equation} 
+
+\smallskip
+Let $\mathcal{A}_j = \begin{bmatrix}
+               a_{0, 0} & a_{0, 1} & ... &a_{0, l}\\
+               a_{0, 1} & a_{1, 1} & ... &a_{1, l} \\
+               & \vdots \\
+               a_{0, l} & a_{1, l} &... &a_{l, l}\\
+     \end{bmatrix}, 
+          Q = \begin{bmatrix}
+               q_{0, 0} & q_{0, 1} & ... &q_{0, l}\\
+               q_{0, 1} & q_{1, 1} & ... &q_{1, l} \\
+               & \vdots \\
+               q_{0, l} & q_{1, l} &... &q_{l, l}\\
+          \end{bmatrix} $
+
+Set $\vec{a_j} = [a_{0, 0}, 2a_{0, 1}..., 2a_{0, l}, a_{1, 1}, 2a_{1, 2}, ..., a_{l, l}]^T \in \mathbb{R}^{l + 1}$, and
+$\vec{q} = [q_{0, 0}, ..., q_{l, l}]$.
+We can re-write the inner product $\langle Q, \mathcal{A}_j \rangle$ using the fact that both $\mathcal{A}_j$ and $Q$ are symmetric. \begin{equation}
+     \langle Q, \mathcal{A}_j \rangle = q^T \cdot a_k = a_k^T \cdot q
+\end{equation}
+
+\smallskip
+Then, finally, we can re-write the constraint $p(x) = \vec{b}^T Q \vec{b}$, as the system of linear equations that 
+\begin{equation}
+     \mathcal{A} = \begin{bmatrix}
+          a_0^T \\
+          \vdots \\
+          a_l^T
+     \end{bmatrix} q = \begin{bmatrix}
+          c_0 \\
+          \vdots \\
+          c_l
+     \end{bmatrix}
+\end{equation}
+Thus, the numerical property of the \emph{SDP} problem is completely captured by the \emph{condition number} of $A$. 
+Therefore, we will write python code to examine different combinations of bases under different degrees and number of variates in the Preliminaries sections. 
+We will list the polynomial bases that we are interested in the following sections, and will briefly touch upon \emph{Semidifinite Programing} before we present our results.
 
 \subsection{Polynomial Basis}
 \label{Sec:polynomial Basis}

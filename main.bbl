@@ -16,6 +16,10 @@ G.~Blekherman, P.A. Parrilo, and R.R. Thomas, \emph{Semidefinite optimization
 E.~Cheney and D.~Kincaid, \emph{Numerical mathematics and computing},
   International student edition, Cengage Learning, 2007.
 
+\bibitem[Gol96]{golub1996matrix}
+Gene Golub, \emph{Matrix computations}, Johns Hopkins University Press,
+  Baltimore, 1996.
+
 \bibitem[Lau09]{Laurent:Survey}
 M.~Laurent, \emph{Sums of squares, moment matrices and optimization over
   polynomials}, Emerging applications of algebraic geometry, IMA Vol. Math.
