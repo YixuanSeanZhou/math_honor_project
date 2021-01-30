@@ -11,12 +11,14 @@ I will also list all the questions / problems in the HELP NEEDED section.
 
 #### TODO
 
-    - Update python code to calculate coef moment matrix, and use that to perform compare coeff and form the linear system.
+    - Understand multi-variate basis for Chebychevs's.
 
 #### DONE
 
     - The writing for Preliminaries - Notations and Definiations sections is done. And it is ready for a review.
         - Note: I didn't proof read, so might be typos and misspellings and etc. 
+    
+    - Update python code to calculate coef moment matrix, and use that to perform compare coeff and form the linear system.
 
 #### HELP NEEDED
 
