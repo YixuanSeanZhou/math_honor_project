@@ -6,6 +6,13 @@ I will also list all the questions / problems in the HELP NEEDED section.
 
 ## Logs
 
+### Feb 1 - Feb 8
+
+#### TODO
+	
+	- Try understanding Chebychevs's basis via the source "Computing sum of squares decompositions with rational coefficients"
+	- Read mathmatcial papers to become a better writer
+	- (Next week) Revise writing
 
 ### Jan 25 - Feb 1
 
