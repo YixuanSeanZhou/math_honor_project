@@ -6,6 +6,15 @@ I will also list all the questions / problems in the HELP NEEDED section.
 
 ## Logs
 
+### Feb 8 - Feb 15
+
+#### TODO
+
+	- Try finish understand chebyshves' bivariate with Hubert's paper
+	- Find sources for the orthognoality of bivariate chebyshve
+	- Revise paper
+	- Lagrende poly
+
 ### Feb 1 - Feb 8
 
 #### TODO
@@ -13,6 +22,12 @@ I will also list all the questions / problems in the HELP NEEDED section.
 	- Try understanding Chebychevs's basis via the source "Computing sum of squares decompositions with rational coefficients"
 	- Read mathmatcial papers to become a better writer
 	- (Next week) Revise writing
+
+#### DONE
+
+	- Implemented univariate chebyshve's basis
+	- Performed numerical experiments between chebyshev and monomial
+	- Found other sources. 
 
 ### Jan 25 - Feb 1
 
