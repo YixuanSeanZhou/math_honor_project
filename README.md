@@ -15,6 +15,10 @@ I will also list all the questions / problems in the HELP NEEDED section.
 	- Revise paper
 	- Lagrende poly
 
+#### Help Needed
+	
+	- Understanding of the Gergely Mádi-Nagy paper, is he correct?
+
 ### Feb 1 - Feb 8
 
 #### TODO
