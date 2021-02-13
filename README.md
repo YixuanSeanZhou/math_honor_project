@@ -10,10 +10,15 @@ I will also list all the questions / problems in the HELP NEEDED section.
 
 #### TODO
 
-	- Try finish understand chebyshves' bivariate with Hubert's paper
-	- Find sources for the orthognoality of bivariate chebyshve
 	- Revise paper
 	- Lagrende poly
+
+#### DONE
+	
+	- Chebyshevs' bivariate for first kind and second kind
+	- Run experiments for univariate monomial and two chebyshves
+	- Run small degree experiments for bivariate monomial and
+	  cheby first kind
 
 #### Help Needed
 	
