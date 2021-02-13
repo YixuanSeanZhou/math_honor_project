@@ -11,14 +11,14 @@ I will also list all the questions / problems in the HELP NEEDED section.
 #### TODO
 
 	- Revise paper
-	- Lagrende poly
 
 #### DONE
 	
+	- Lagrende poly uni & biv
 	- Chebyshevs' bivariate for first kind and second kind
 	- Run experiments for univariate monomial and two chebyshves
-	- Run small degree experiments for bivariate monomial and
-	  cheby first kind
+	- Run small degree experiments for bivariate monomial and cheby first kind and lagrende
+	- See "python_code/univariate/" folder for pictures of univariate results.
 
 #### Help Needed
 	
