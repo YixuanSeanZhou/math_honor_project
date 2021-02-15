@@ -6,11 +6,13 @@ I will also list all the questions / problems in the HELP NEEDED section.
 
 ## Logs
 
-### Feb 8 - Feb 15
+### Feb 8 - Feb 22
 
 #### TODO
 
 	- Revise paper
+    - Picking up new polynomials
+    - Optimizing the run time of bivariate cases
 
 #### DONE
 	- Coding:	
@@ -19,9 +21,11 @@ I will also list all the questions / problems in the HELP NEEDED section.
 		- Run experiments for univariate monomial and two chebyshves
 		- Run small degree experiments for bivariate monomial and cheby first kind and lagrende
 		- See "python_code/univariate/" folder for pictures of univariate results.
+        - Problem: the bivariate cases are very slow when doing the integration.
 	- Reading:
 		- Understood fomulation introduced in "Polynomial bases on the numerical solution of the multivariate discrete moment problem"
 	- Writing:
+        - Rewrote Introduction.
 
 #### Help Needed
 	

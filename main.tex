@@ -166,7 +166,7 @@
 
 \title{Honors Project}
 
-\author{Yixuan Zhou} \author{Mareike Dressler} %\author{}
+\author{Yixuan Zhou} %\author{}
 
 \address{8514 Villa La Jolla Drive \# 114, La Jolla, CA, 92037\medskip}
 \email{yiz044@ucsd.edu}
@@ -192,53 +192,42 @@ Short description
 
 \section{Introduction} 
 
-\emph{Polynomials} are very powerful tools in solving many problems in applied math and engineering. 
+\emph{Polynomials} are very powerful in solving problems in applied math and engineering. 
 And deciding the nonnegativity of a given polynomial become very important in many settings (polynomial optimizations and statistical regressions). 
 Therefore, this decision problem become a central topic in the study of real algebraic geometry. 
 In computational complexity terminology, it has been known that the deciding whether an arbitrary multivariate polynomial is a \emph{nonnegative polynomial} \ref{def:NGP} is a NP-hard problem (computationally infeasible) when the 
 degree of the polynomial is greater than two. 
+
 However, if we redirect our focus to determine whether a given polynomial can be expressed in terms of \emph{sum of squares (SOS)} \ref{def:SOS},
 the problem is reduced to solving a \emph{semidefinite programming (SDP)} \ref{def:SDP} problem which 
-has known algorithms that can solve the problem in polynomial times (efficiently) with respect to the input size.
+has known algorithms that can solve the problem in polynomial times (efficiently) with respect to the input size. 
+Though Hilbert has showed that the set of all \emph{SOS} coincide with the set of all \emph{nonnegative polynomials} only if the polynomials are univariate, quadratic, or bivariate with degree 4,
+the \emph{SOS} is still the mostly well-known and well-used certificate in this decision problem due to its simplicity and the existence of efficient solvers. \cite{Blekherman:Parrilo:Thomas}
 
+When it comes to solving the \emph{SDP}, the solver is actually dealing with a set of linear constraints, which can be compactly written in the form $Ax = b$, obtained by the process of \emph{comparison of coefficients (COC)}.
+This process can be understood in terms of vectors after realizing that the set of n-variate real polynomials with degree less than or equals to $d$, denoted by $\mathbb{R}[\mathbf{x}]_{n, d}$ form a vector space.
+Then any polynomial $p(\mathbf{x}) \in \mathbb{R}[\mathbf{x}]_{n, d}$ can be uniquely identified as $p(\mathbf{x}) = \sum_{j = 0}^k c_j b_j$ given a basis $\mathcal{B} = \{b_0, ..., b_k\}$ of $\mathbb{R}[\mathbf{x}]_{n, d}$.
+Therefore, the process of \emph{COC} is just formulating the equality constraints by identifying the constants $c_0, ..., c_k$. \cite{Recher:Masterthesis}
 
+Because the linear system that formed by \emph{COC} depends on the basis $\mathcal{B}$,
+the stability of the linear system, measured by the \emph{condition number} \ref{def:COND}, is drastically fluctuated depends on the $\mathcal{B}$ that we chose. 
+In this paper, I am going to run experiments, with the computer's aid, of different choices of the basis $\mathcal{B}$ to determine, 
+in different scenarios, what is the best choice of basis to carry out the process of \emph{COC} so that the resulted linear system is most stabled. 
 
+The paper is organized in the following: In section 2, I will introduce all the preliminary materials, 
+with section 2.1 focus to introduce all the tools that will be needed, 
+section 2.2 emphasized on introducing the detailed procedure of the process of \emph{COC} and the relations with the basis of the polynomial space,
+and section 2.3 listing some polynomial basis that will be considered in this paper and their properties. 
+In section 3, the main numerical results of the \emph{condition number} will be presented. 
+And in section 4, I will present some discussion about the result that is obtained in section 3 and some thoughts on what are the further efforts that can be made to this problem.
 
+\newpage
 
-It is clear that if a polynomial $p(x)$ is a SOS, then it is nonegative,
-Thus, SOS is a (proper) subset of the set of nonegative polynomials. 
+\centerline{\textbf{Acknowledgements}}
 
-We are interested in SOS beacuse given a multivariate polynomial, the decision
-problem of whether it can be decomposed into SOS is a polynomial time problem, by using
-\emph{Semidefinite Programming (SDP)}.
-
-
-
-\cite{Blekherman:Parrilo:Thomas}
-
-\cite{Laurent:Survey}
-
-As a consequence of the above theorem, whether a multivariate polynomial is SOS can be determined 
-by a \emph{Semidefinite Programming}. Notice that, the size of the semidefinite matrix,
-${n+d \choose d}$, when fixing $d$, grows in polynomial time with respect to $n$, and when 
-fixing $n$, it grows in polynomial time with respect to $d$. Thus, though imposed some 
-limitation, we have "redueced" a NP-Problem to a P problem. 
-
-In the above theorem, there is nothing special with monomials other than being a basis of the vector space $\mathbb{R}[x]_{n,2d}$. 
-Instead of using $[x]_d$ to proceed the calculation,
-we can choose any basis of the vector space of polynomials $\mathbb{R}[x]_{n,d}$. 
-For example, we can choose Lagrange basis, Chebychev basis, ... And in the most cases,
-the monomial basis is not the right choice due to its instability of monomials bases.
-
-In this paper, we will use python program to analyze the computational effeciency and 
-numerical stability of the usage of different bases. In particular, the analysis will
-be focusing on the condition number of the linear system generated when solving the 
-semidefinite program, that is generated by $p(x) = [x]_d^T \mathcal{Q} [x]_d $. 
-We will use the \emph{condition number} of the matrix in the linear system to identify how stable the
-it is under noises that are introduced in practical problems.  
-We will further attempt to identify some most effective bases for some particular
-type of polynomials, and will try to justify the reasons.  
-
+I would like to express my deepest gratefulness to my program advisor Mareike Dressler for offering this opportunity to do this honor project. 
+During the past three quarters, she not only has been providing insightful ideas about the direction of this project should be going, 
+but also has been guiding me through the process of doing research. The project could not have done without her support and help. Thank you.
 
 \newpage
 
@@ -259,10 +248,6 @@ Because we are going to use a lot of tools from lienar algebra, we first introdu
      Given a matrix $A \in \mathbb{R}^{n \times n}$, we say it is \emph{symmetric} if $A^T = A$.
 \end{definition}
 
-\begin{definition}
-\label{def:SDP}
-
-\end{definition}
 
 \begin{thm} Spectrum Theorem
 
@@ -323,6 +308,7 @@ Because we are going to use a lot of tools from lienar algebra, we first introdu
 
 
 \begin{definition}
+     \label{def:COND}
      Given a matrix $A \in \mathbb{R}^{n \times m}$, the condition number of $A$, $\kappa(A)$ is defined as
      \begin{equation}
           \kappa(A) = ||A|| \cdot ||A^+||
@@ -464,6 +450,7 @@ Therefore, we have redueced our problem decision problem to finding this positiv
           \textit{minimize} \langle C, X \rangle \quad \textit{subject to} \langle A_i, X \rangle = b_i, i=1,...,k \quad X \succcurlyeq 0
      \end{equation}
 \end{definition}
+For more detail on semidefinite programming, refer to \cite{Blekherman:Parrilo:Thomas}.
 
 Returning to our problem, we require $\mathcal{Q} \succcurlyeq 0$, and the set of constraints $ \langle A_i, X \rangle = b_i$ is the same as satisfying $p(x) = \mathcal{B}_{n, d}^T \mathcal{Q} \mathcal{B}_{n, d}$, which can be done via comparing the coefficients of each element in the basis that we use. \cite{Recher:Masterthesis} 
 Therefore, when we plug in the constraints into a SDP solver, if the result that we get is not no solution, then we know that the $p(x) \in \Sigma_{n, 2d}$
