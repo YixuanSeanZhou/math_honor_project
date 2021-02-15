@@ -1,0 +1,3 @@
+nonnegativity
+nonnegativity
+semidefinite

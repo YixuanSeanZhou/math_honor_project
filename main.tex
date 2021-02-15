@@ -191,46 +191,28 @@ Short description
 
 
 \section{Introduction} 
-Polynomial with real coefficients is a very powerful tool in terms of expressing problems. 
-It has a vast range of applications, in both theory side and engineering side. 
-Deciding the nonegativity of a multivariate polynomial, natually, become 
-a cenctral prblem for many optimizations and feasibility problems. 
-However, it is known that deciding the nonegativity of an arbitrary multivariate 
-polynomial is a NP-hard problem when the degree of the polynomial is greater than or
-equals to 2. Therefore, we restrict our focus to decide whether the polynomial can be 
-expressed in \emph{sum of squares (SOS)} form. 
 
-\begin{definition}
-     Sum of Suqares (SOS)
+\emph{Polynomials} are very powerful tools in solving many problems in applied math and engineering. 
+And deciding the nonnegativity of a given polynomial become very important in many settings (polynomial optimizations and statistical regressions). 
+Therefore, this decision problem become a central topic in the study of real algebraic geometry. 
+In computational complexity terminology, it has been known that the deciding whether an arbitrary multivariate polynomial is a \emph{nonnegative polynomial} \ref{def:NGP} is a NP-hard problem (computationally infeasible) when the 
+degree of the polynomial is greater than two. 
+However, if we redirect our focus to determine whether a given polynomial can be expressed in terms of \emph{sum of squares (SOS)} \ref{def:SOS},
+the problem is reduced to solving a \emph{semidefinite programming (SDP)} \ref{def:SDP} problem which 
+has known algorithms that can solve the problem in polynomial times (efficiently) with respect to the input size.
 
-     Let $\mathbb{R}[x]_{n, d}$ denotes the set of polynomials with $n$ real variables with
-     degree at most $d$.
-     A polynomial $p(x) \in \mathbb{R}[x]_{n, 2d}$, 
-     is a \emph{sum of squares} if
-     there exists $q_1(x),...,q_n(x) \in \mathbb{R}[x]_{n, d}$ such that
-     \begin{equation}
-          p(x) = \sum_{i = 1}^{n} q_i ^2 (x)
-     \end{equation}
-\end{definition}
+
+
+
 
 It is clear that if a polynomial $p(x)$ is a SOS, then it is nonegative,
 Thus, SOS is a (proper) subset of the set of nonegative polynomials. 
 
 We are interested in SOS beacuse given a multivariate polynomial, the decision
 problem of whether it can be decomposed into SOS is a polynomial time problem, by using
-\emph{Semidefinite Programing (SDP)}.
+\emph{Semidefinite Programming (SDP)}.
 
 
-\begin{thm}
-     A multivariate polynomial $p(x) \in \mathbb{R}[x]_{n, 2d}$ is a sum of squares
-     if and only if there exists $\mathcal{Q} \in \mathcal{S}^{{n+d \choose d}}$ such that
-     
-     \begin{equation}
-          p(x) = [x]_d^T \mathcal{Q} [x]_d \quad \mathcal{Q} \succcurlyeq 0
-     \end{equation}
-
-     Where $[x]_d$ denotes the vector of monomials with degree at most $d$.
-\end{thm}
 
 \cite{Blekherman:Parrilo:Thomas}
 
@@ -264,10 +246,12 @@ type of polynomials, and will try to justify the reasons.
 \label{Sec:Preliminaries}
 
 Here background definitions etc will be put. 
-You can do it in several subsections (like notation, bla, blabla)
 
-\subsection{Notations and Definitions}
-\label{Sec:Notations and Definitions}
+\subsection{Linear Algebra And Semidefinite Programming}
+\label{Sec:Linear Algebra}
+
+\subsection{Real Coefficient Polynomials}
+\label{Sec:Real Coefficient Polynomials}
 
 Because we are going to use a lot of tools from lienar algebra, we first introduce some key definiations that we will use in this thesis.
 
@@ -275,6 +259,10 @@ Because we are going to use a lot of tools from lienar algebra, we first introdu
      Given a matrix $A \in \mathbb{R}^{n \times n}$, we say it is \emph{symmetric} if $A^T = A$.
 \end{definition}
 
+\begin{definition}
+\label{def:SDP}
+
+\end{definition}
 
 \begin{thm} Spectrum Theorem
 
@@ -367,6 +355,7 @@ Now with the tools from linear algebra, we are ready to proceed to the realm of 
 \end{definition}
 
 \begin{definition}
+     \label{def:NGP}
      Let $P_{n, 2d}$ denotes the set of nonegative polynomials with 
      $n$ variables and at most $2d$ degree, that is 
      \begin{equation}
@@ -380,6 +369,7 @@ Now with the tools from linear algebra, we are ready to proceed to the realm of 
 \end{remark}
 
 \begin{definition}
+\label{def:SOS}
      Let $\Sigma_{n,2d}$ denotes the set of polynomials with $n$ variables and at most
      $d$ degree that are \emph{Sum of Suqares}, that is
      \begin{equation}
@@ -468,6 +458,7 @@ To help solving this decision problem, the following proposition will become ver
 \smallskip
 Therefore, we have redueced our problem decision problem to finding this positive semidefinite matrix. It turns out that this can be done via \emph{Semidefinite Programming} \cite{Blekherman:Parrilo:Thomas}
 \begin{definition}
+     \label{def:SDP}
      An \emph{Semidefinite Problem (SDP)} in standard primal form is written as
      \begin{equation}
           \textit{minimize} \langle C, X \rangle \quad \textit{subject to} \langle A_i, X \rangle = b_i, i=1,...,k \quad X \succcurlyeq 0

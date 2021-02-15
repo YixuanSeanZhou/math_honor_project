@@ -1,7 +1,7 @@
 # Math Honor Project
 
 I will keep everything in this log. 
-At the very begining of the week I will list some TODOs, and try to move TODOs into DONE section. 
+At the very beginning of the week I will list some TODOs, and try to move TODOs into DONE section. 
 I will also list all the questions / problems in the HELP NEEDED section.
 
 ## Logs
@@ -13,12 +13,15 @@ I will also list all the questions / problems in the HELP NEEDED section.
 	- Revise paper
 
 #### DONE
-	
-	- Lagrende poly uni & biv
-	- Chebyshevs' bivariate for first kind and second kind
-	- Run experiments for univariate monomial and two chebyshves
-	- Run small degree experiments for bivariate monomial and cheby first kind and lagrende
-	- See "python_code/univariate/" folder for pictures of univariate results.
+	- Coding:	
+		- Lagrende poly uni & biv
+		- Chebyshevs' bivariate for first kind and second kind
+		- Run experiments for univariate monomial and two chebyshves
+		- Run small degree experiments for bivariate monomial and cheby first kind and lagrende
+		- See "python_code/univariate/" folder for pictures of univariate results.
+	- Reading:
+		- Understood fomulation introduced in "Polynomial bases on the numerical solution of the multivariate discrete moment problem"
+	- Writing:
 
 #### Help Needed
 	
@@ -46,7 +49,7 @@ I will also list all the questions / problems in the HELP NEEDED section.
 
 #### DONE
 
-    - The writing for Preliminaries - Notations and Definiations sections is done. And it is ready for a review.
+    - The writing for Preliminaries - Notations and Definitions sections is done. And it is ready for a review.
         - Note: I didn't proof read, so might be typos and misspellings and etc. 
     
     - Update python code to calculate coef moment matrix, and use that to perform compare coeff and form the linear system.
@@ -61,13 +64,13 @@ I will also list all the questions / problems in the HELP NEEDED section.
 #### TODO
 
     - Update the write up to cover the main idea in the master Thesis
-        - Coefficiet Moment Matrix
-    - Update python code to calculate coef moment matrix, and use that to perform compare coeff and form the linear system.
+        - Coefficients Moment Matrix
+    - Update python code to calculate coeff moment matrix, and use that to perform compare coeff and form the linear system.
 
 #### DONE
 
     - Update the write up
-        - Definiations that we need for linear algebra operations
+        - Definitions that we need for linear algebra operations
         - Write till Moment matrix
 
 #### HELP NEEDED
