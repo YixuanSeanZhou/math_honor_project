@@ -4,6 +4,13 @@ I will keep everything in this log.
 At the very beginning of the week I will list some TODOs, and try to move TODOs into DONE section. 
 I will also list all the questions / problems in the HELP NEEDED section.
 
+## Getting Started
+Before you run the jupyter notebook, you need to install the dependencies using the `requirements.txt` file.
+You can do so by opening up a terminal, and type:
+```
+pip install -r requirements.txt
+```
+
 ## Logs
 
 ### Feb 8 - Feb 22

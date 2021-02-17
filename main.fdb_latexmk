@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1613359054 "main.aux" "main.bbl" "main" 1613359056
+["bibtex main"] 1613359054 "main.aux" "main.bbl" "main" 1613359217
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/amscls/amsalpha.bst" 1513722769 28675 71ba1b1ee8387ac88670b0ea0eb2399a ""
   "main.aux" 1613359055 3073 31021bd83e1998d1527fe490c2f9262c ""
   "main.bib" 1611074520 1624 5307693a9d322ef5fbf862a0de13bba3 ""
   (generated)
-  "main.blg"
   "main.bbl"
-["pdflatex"] 1613359055 "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.tex" "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf" "main" 1613359056
+  "main.blg"
+["pdflatex"] 1613359055 "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.tex" "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf" "main" 1613359217
   "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.aux" 1613359055 3073 31021bd83e1998d1527fe490c2f9262c ""
   "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.tex" 1613359052 29675 fd3a3bb7ab6009f4222abf84aa40982c ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
@@ -186,9 +186,9 @@
   "main.out" 1613359055 664 56db850fbe8e22741113f590f1bf9757 ""
   "main.tex" 1613359052 29675 fd3a3bb7ab6009f4222abf84aa40982c ""
   (generated)
-  "main.pdf"
-  "main.aux"
   "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.log"
-  "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf"
-  "main.log"
+  "main.pdf"
   "main.out"
+  "main.log"
+  "main.aux"
+  "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf"
