@@ -171,8 +171,8 @@
 \address{8514 Villa La Jolla Drive \# 114, La Jolla, CA, 92037\medskip}
 \email{yiz044@ucsd.edu}
 
-\address{9500 Gilmam Drive \# 0112, La Jolla, CA, 92093 \medskip}
-\email{mdressler@ucsd.edu}
+% \address{9500 Gilmam Drive \# 0112, La Jolla, CA, 92093 \medskip}
+% \email{mdressler@ucsd.edu}
 
 
 
@@ -205,21 +205,25 @@ Though Hilbert has showed that the set of all \emph{SOS} coincide with the set o
 the \emph{SOS} is still the mostly well-known and well-used certificate in this decision problem due to its simplicity and the existence of efficient solvers. \cite{Blekherman:Parrilo:Thomas}
 
 When it comes to solving the \emph{SDP}, the solver is actually dealing with a set of linear constraints, which can be compactly written in the form $Ax = b$, obtained by the process of \emph{comparison of coefficients (COC)}.
-This process can be understood in terms of vectors after realizing that the set of n-variate real polynomials with degree less than or equals to $d$, denoted by $\mathbb{R}[\mathbf{x}]_{n, d}$ form a vector space.
+Though this process will be formally introduced in section 2.3, the intuition behind it is quite simple. 
+It can be understood in terms of vectors after realizing that the set of n-variate real polynomials with degree less than or equals to $d$, denoted by $\mathbb{R}[\mathbf{x}]_{n, d}$ form a vector space.
 Then any polynomial $p(\mathbf{x}) \in \mathbb{R}[\mathbf{x}]_{n, d}$ can be uniquely identified as $p(\mathbf{x}) = \sum_{j = 0}^k c_j b_j$ given a basis $\mathcal{B} = \{b_0, ..., b_k\}$ of $\mathbb{R}[\mathbf{x}]_{n, d}$.
 Therefore, the process of \emph{COC} is just formulating the equality constraints by identifying the constants $c_0, ..., c_k$. \cite{Recher:Masterthesis}
 
 Because the linear system that formed by \emph{COC} depends on the basis $\mathcal{B}$,
 the stability of the linear system, measured by the \emph{condition number} \ref{def:COND}, is drastically fluctuated depends on the $\mathcal{B}$ that we chose. 
+And it has been an ongoing problem of what basis will generate the best result.
 In this paper, I am going to run experiments, with the computer's aid, of different choices of the basis $\mathcal{B}$ to determine, 
 in different scenarios, what is the best choice of basis to carry out the process of \emph{COC} so that the resulted linear system is most stabled. 
 
 The paper is organized in the following: In section 2, I will introduce all the preliminary materials, 
-with section 2.1 focus to introduce all the tools that will be needed, 
-section 2.2 emphasized on introducing the detailed procedure of the process of \emph{COC} and the relations with the basis of the polynomial space,
-and section 2.3 listing some polynomial basis that will be considered in this paper and their properties. 
+including the tools that we need through this paper, and the algorithm that will be employed to carry out the \emph{COC}.
+A brief survey of polynomial bases that are considered in this paper will also be included in this section. 
 In section 3, the main numerical results of the \emph{condition number} will be presented. 
 And in section 4, I will present some discussion about the result that is obtained in section 3 and some thoughts on what are the further efforts that can be made to this problem.
+% section 2.2 emphasized on introducing the detailed procedure of the process of \emph{COC} and the relations with the basis of the polynomial space,
+% and section 2.3 listing some polynomial basis that will be considered in this paper and their properties. 
+
 
 \newpage
 
@@ -234,149 +238,60 @@ but also has been guiding me through the process of doing research. The project 
 \section{Preliminaries}
 \label{Sec:Preliminaries}
 
-Here background definitions etc will be put. 
+In this section, I am going to introduce all the background materials that will be used to 
+understand the problem and describe what algorithm will be used to carry out the \emph{comparison of coefficients (COC)}
+process. All the notations will also be introduced in this section, 
+and a brief survey of the polynomial base that will be considered in this paper will be included in the end.
 
-\subsection{Linear Algebra And Semidefinite Programming}
-\label{Sec:Linear Algebra}
+% The first subsection focus on related definitions and results from linear algebra. 
+% The second subsection contains all the tools that we need from real algebraic geometry and \emph{semidefinite programming} for describing the algorithm \emph{(COC)}
+% that will be used to solve the decision problem of whether a polynomial can be expressed as \emph{sum of squares}. 
+% The third subsection will be describing the algorithm. And the last subsection contains a brief survey of the polynomial bases that are considered in this paper. 
 
 \subsection{Real Coefficient Polynomials}
 \label{Sec:Real Coefficient Polynomials}
+First, I would like to rigorously define the decision problem that is considered in this paper. 
+Thus, I will define the terms that are used related to \emph{polynomials} in this subsection. 
 
-Because we are going to use a lot of tools from lienar algebra, we first introduce some key definiations that we will use in this thesis.
-
-\begin{definition}
-     Given a matrix $A \in \mathbb{R}^{n \times n}$, we say it is \emph{symmetric} if $A^T = A$.
-\end{definition}
-
-
-\begin{thm} Spectrum Theorem
-
-     Given a symmetric matrix$A \in \mathbb{R}^{n \times n}$, it can be diagnoalized as \begin{equation} A = P^{-1}DP \end{equation} where $D$ is the diagnoal matrix with all real values, and $P$ is an orthonomal matrix.
-     
-     In other word, $A$ has all real eigenvalues, and their corresponding eigenvectors form an orthonomal basis of $\mathbb{R}^n$. \cite{golub1996matrix}
-     
-\end{thm} 
-
-
-\begin{definition}
-     Given a matrix $A \in \mathbb{R}^{n \times n}$, it is \emph{positive semidifinate} if $A$ is symmetric and \begin{equation}
-          x^T A x \geq 0 \quad \forall x \in \mathbb{R}^n
-     \end{equation}
-     And we denote it as $A \succcurlyeq 0$.
-\end{definition}
-
-\begin{prop}
-     A matrix is \emph{positive semidifinate} if and only if all its eigenvalues are greater than or equals to 0
-\end{prop}
-
-\begin{proof}
-     If a matrix $A$ has eigenvalue $\lambda < 0$, then if $x$ is the correspdoning eigenvector, we have $x^T A x = \lambda x^T x < 0$.
-     On the other hand, if $A$ has all positive eignevalues, because $A$ being a symmetric matrix, its eigenvalue form a basis. Thus for any $x \in \mathbb{R}^n$, we have
-     $x = \sum_{i = 1} ^ n c_i v_i $ where $v_i$ are the eigenvectors of $A$, that are also orthnormal to each other.
-     Hence, $x^T A x$ = $\sum_{i = 1} ^ n \lambda_i$. Since all $\lambda_i \geq 0$, we have that $x ^ T A x \geq 0$.
-
-\end{proof}
-
-\begin{definition}
-     Given a matrix $A \in \mathbb{R}^{n \times m}$, the \emph{pesudo-inverse},
-     which is also knows as the \emph{Moore-Penrose} inverse of $A$, is the matrix
-     $A^+$ satisfying:
-     \begin{itemize}
-          \item $A A^+ A = A$
-          \item $A^+ A A^+ = A^+$
-          \item $(A A^+)^T = A A^+$
-          \item $(A^+ A)^T = A A^+$
-        \end{itemize}
-     
-\end{definition}
-\smallskip
-     Every matrix has its pesudo-inverse, and when $A \in \mathbb{R}^{n \times m}$ is \emph{full rank}, 
-     that is $rank(A) = min\{n, m\}$, $A$ can be expressed in simple algebric form.
-     
-     In particular, when $A$ has linearly independent columns, $A^+$ can be computed as
-     \begin{equation}
-          A^+ = (A^T A)^{-1} A^T
-     \end{equation}
-     In this case, the pesudo-inverse is called the \emph{left inverse} since $A^+ A = I$.
-
-     \smallskip
-     And when $A$ has linearly independent rows, $A^+$ can be be computed as
-     \begin{equation}
-          A^+ = A^T (A A^T)^{-1}
-     \end{equation}
-     In this case, the pesudo-inverse is called the \emph{right inverse} since $A A^+ = I$. 
-
-
-\begin{definition}
-     \label{def:COND}
-     Given a matrix $A \in \mathbb{R}^{n \times m}$, the condition number of $A$, $\kappa(A)$ is defined as
-     \begin{equation}
-          \kappa(A) = ||A|| \cdot ||A^+||
-     \end{equation}
-     for any norm imposed on $A$, for instance \emph{Frobenius norm}.
-\end{definition}
-
-\begin{remark}
-     The condition number measure how stable the system is. It can be alternatively defined as
-     \begin{equation}
-          \kappa(A) = \frac{\sigma_{max} (A)}{\sigma_{min} (A)}
-     \end{equation}
-     where the $\sigma$ denotes the singular values of $A$.
-
-     Thus, it can be understand as how stale our system is. 
-     Intuiatively, when the condition number is large, some error in the input along the max direction of the singular value,
-     our result would largly flacuate because the error, maginified by the singular value, will dominate the input that is along
-     the direction of the minimum singular value. 
-     Therefore, the smaller the condition number is, the more stable our system is under flcuations caused by noises.
-     The rigirous explaination of the condition numebr can be found in \cite{Cheney:Kincaid}
-\end{remark}
-
-\smallskip
-
-Now with the tools from linear algebra, we are ready to proceed to the realm of real coefficients polynomials.
-
-\begin{definition}
-     Let $\mathbb{R}[x]_{n,d}$ denotes the set of real coefficient 
-     polynmials with $n$ variables and at most $d$ degree.
-\end{definition}
-
-\begin{definition}
-     \label{def:NGP}
-     Let $P_{n, 2d}$ denotes the set of nonegative polynomials with 
-     $n$ variables and at most $2d$ degree, that is 
-     \begin{equation}
-          P_{n, 2d} = \{ p \in \mathbb{R}[x]_{n, 2d}: p(x) \geq 0, \forall x \in \mathbb{R}^d \}
-     \end{equation}
-\end{definition}
-
-\begin{remark}
-     When trying to determine the nonnegativity of a polynomial, there is no reason to consider the set $P_{n, d}$ when $d$ is odd, since if the 
-     degree of a polynomial is odd, then it will always be nonegative at some point.
-\end{remark}
-
-\begin{definition}
-\label{def:SOS}
-     Let $\Sigma_{n,2d}$ denotes the set of polynomials with $n$ variables and at most
-     $d$ degree that are \emph{Sum of Suqares}, that is
-     \begin{equation}
-          \Sigma_{n, 2d} = \{ p \in \mathbb{R}[x]_{n, 2d}: \exists \text{ } q_1(x), ..., q_k(x) \in \mathbb{R}[x]_{n,d} \text{ } s.t. \text{ }  p(x) = \sum_{i=1}^k q_i^2(x)\}
-     \end{equation}     
-\end{definition}
-
-\begin{remark}
-     It is easy to check that $P_{n, 2d}$ form an vector space. There are a lot of choices of basis, and the most canonical one is the monomial basis.
-\end{remark}
+First, I will start with some notations. Throughout this paper, I will use bold letters for vectors, e.g. $\mathbf{x} = (x_1, ..., x_n) \in \mathbb{R}^n$.
+The set of all $m$ by $n$ real matrices will be denoated as $\mathbb{R}^{m \times n}$ 
+The ring (set) of real-valued n-variate polynomials will be denoted as $\mathbb{R}[\mathbf{x}]$, 
+and the set of all $n$-variate real polynomials with degree less than or equals to $d$ will be denoted as $\mathbb{R}[\mathbf{x}]_{n, d}$. 
 
 \begin{example}
-     $P_(2, 2)$ is a vector space, then $\mathcal{B}_{2, 2} = {x^2, xy, y^2, x, y, 1}$ is a basis of the vector space.
+     In mathematics, a polynomial is an expression consisting of variables and coefficients, that involves only the operations of addition, subtraction, multiplication, and non-negative integer exponentiation of variables.
+     Therefore, a polynomial will take the form, 
+     $p(x, y, z) = x^4 + 2xyz - 6y + 7$ with $x, y, z$ being variables. This polynomial has $3$ variables and has degree $3$, thus it 
+     belongs to $\mathbb{R}[\mathbf{x}]_{3, 4}$.
 \end{example}
 
+A quick result that we can get about the set $\mathbb{R}[\mathbf{x}]_{n, d}$ is:
+\begin{prop}
+     \label{prop:vs}
+     $\mathbb{R}[\mathbf{x}]_{n, d}$ form a vector space, and a basis of it will be denoted as $\mathcal{B}_{n, d}$.
+\end{prop}
+    
+\begin{proof}
+     Suppose $p(\mathbf{x}), q(\mathbf{x}) \in \mathbb{R}[\mathbf{x}]_{n, d}$, $c \in \mathbb{R}$, then we have,
+     Then we have $cp \in \mathbb{R}[\mathbf{x}]_{n, d}$ because multiplication by a scalar does not increase the degree nor introduce new variables.
+     And $p + q \in \mathbb{R}[\mathbf{x}]_{n, d}$ for the same reason. 
+
+\end{proof}
+A canonical basis to this vector space is the monomial basis 
+\begin{equation*}
+     \mathcal{B}_{n, d} = \{1, x_1, x_2, ..., x_n, x_1 ^ 2, x_1 x_2, ..., x_n^d\}
+\end{equation*}
+And by counting, there are ${n + d \choose d} = \frac{n!}{(n-d)! d!}$ elements in the basis of $\mathbb{R}[\mathbf{x}]_{n, d}$.
+
 \begin{remark}
-     Given $\mathcal{B}_{n, d}$ be a basis of $P_{n, d}$. If we list the elements of $\mathcal{B}_{n, d}$ in a column vector, write as $b$, then $b b^T$ form a matrix whose upper triangle entries can be collected to form a basis of $P_{n, 2d}$.
+     \label{rem:idk}
+     Given $\mathcal{B}_{n, d}$ be a basis of $\mathbb{R}[\mathbf{x}]_{n, d}$. 
+     If we list the elements of $\mathcal{B}_{n, d}$ in a column vector, write as $b$, 
+     then $b b^T$ form a matrix whose upper triangle entries can be collected to form a basis of $\mathbb{R}[\mathbf{x}]_{n, 2d}$.
 \end{remark}
 
 \begin{example}
-     Let $\mathcal{B}_{2, 1} = {x, y, 1}$, be a basis of $P_{2, 1}$, then 
+     Let $\mathcal{B}_{2, 1} = {x, y, 1}$, be a basis of $\mathbb{R}[\mathbf{x}]_{2, 1}$, then 
      \begin{equation}
           \begin{bmatrix}
                x \\
@@ -396,29 +311,180 @@ Now with the tools from linear algebra, we are ready to proceed to the realm of 
 \end{example}
 
 \smallskip
-Then the question that we are interested in is given any polynomial $p(x) \in P_{n,2d}$, decide whether it is in $\Sigma_{n, 2d}$. 
-To help solving this decision problem, the following proposition will become very helpful.
+
+Then, I will define the terminologies related to the decision problem.
+
+\begin{definition}
+     \label{def:NGP}
+     Let $P_{n, 2d}$ denote the set of nonnegative polynomials with 
+     $n$ variables and degree at most $2d$, that is 
+     \begin{equation*}
+          P_{n, 2d} = \{ p \in \mathbb{R}[\mathbf{x}]_{n, 2d}: p(\mathbf{x}) \geq 0, \textit{ for all } \mathbf{x} \in \mathbb{R}^d \}
+     \end{equation*}
+\end{definition}
+
+The reason that we chose to write $2d$ in the definition is that it only make sense to consider polynomials with even degrees when dealing with both decision problems, 
+because a polynomial with odd degree will be negative when we fix all the other variables and move one variable to positive or negative infinity. 
+
+As discussed in the introduction, the decision problem of whether an arbitrary polynomial $p(\mathbf{x}) \in P_{n, 2d}$ is impossible to solve it computationally efficiently.
+However, if we consider the following subset of $P_{n, 2d}$, there are efficient algorithms. 
+
+\begin{definition}
+     \label{def:SOS}
+          Let $\Sigma_{n,2d}$ denote the set of polynomials with $n$ variables and degree at most
+          $2d$ that are \emph{Sum of Squares}, that is
+          \begin{equation*}
+               \Sigma_{n, 2d} = \{ p \in \mathbb{R}[x]_{n, 2d}: \text{ exists } q_1(x), ..., q_k(x) \in \mathbb{R}[x]_{n,d} \text{ } s.t. \text{ }  p(x) = \sum_{i=1}^k q_i^2(x)\}
+          \end{equation*}     
+\end{definition}
+
+Notice that $\Sigma_{n,2d} \subset P_{n, 2d}$ because sum of squares of real numbers are always going to be nonnegative. 
+
+Therefore, the \emph{decision problem} that will be considered in this paper is the following: 
+\begin{equation}
+     \textit{Given } p(\mathbf{x}) \in \mathbb{R}[\mathbf{x}]_{n, 2d}, \textit{ decide whether } p(\mathbf{x}) \in \Sigma_{n, 2d} \label{eq:dp}
+\end{equation}
+
+
+\subsection{Linear Algebra And Semidefinite Programming}
+\label{Sec:Linear Algebra}
+
+As we have seen that the $\mathbb{R}[\mathbf{x}]_{n, 2d}$ form a vector space, then the tools from linear algebra will play an important role in the analysis. 
+Also, both \emph{SDP} and the measurement of stability of system will require some tools from linear algebra. 
+Thus, I will devote this subsection introducing all the required tools. 
+
+In order to properly define the \emph{SDP} and measure the stability of a linear system, I will first introduce some tools from linear algebra.
+
+\begin{definition}
+     Given a matrix $A \in \mathbb{R}^{n \times n}$, we say it is \emph{symmetric} if $A^T = A$. We denote the set of \emph{symmetric matrix} as $S^n$.  
+\end{definition}
+
+Here we present a famous result of \emph{symmetric matrix}
+\begin{thm} [\cite{golub1996matrix}] Spectral Theorem
+
+     Given a symmetric matrix$A \in \mathbb{R}^{n \times n}$, it can be diagonalized as \begin{equation*} A = P^{-1}DP \end{equation*} where $D$ is a diagonal matrix with all real values, and $P$ is an orthonormal matrix.
+     
+     In other word, $A$ has all real eigenvalues, and their corresponding eigenvectors form an orthonormal basis of $\mathbb{R}^n$. 
+\end{thm} 
+
+\smallskip
+
+Then we introduce the key idea that related to \emph{SDP}, the \emph{positive semidefinite matrix}.
+
+\begin{definition}
+     Given a matrix $A \in \mathbb{R}^{n \times n}$, it is \emph{positive semidefinite} if $A$ is symmetric and \begin{equation*}
+          x^T A x \geq 0 \quad \forall x \in \mathbb{R}^n
+     \end{equation*}
+     And we denote it as $A \succcurlyeq 0$.
+\end{definition}
 
 \begin{prop}
-     Given $p(x) \in P_{n, 2d}$, if $p(x) \in \Sigma_{n, 2d}$, then for any basis $\mathcal{B}_{n, d}$ of $P_n{n, d}$, there exists a matrix $ \mathcal{Q} \curlyeqsucc 0$ such that
-     \begin{equation}
-          \mathcal{B}_{n, d} ^ T \mathcal{Q} \mathcal{B}_{n, d} = p(x)
-     \end{equation}
+     A matrix is \emph{positive semidefinite} if and only if all its eigenvalues are greater than or equals to 0
 \end{prop}
 
 \begin{proof}
-     For any $p(x) \in P_{n, 2d}$, if $p(x) \in \Sigma_{n, 2d}$, then we can write 
+     If a matrix $A$ has eigenvalue $\lambda < 0$, then if $x$ is the corresponding eigenvector, we have $x^T A x = \lambda x^T x < 0$.
+     On the other hand, if $A$ has all positive eigenvalues, because $A$ being a symmetric matrix, 
+     its eigenvectors form a basis. Thus, for any $x \in \mathbb{R}^n$, we have
+     $x = \sum_{i = 1} ^ n c_i v_i $ where $v_i$ are the eigenvectors of $A$, that are also orthonormal to each other.
+     Hence, $x^T A x$ = $\sum_{i = 1} ^ n \lambda_i$. Since all $\lambda_i \geq 0$, we have that $x ^ T A x \geq 0$.
+\end{proof}
+
+\begin{definition}
+     \label{def:SDP}
+     A \emph{Semidefinite Problem (SDP)} in standard primal form is written as
      \begin{equation}
-          p(x) = \sum_{i = 1} ^ k q^2(x) = \begin{bmatrix} q_1(x),... ,q_k(x)] \end{bmatrix}  \begin{bmatrix} q_1 \\ \vdots \\ q_{k} \end{bmatrix}
+          \textit{minimize } \langle C, X \rangle \quad \textit{subject to } \langle A_i, X \rangle = b_i, i=1,...,k \quad X \succcurlyeq 0 \label{eq:2.3}
      \end{equation}
+\end{definition}
+
+\smallskip
+
+One can compactly write the constraint $\langle A_i, X \rangle = b_i$ compactly in a matrix form, we can collect all the constraints and write it is $ \langle A, X \rangle = \mathbf{b}$ 
+The stability of this linear system is then of the interest of this paper. 
+The \emph{condition number} of the matrix $A$ will be used to measure the stability of the above linear system. 
+The \emph{condition number} can be nicely calculated using the inverse (when the matrix is square) and the \emph{pesudo-inverse} (when the matrix is rectangle) of the matrix $A$.
+
+\begin{definition}
+     Given a matrix $A \in \mathbb{R}^{m \times n}$, the \emph{pesudo-inverse},
+     which is also knows as the \emph{Moore-Penrose} inverse of $A$, is the matrix
+     $A^\dagger$ satisfying:
+     \begin{itemize}
+          \item $A A^\dagger A = A$
+          \item $A^\dagger A A^\dagger = A^\dagger$
+          \item $(A A^\dagger)^T = A A^\dagger$
+          \item $(A^\dagger A)^T = A A^\dagger$
+        \end{itemize}
+\end{definition}
+
+Every matrix has its pesudo-inverse, and when $A \in \mathbb{R}^{m \times n}$ is \emph{full rank}, 
+that is $rank(A) = min\{n, m\}$, $A$ can be expressed in simple algebraic form.
+
+In particular, when $A$ has linearly independent columns, $A^\dagger$ can be computed as
+\begin{equation*}
+     A^\dagger = (A^T A)^{-1} A^T
+\end{equation*}
+In this case, the pesudo-inverse is called the \emph{left inverse} since $A^\dagger A = I$.
+
+\smallskip
+And when $A$ has linearly independent rows, $A^\dagger$ can be computed as
+\begin{equation*}
+     A^\dagger = A^T (A A^T)^{-1}
+\end{equation*}
+In this case, the pesudo-inverse is called the \emph{right inverse} since $A A^\dagger = I$. 
+
+\begin{definition}
+     \label{def:COND}
+     Given a matrix $A \in \mathbb{R}^{m \times n}$, the condition number of $A$, $\kappa(A)$ is defined as
+     \begin{equation*}
+          \kappa(A) = \begin{cases}
+                ||A|| \cdot ||A^\dagger|| & \textit{ if } A \textit{ is full rank } \\
+                \infty & \textit{ otherwise }
+          \end{cases}
+     \end{equation*}
+     for any norm $|| \cdot ||$ imposed on $A$, for instance, \emph{Frobenius norm}.
+\end{definition}
+
+Here, I will give a brief description of how the \emph{condition number} is related to the stability of the system by introducing another way to define it.
+\begin{equation*}
+     \kappa(A) = \frac{\sigma_{max} (A)}{\sigma_{min} (A)}
+\end{equation*}
+where the $\sigma$ denotes the singular values of $A$.
+
+Thus, it can be understood as how stale our system is. 
+Intuitively, when the condition number is large, some error in the input along the max direction of the singular value,
+our result would largely fluctuate because the error, magnified by the singular value, will dominate the input that is along
+the direction of the minimum singular value. 
+Therefore, the smaller the condition number is, the more stable our system is under fluctuations caused by noises.
+The rigorous explanation of the condition number can be found in. \cite{Cheney:Kincaid}
+
+\subsection{Comparing Coefficient Algorithm}
+With all the tools in hand, we are now ready to introduce the \emph{COC} algorithm that will be used to solve the 
+decision problem described in \ref*{eq:dp}.
+
+The algorithm is build upon the following theorem.
+\begin{thm}
+     \label{thm:key}
+     Given $p(x) \in P_{n, 2d}$, if $p(x) \in \Sigma_{n, 2d}$, then for any basis $\mathcal{B}_{n, d}$ of $\mathbb{R}_{n, d}$, 
+     there exists a matrix such that
+     \begin{equation}
+          \mathcal{B}_{n, d} ^ T \mathcal{Q} \mathcal{B}_{n, d} = p(x) \textit{ and } \mathcal{Q} \curlyeqsucc 0 \label{eq:2-4}
+     \end{equation}
+\end{thm}
+
+\begin{proof}
+     For any $p(x) \in \mathbb{R}_{n, 2d}$, if $p(x) \in \Sigma_{n, 2d}$, then we can write 
+     \begin{equation*}
+          p(x) = \sum_{i = 1} ^ k q^2(x) = \begin{bmatrix} q_1(x),... ,q_k(x)] \end{bmatrix}  \begin{bmatrix} q_1 \\ \vdots \\ q_{k} \end{bmatrix}
+     \end{equation*}
      Notice that $q_j(x) \in P_{n, d}.$ 
      
      Now given $\mathcal{B}_{n, d} = \{b_1, ..., b_{n + d \choose d}\}$ be a basis of $P_{n, d},$ 
      we have 
-     \begin{equation} q_j(x) = \sum_{i = 1}^{n + d \choose d} c_j b_j = \begin{bmatrix} c_1,..., c_{n + d \choose d}] \end{bmatrix} \begin{bmatrix} b_1 \\ \vdots \\ b_{n + d \choose d} \end{bmatrix} \end{equation}
+     \begin{equation*} q_j(x) = \sum_{i = 1}^{n + d \choose d} c_j b_j = \begin{bmatrix} c_1,..., c_{n + d \choose d}] \end{bmatrix} \begin{bmatrix} b_1 \\ \vdots \\ b_{n + d \choose d} \end{bmatrix} \end{equation*}
 
-     By subsituting the section equation into the first, we have
-     \begin{equation}
+     By substituting the section equation into the first, we have
+     \begin{equation*}
           p(x) = 
                \begin{bmatrix} b_1 & ...& b_{n + d \choose d}
                \end{bmatrix} 
@@ -434,53 +500,50 @@ To help solving this decision problem, the following proposition will become ver
                \end{bmatrix}
                \begin{bmatrix} b_1 \\ \vdots \\ b_{n + d \choose d}
                \end{bmatrix} 
-     \end{equation}
+     \end{equation*}
 
-     Now the matrices in the middle is $C^T C = \mathcal{Q}$ a positive semidefinite matrix, which proofs the foward direction of this theorem.
+     Now the matrices in the middle is $C^T C = \mathcal{Q}$ a positive semidefinite matrix, which proofs the forward direction of this theorem.
 
-     On the other hand, if we know $p(x) = \mathcal{B}_{n, d}^T \mathcal{Q} \mathcal{B}_{n, d}$, where $\mathcal{Q}$ is a positive semidefinite matrix, we can just apply the Cholesky decomposition to get $\mathcal{Q} = L^T L$, and recover the SOS form of $p(x)$. \cite{Blekherman:Parrilo:Thomas}
+     On the other hand, if we know $p(x) = \mathcal{B}_{n, d}^T \mathcal{Q} \mathcal{B}_{n, d}$ where $\mathcal{Q}$ is a positive semidefinite matrix, 
+     we can just apply the Cholesky decomposition to get $\mathcal{Q} = L^T L$, and recover the SOS form of $p(x)$ as
+     $\mathcal{B}_{n, d}^T L^T L \mathcal{B}_{n, d}$. \cite{Blekherman:Parrilo:Thomas}
 \end{proof}
 
 \smallskip
-Therefore, we have redueced our problem decision problem to finding this positive semidefinite matrix. It turns out that this can be done via \emph{Semidefinite Programming} \cite{Blekherman:Parrilo:Thomas}
-\begin{definition}
-     \label{def:SDP}
-     An \emph{Semidefinite Problem (SDP)} in standard primal form is written as
-     \begin{equation}
-          \textit{minimize} \langle C, X \rangle \quad \textit{subject to} \langle A_i, X \rangle = b_i, i=1,...,k \quad X \succcurlyeq 0
-     \end{equation}
-\end{definition}
-For more detail on semidefinite programming, refer to \cite{Blekherman:Parrilo:Thomas}.
+Therefore, we have reduced our problem decision problem to finding this positive semidefinite matrix. 
+The above theorem provides a hint that the above problem can be solved via \emph{SDP}. Actually, it would be solving a sub-part of \emph{SDP}.
+When examine the formulation of \emph{SDP} in \ref{eq:2.3}, we would minimize a target function subject to a set of linear constraints and the variable being a \emph{positive semidefinite matrix}. 
+By examining the equation \ref{eq:2-4}, we can see that we have a set of constraints (later we will see that the set of constraints can be translated exactly into the constraints in \emph{SDP}) 
+and the requirement of $\mathcal{Q}$ being a \emph{positive semidefinite matrix}. 
+Therefore, we found that the existence condition that is provided in the theorem \ref{thm:key} is a subpart of the \emph{SDP}, 
+which is determining whether there is a feasible point that satisfies the constraints that are imposed. 
 
-Returning to our problem, we require $\mathcal{Q} \succcurlyeq 0$, and the set of constraints $ \langle A_i, X \rangle = b_i$ is the same as satisfying $p(x) = \mathcal{B}_{n, d}^T \mathcal{Q} \mathcal{B}_{n, d}$, which can be done via comparing the coefficients of each element in the basis that we use. \cite{Recher:Masterthesis} 
-Therefore, when we plug in the constraints into a SDP solver, if the result that we get is not no solution, then we know that the $p(x) \in \Sigma_{n, 2d}$
-
-\begin{example}
-     We can do an example here
-\end{example}
-
-\smallskip
-Now, we further examine the constraints. Using the inner product of matrices, there is a natural representation of the constraints using the inner products $\langle \cdot,  \cdot \rangle$ between matrices. That is $\langle A, B \rangle = tr(A^T B)$ 
-
+To address how the constraints $\mathcal{B}_{n, d} ^ T \mathcal{Q} \mathcal{B}_{n, d} = p(x)$ are translated into the constraints $\langle A, X \rangle = B$ in the \emph{SDP}, we have the following proposition.
+% the \emph{Comparing of Coefficient (COC)} process will be introduced. And the rest of this subsection will be devoted introducing all the tools that is needed to define the \emph{COC}.
 \begin{prop}
-
-     We pick a basis of $\mathcal{B}_{n, d} = \{b_1, ..., b_{n + d \choose d}\}$ of $P_{n, d}$, and list it in a vector form $ b =\begin{bmatrix}
+     \label{prop:2.19}
+     We pick a basis of $\mathcal{B}_{n, d} = \{b_1, ..., b_{n + d \choose d}\}$ of $\mathbb{R}_{n, d}$, and list it in a vector form $ \mathbf{b} =\begin{bmatrix}
           b_1 &
           ... &
           b_{ n+ d \choose d}
-     \end{bmatrix} ^ T$. Then by remark 2.14, we can form a basis $\mathcal{B}_{n, 2d} = \{b'_1, ..., b'_{n + 2d \choose 2d}\}$ based on the vector $b$. 
+     \end{bmatrix} ^ T$. Then by remark \ref{rem:idk}, we can form a basis $\mathcal{B}_{n, 2d} = \{b'_1, ..., b'_{n + 2d \choose 2d}\}$ from the vector $b$. 
      Suppose the $p(x)$ that we are interested in is written in the form $\sum_{i = 1}^{n + 2d \choose 2d } c_i b'_i$.
-     Then, we can reformulate $p(x) = b^T \mathcal{Q} b = \langle Q, b \cdots b^T \rangle$ 
+     Then, we have the reformulation of the constraints as $p(x) = \mathbf{b}^T \mathcal{Q} \mathbf{b} = \langle Q, \mathbf{bb}^T \rangle$, 
+     which when written separately in different rows is exactly the formulation in \ref{def:SDP}.
 \end{prop}
 
-\smallskip
-Because the constrants are linear with respect to $\mathcal{Q}$, we can re-write it into a system on linear equations with respect to the entries of the matrix $\mathcal{Q}$. Thus we can reformulate the constrants as
-$A q = b$, where $q = [q_{1,1}, ..., q_{1, k}, q_{2, 2}, ... ,q_{k, k}]$. And we are interested in the numerical stability of $A$. 
+Notice that the constraints $p(x) = \langle Q, \mathbf{bb}^T \rangle$ involved in comparing two polynomials. 
+By theorem \ref{prop:vs}, $\mathbb{R}[\mathbf{x}]_{n, 2d}$ form a vector space. 
+The equality of two vectors is established by comparing the coordinates of the two vectors when under the same basis. 
+Thus, when the basis of $p(x)$ is the same as the basis formed by the upper triangle of $\mathbf{bb}^T$, we can compare the 
+coordinates of the vectors to establish the equality. And the coordinates for polynomials are called their coefficients. 
+Thus, we name this process as \emph{Comparing of Coefficients (COC)} and the paper is designated to evaluate the stability of the constrants $p(x) = \langle Q, \mathbf{bb}^T \rangle$.
 
-The stability of $A$ can be measured by the \emph{condition number}. Therefore, we shall seek for the base that minimize $\kappa(A)$. \cite{Recher:Masterthesis}
+As I have mentioned, the stability will be measured by the \emph{condition number} of a matrix. Thus, we would need to re-write the constraints in to the form $A \mathcal{x} = \mathcal{c}$. 
+Therefore, the problem need to be further reformulated. And how the choices of the basis are involved in this process will also be introduced.
 
-\begin{definition}
-     We call the matrix $b \cdot b^T$ in Proposition 2.19 the \emph{Moment Matrix}.
+\begin{definition}[\cite{Recher:Masterthesis}]
+     We call the matrix $bb^T$ in Proposition \ref{prop:2.19} the \emph{Moment Matrix}, we will denote this matrix as $\mathcal{M}$, and it is a symmetric matrix by definition.
 \end{definition}
 
 \begin{example}
@@ -488,52 +551,71 @@ The stability of $A$ can be measured by the \emph{condition number}. Therefore, 
 \end{example}
 
 \smallskip
-Utilizing the \emph{Moment Matrix}, 
-we can already measure the numerical stability for the different bases $\mathcal{B}_{n, d}$ that one can choose to carry out the comparing coefficient process to generate the constraints in the \emph{SDP}.
-However, what if the polynomial $p(x)$ used a different base comparing to the \emph{moment matrix}?
-\smallskip
-Given the polynomial $p(x)$ in a basis $\mathcal{B'}_{n, 2d}$, one can find a change of basis matrix to convert write $p(x)$ in $\mathcal{B}_{n, 2d}$ that we will use to compare coefficients.
-This change of coefficients process has its own numerical properties as well. So it would be desired if we can take that into account when analyzing the numerical properties of our constrants. 
-Therefore, we shall introduce the \emph{Coefficient Moment Matrix}. In the remaining part of this section, we shall build our way to it.
+The \emph{Moment Matrix} provides the first choice of basis that is involved in the process of \emph{COC}. 
+Suppose the given polynomial $p(x) = \sum_{j = 0} ^ k c_j b_j$ 
+is in the same basis as the resulted basis of the \emph{Moment Matrix}, 
+that is the upper triangle of $\mathbf{bb^T}$ consists $b_0, ..., b_k$. 
+Because $\mathcal{Q} \succcurlyeq 0$, $\mathcal{Q}$ is symmetric, 
+it is completely determined by its upper triangle.
+Let $\mathbf{q} = \begin{bmatrix} q_{0,0}, ..., q_{0, m}, q_{1,1}, q_{1, 2}, ..., q_{m, m} \end{bmatrix}^T$ 
+be the vector consists of all the elements of the upper triangle of $\mathcal{Q}$.
+The constrants $p(x) = \langle Q, \mathbf{bb}^T \rangle$ can then be reformulated as a set of linear equations 
+$A \mathbf{q} = \mathbf{c}$ where $ \mathbf{c} = \begin{bmatrix}
+     c_0, ..., c_k
+\end{bmatrix}^T$ 
+is the vector of the coefficients of the $p(x)$, 
+and $A$ is a matrix that is used to establish the equality of polynomials. 
+Then, we can measure the stability of the constraints $p(x) = \langle Q, \mathbf{bb}^T \rangle$ by the \emph{condition number} of $A$. 
+
+Since, this matrix $A$ is not going to be the final matrix that is going to be used in analysis, the procedure of obtaining $A$ will be omitted. 
 
 \smallskip
-Suppose the \emph{moment matrix} is constructed with the basis $\mathcal{B}_{n, d}$ and the polynomial $p(x)$ is written in the basis $\mathcal{B}'_{n, 2d}$. 
-That is suppose $\mathcal{B}'_(n, 2d) = \{b'_0, ..., b'_k\}$ where $k = {n + 2d \choose 2d} - 1$, we have $p(x) = c_0b'_0 + ... + c_kb'_k$.
-\begin{definition}
+
+Now, what if the $p(x)$ is written in a basis that is different from the basis constructed by the \emph{Moment Matrix}?
+One might argue that we can simply apply a change of basis matrix to convert $p(x)$ into the basis that is used in \emph{Moment Matrix}. 
+However, that is no efficient and accurate way to obtain a change of basis matrix. 
+The reason is that a change of basis matrix would involve writing the basis of one polynomial in terms of the basis of the other. 
+This itself is a huge process of \emph{Comparing of Coefficients} and would result in an increase of perturbation to the system because the \emph{condition number} is never smaller than 1 \cite{golub1996matrix}.
+Therefore, we shall introduce the \emph{Coefficient Moment Matrix}. In the remaining part of this section, we shall build our way to it.
+
+Suppose the \emph{Moment Matrix} is constructed with the basis $\mathcal{B}_{n, d}$ and the polynomial $p(x)$ is written in the basis $\mathcal{B}'_{n, 2d}$. 
+That is supposed $\mathcal{B}'_{n, 2d} = \{b'_0, ..., b'_k\}$ where $k = {n + 2d \choose 2d} - 1$, we have $p(x) = c_0b'_0 + ... + c_kb'_k$.
+\begin{definition}[\cite{Recher:Masterthesis}]
+     \label{def:cem}
 We define the \emph{coefficient extraction map} as the following map,
-\begin{equation}
+\begin{equation*}
      \begin{split}
      \mathcal{C}: \mathbb{R}[x]_{\leq, 2d} \times \mathbb{R}[x]_{\leq, 2d} \rightarrow \mathbb{R} \\
      \mathcal{C}(p, b'_j) \mapsto c_j
      \end{split}
-\end{equation}
-\cite{Recher:Masterthesis}
+\end{equation*}
 \end{definition}
 
 \smallskip
 When fixing $s_j$, we have the \emph{coefficient extraction map} being a linear map with respect to the polynomial $p(x)$. Indeed, we have 
-\begin{equation}
+\begin{equation*}
      \begin{split}
           \mathcal{C}(\lambda p, b'_j) = \lambda \mathcal{C}(p, b'_j) \quad \lambda \in \mathbb{R}
           \\
           \mathcal{C}(p_1 + p_2, b'_j) = \mathcal{C}(p_1, b'_j) + \mathcal{C}(p_2, b_j)
      \end{split}
-\end{equation}
+\end{equation*}
 
 \begin{remark}
-     When the $\mathcal{B'}_{n, 2d} = \{b'_1,... ,b'_k\}$ is a orthonomal basis, i.e. $\langle b_i, b_j \rangle \delta_{i,j}$ (the Dirac delta function), where the inner product is defined as
-     \begin{equation} 
+     When the $\mathcal{B'}_{n, 2d} = \{b'_1,... ,b'_k\}$ is an orthonormal basis, 
+     i.e. $\langle b_i, b_j \rangle \delta_{i,j}$ (the Dirac delta function), where the inner product is defined as
+     \begin{equation*} 
           \langle p, q \rangle = \int_a^b p(x) q(x) d\alpha(x)
-     \end{equation}. 
-     There is a natural concretely definiation for the \emph{coefficients extraction map}. 
+     \end{equation*}
+     There is a natural concretely definition for the \emph{coefficients extraction map}. 
      That is
-     \begin{equation}
+     \begin{equation*}
           \mathcal{C}(p(x), b'_j) = \langle p(x), b'_j \rangle
-     \end{equation}
-     When the basis is only orthognal, we can still define the \emph{coefficients extration map} concretely as,
-     \begin{equation}
+     \end{equation*}
+     When the basis is only orthogonal, we can still define the \emph{coefficients extraction map} concretely as,
+     \begin{equation*}
           \mathcal{C}(p(x), b'_j) = \frac{1}{||b'_j||}\langle p(x), b'_j \rangle 
-     \end{equation}
+     \end{equation*}
      where the norm $|| \cdot ||$ is induced by the corresponding inner product.
 \end{remark}
 
@@ -545,8 +627,8 @@ When fixing $s_j$, we have the \emph{coefficient extraction map} being a linear 
 \smallskip 
 We can generalize the \emph{coefficients extraction map} to take in a matrix as the first argument, and just entry-wise apply the map. With an abuse of notation, we have 
 \begin{definition}
-     Given a matrix of polyomials $(p_{i, j}(x))_{i, j}$ all in the bases Let the \emph{coefficient extration map} be defined as 
-     \begin{equation}
+     Given a matrix of polynomials $(p_{i, j}(x))_{i, j}$ all in the bases Let the \emph{coefficient extraction map} be defined as 
+     \begin{equation*}
           \begin{split}
                \mathcal{C}: \mathbb{R}[x]_{\leq n, 2d}^{m \times n} \times \mathbb{R}[x]_{\leq n, 2d} \rightarrow \mathbb{R}^{m \times n} & \\
                \mathcal{C}(
@@ -561,23 +643,23 @@ We can generalize the \emph{coefficients extraction map} to take in a matrix as 
                     \mathcal{C}(p_{m, 1}, b'_j) & ... &  \mathcal{C}(p_{m, n}, b'_j) \\
                     \end{bmatrix}
           \end{split}
-     \end{equation}
+     \end{equation*}
 \end{definition}
 
 \begin{remark}
-     And immediate result from the above definition is that, given $Q \in \mathbb{R}^{m \times m}$, $M \in \mathbb{R}[x]_{n, 2d}^{m \times m}$, 
+     An immediate result from the above definition is that, given $Q \in \mathbb{R}^{m \times m}$, $M \in \mathbb{R}[x]_{n, 2d}^{m \times m}$, 
      and a basis $\mathcal{B}'_{n, 2d} = \{b'_1, ..., b'_k\}$, the matrix inner product provides the following relation,
-     \begin{equation}
+     \begin{equation*}
           \mathcal{C}(\langle Q, M \rangle, b'_j) = \langle Q, \mathcal{C}(M, b'_j) \rangle
-     \end{equation}
+     \end{equation*}
 \end{remark}
 
 \smallskip
 Notice that, let $\mathcal{B}_{n, d} = \{b_0,...,b_l\}$, where $l = {n + d \choose d} - 1$, 
-let $\vec{b} = [b_1, ..., b_l]^T$, $M = \vec{b} \cdot \vec{b}^T \in \mathbb{R}^{l, l}$. 
-Then given $p(x)$ in $\mathcal{B}'_{n, 2d} = \{b'_0, ..., b'_k\}$, $p = c_0,b'_0 + ... + c_k b'_k$, 
+let $\mathbf{b} = [b_1, ..., b_l]^T$, $M = \mathbf{b} \cdot \mathbf{b}^T \in \mathbb{R}^{l, l}$. 
+Then given $p(x)$ in $\mathcal{B}'_{n, 2d} = \{b'_0, ..., b'_k\}$, $p = c_0b'_0 + ... + c_k b'_k$, 
 given $Q \in \mathbb{R}^{l, l}$ be the change of basis matrix from $\mathcal{B}_{n, 2d}$ to $\mathcal{B}'_{n, 2d}$, 
-where $\mathcal{B}_{n, 2d}$ is generated by $\mathcal{B}_{n, d}$ using remark 2.14, we have
+where $\mathcal{B}_{n, 2d}$ is generated by $\mathcal{B}_{n, d}$ using remark \ref{rem:idk}, we have
 \begin{equation}
      c_j = \mathcal{C}(p, b'_j) = \mathcal{C}(\langle Q, M \rangle, b'_j ) = \langle Q, \mathcal{C}(M, b'_j) \rangle
 \end{equation}
@@ -592,8 +674,8 @@ Define the matrix $\mathcal{A}_j = \mathcal{C}(M, b'_j)$ be the \emph{coefficien
 
 \smallskip
 Recall, the \emph{SOS} problem is to decide, given a polynomial $p(x)$, 
-whether there exists a $Q \curlyeqprec 0$ such that $p = \vec{b}^TQ \vec{b}$, where $\vec{b}$ be the vector generated by $\mathcal{B}_{n, d}$.
-Suppose $p(x)$ is given in $\mathcal{B'}_{n, 2d}$, we can then reformulate the constraints $\vec{b}^TQ \vec{b}$ using the \emph{coefficient moment matrix} as
+whether there exists a $Q \succcurlyeq 0$ such that $p = \mathbf{b}^TQ \mathbf{b}$, where $\mathbf{b}$ be the vector generated by $\mathcal{B}_{n, d}$.
+Suppose $p(x)$ is given in $\mathcal{B'}_{n, 2d}$, we can then reformulate the constraints $\mathbf{b}^TQ \mathbf{b}$ using the \emph{coefficient moment matrix} as
 \begin{equation}
      \langle Q, \mathcal{A}_j \rangle = c_j \quad \forall j = 0,...,{n + 2d \choose 2d} - 1
 \end{equation} 
@@ -612,25 +694,25 @@ Let $\mathcal{A}_j = \begin{bmatrix}
                q_{0, l} & q_{1, l} &... &q_{l, l}\\
           \end{bmatrix} $
 
-Set $\vec{a_j} = [a_{0, 0}, 2a_{0, 1}..., 2a_{0, l}, a_{1, 1}, 2a_{1, 2}, ..., a_{l, l}]^T \in \mathbb{R}^{l + 1}$, and
-$\vec{q} = [q_{0, 0}, ..., q_{l, l}]$.
-We can re-write the inner product $\langle Q, \mathcal{A}_j \rangle$ using the fact that both $\mathcal{A}_j$ and $Q$ are symmetric. \begin{equation}
-     \langle Q, \mathcal{A}_j \rangle = q^T \cdot a_k = a_k^T \cdot q
-\end{equation}
+Set $\mathbf{a_j} = [a_{0, 0}, 2a_{0, 1}..., 2a_{0, l}, a_{1, 1}, 2a_{1, 2}, ..., a_{l, l}]^T \in \mathbb{R}^{l(l+1)/2}$, and
+$\mathbf{q} = [q_{0, 0}, ...,q_{1,1}, q_{1,2} ..., q_{l, l}]^T \in \mathbb{R}^{l(l+1)/2}$.
+We can re-write the inner product $\langle Q, \mathcal{A}_j \rangle$ using the fact that both $\mathcal{A}_j$ and $Q$ are symmetric. \begin{equation*}
+     \langle Q, \mathcal{A}_j \rangle = \mathbf{q}^T \cdot \mathbf{a_j} = \mathbf{a_j}^T \cdot \mathbf{q}
+\end{equation*}
 
 \smallskip
-Then, finally, we can re-write the constraint $p(x) = \vec{b}^T Q \vec{b}$, as the system of linear equations that 
-\begin{equation}
-     \mathcal{A} = \begin{bmatrix}
+Then, finally, we can re-write the constraint $p(x) = \mathbf{b}^T Q \mathbf{b}$, as the system of linear equations that 
+\begin{equation*}
+     \mathcal{A} \mathbf{q} = \begin{bmatrix}
           a_0^T \\
           \vdots \\
           a_l^T
-     \end{bmatrix} q = \begin{bmatrix}
+     \end{bmatrix} \mathbf{q} = \begin{bmatrix}
           c_0 \\
           \vdots \\
           c_l
-     \end{bmatrix}
-\end{equation}
+     \end{bmatrix} = \mathbf{c}
+\end{equation*}
 Thus, the numerical property of the \emph{SDP} problem is completely captured by the \emph{condition number} of $A$. 
 Therefore, we will write python code to examine different combinations of bases under different degrees and number of variates in the Preliminaries sections. 
 We will list the polynomial bases that we are interested in the following sections, and will briefly touch upon \emph{Semidifinite Programing} before we present our results.

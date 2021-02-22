@@ -1,3 +1,11 @@
 nonnegativity
 nonnegativity
 semidefinite
+algoirthm
+nonnegative
+diagonalized
+denoated
+constrants
+perterbulation
+orthonomal
+TODO

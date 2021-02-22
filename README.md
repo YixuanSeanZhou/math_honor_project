@@ -13,11 +13,10 @@ pip install -r requirements.txt
 
 ## Logs
 
-### Feb 8 - Feb 22
+### Feb 8 – Feb 22
 
 #### TODO
 
-	- Revise paper
     - Picking up new polynomials
     - Optimizing the run time of bivariate cases
 
@@ -33,6 +32,7 @@ pip install -r requirements.txt
 		- Understood fomulation introduced in "Polynomial bases on the numerical solution of the multivariate discrete moment problem"
 	- Writing:
         - Rewrote Introduction.
+        - Rewrote everything.
 
 #### Help Needed
 	
