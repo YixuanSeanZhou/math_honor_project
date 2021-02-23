@@ -195,11 +195,11 @@ Short description
 \emph{Polynomials} are very powerful in solving problems in applied math and engineering. 
 And deciding the nonnegativity of a given polynomial become very important in many settings (polynomial optimizations and statistical regressions). 
 Therefore, this decision problem become a central topic in the study of real algebraic geometry. 
-In computational complexity terminology, it has been known that the deciding whether an arbitrary multivariate polynomial is a \emph{nonnegative polynomial} \ref{def:NGP} is a NP-hard problem (computationally infeasible) when the 
+In computational complexity terminology, it has been known that the deciding whether an arbitrary multivariate polynomial is a \emph{nonnegative polynomial} (see Definition \ref{def:NGP}) is a NP-hard problem (computationally infeasible) when the 
 degree of the polynomial is greater than two. 
 
-However, if we redirect our focus to determine whether a given polynomial can be expressed in terms of \emph{sum of squares (SOS)} \ref{def:SOS},
-the problem is reduced to solving a \emph{semidefinite programming (SDP)} \ref{def:SDP} problem which 
+However, if we redirect our focus to determine whether a given polynomial can be expressed in terms of \emph{sum of squares (SOS)} (see Definition \ref{def:SOS}),
+the problem is reduced to solving a \emph{semidefinite programming (SDP)} (see Definition \ref{def:SDP}) problem which 
 has known algorithms that can solve the problem in polynomial times (efficiently) with respect to the input size. 
 Though Hilbert has showed that the set of all \emph{SOS} coincide with the set of all \emph{nonnegative polynomials} only if the polynomials are univariate, quadratic, or bivariate with degree 4,
 the \emph{SOS} is still the mostly well-known and well-used certificate in this decision problem due to its simplicity and the existence of efficient solvers. \cite{Blekherman:Parrilo:Thomas}
@@ -208,19 +208,19 @@ When it comes to solving the \emph{SDP}, the solver is actually dealing with a s
 Though this process will be formally introduced in section 2.3, the intuition behind it is quite simple. 
 It can be understood in terms of vectors after realizing that the set of n-variate real polynomials with degree less than or equals to $d$, denoted by $\mathbb{R}[\mathbf{x}]_{n, d}$ form a vector space.
 Then any polynomial $p(\mathbf{x}) \in \mathbb{R}[\mathbf{x}]_{n, d}$ can be uniquely identified as $p(\mathbf{x}) = \sum_{j = 0}^k c_j b_j$ given a basis $\mathcal{B} = \{b_0, ..., b_k\}$ of $\mathbb{R}[\mathbf{x}]_{n, d}$.
-Therefore, the process of \emph{COC} is just formulating the equality constraints by identifying the constants $c_0, ..., c_k$. \cite{Recher:Masterthesis}
+Therefore, the process of \emph{COC} is just formulating the equality constraints by identifying the constants $c_0, ..., c_k$.
 
 Because the linear system that formed by \emph{COC} depends on the basis $\mathcal{B}$,
-the stability of the linear system, measured by the \emph{condition number} \ref{def:COND}, is drastically fluctuated depends on the $\mathcal{B}$ that we chose. 
+the stability of the linear system, measured by the \emph{condition number} (see Definition \ref{def:COND}), is drastically fluctuated depends on the $\mathcal{B}$ that we chose. 
 And it has been an ongoing problem of what basis will generate the best result.
-In this paper, I am going to run experiments, with the computer's aid, of different choices of the basis $\mathcal{B}$ to determine, 
+In this paper, we am going to run experiments, with the computer's aid, of different choices of the basis $\mathcal{B}$ to determine, 
 in different scenarios, what is the best choice of basis to carry out the process of \emph{COC} so that the resulted linear system is most stabled. 
 
-The paper is organized in the following: In section 2, I will introduce all the preliminary materials, 
+The paper is organized in the following: In Section 2, we will introduce all the preliminary materials, 
 including the tools that we need through this paper, and the algorithm that will be employed to carry out the \emph{COC}.
 A brief survey of polynomial bases that are considered in this paper will also be included in this section. 
-In section 3, the main numerical results of the \emph{condition number} will be presented. 
-And in section 4, I will present some discussion about the result that is obtained in section 3 and some thoughts on what are the further efforts that can be made to this problem.
+In Section 3, the main numerical results of the \emph{condition number} will be presented. 
+And in Section 4, we will present some discussion about the result that is obtained in Section 3 and some thoughts on what are the further efforts that can be made to this problem.
 % section 2.2 emphasized on introducing the detailed procedure of the process of \emph{COC} and the relations with the basis of the polynomial space,
 % and section 2.3 listing some polynomial basis that will be considered in this paper and their properties. 
 
@@ -238,7 +238,7 @@ but also has been guiding me through the process of doing research. The project 
 \section{Preliminaries}
 \label{Sec:Preliminaries}
 
-In this section, I am going to introduce all the background materials that will be used to 
+In this section, we are going to introduce all the background materials that will be used to 
 understand the problem and describe what algorithm will be used to carry out the \emph{comparison of coefficients (COC)}
 process. All the notations will also be introduced in this section, 
 and a brief survey of the polynomial base that will be considered in this paper will be included in the end.
@@ -250,13 +250,14 @@ and a brief survey of the polynomial base that will be considered in this paper 
 
 \subsection{Real Coefficient Polynomials}
 \label{Sec:Real Coefficient Polynomials}
-First, I would like to rigorously define the decision problem that is considered in this paper. 
-Thus, I will define the terms that are used related to \emph{polynomials} in this subsection. 
+First, we would rigorously define the decision problem that is considered in this paper. 
+Thus, we will define the terms that are used related to \emph{polynomials} in this subsection. 
 
-First, I will start with some notations. Throughout this paper, I will use bold letters for vectors, e.g. $\mathbf{x} = (x_1, ..., x_n) \in \mathbb{R}^n$.
+Throughout this paper, we will use bold letters for vectors, e.g. $\mathbf{x} = (x_1, ..., x_n) \in \mathbb{R}^n$.
 The set of all $m$ by $n$ real matrices will be denoated as $\mathbb{R}^{m \times n}$ 
 The ring (set) of real-valued n-variate polynomials will be denoted as $\mathbb{R}[\mathbf{x}]$, 
-and the set of all $n$-variate real polynomials with degree less than or equals to $d$ will be denoted as $\mathbb{R}[\mathbf{x}]_{n, d}$. 
+and the set of all $n$-variate real polynomials with degree less than or equals to $d$ will be denoted as $\mathbb{R}[\mathbf{x}]_{n, d}$.
+Some times, when the variables that we are working with is clear from the context, $\mathbb{R}[\mathbf{x}]_{n, d}$ will be abbreviated as $\mathbb{R}_{n, d}$.
 
 \begin{example}
      In mathematics, a polynomial is an expression consisting of variables and coefficients, that involves only the operations of addition, subtraction, multiplication, and non-negative integer exponentiation of variables.
@@ -292,7 +293,7 @@ And by counting, there are ${n + d \choose d} = \frac{n!}{(n-d)! d!}$ elements i
 
 \begin{example}
      Let $\mathcal{B}_{2, 1} = {x, y, 1}$, be a basis of $\mathbb{R}[\mathbf{x}]_{2, 1}$, then 
-     \begin{equation}
+     \begin{equation*}
           \begin{bmatrix}
                x \\
                y \\
@@ -306,13 +307,13 @@ And by counting, there are ${n + d \choose d} = \frac{n!}{(n-d)! d!}$ elements i
                xy & y^2 & y \\
                x & y & 1 \\
           \end{bmatrix}
-     \end{equation}
-     Then the upper triangle of the result form a basis of $P_{2, 2}$.
+     \end{equation*}
+     Then the upper triangle of the result form a basis of $\mathbb{R}[\mathbf{x}]_{2, 2}$.
 \end{example}
 
 \smallskip
 
-Then, I will define the terminologies related to the decision problem.
+Then, we will define the terminologies related to the decision problem.
 
 \begin{definition}
      \label{def:NGP}
@@ -351,15 +352,15 @@ Therefore, the \emph{decision problem} that will be considered in this paper is 
 
 As we have seen that the $\mathbb{R}[\mathbf{x}]_{n, 2d}$ form a vector space, then the tools from linear algebra will play an important role in the analysis. 
 Also, both \emph{SDP} and the measurement of stability of system will require some tools from linear algebra. 
-Thus, I will devote this subsection introducing all the required tools. 
+Thus, we will devote this subsection introducing all the required tools. 
 
-In order to properly define the \emph{SDP} and measure the stability of a linear system, I will first introduce some tools from linear algebra.
+In order to properly define the \emph{SDP} and measure the stability of a linear system, we first introduce some tools from linear algebra.
 
 \begin{definition}
      Given a matrix $A \in \mathbb{R}^{n \times n}$, we say it is \emph{symmetric} if $A^T = A$. We denote the set of \emph{symmetric matrix} as $S^n$.  
 \end{definition}
 
-Here we present a famous result of \emph{symmetric matrix}
+Here we present a famous result of \emph{symmetric matrix}.
 \begin{thm} [\cite{golub1996matrix}] Spectral Theorem
 
      Given a symmetric matrix$A \in \mathbb{R}^{n \times n}$, it can be diagonalized as \begin{equation*} A = P^{-1}DP \end{equation*} where $D$ is a diagonal matrix with all real values, and $P$ is an orthonormal matrix.
@@ -372,14 +373,14 @@ Here we present a famous result of \emph{symmetric matrix}
 Then we introduce the key idea that related to \emph{SDP}, the \emph{positive semidefinite matrix}.
 
 \begin{definition}
-     Given a matrix $A \in \mathbb{R}^{n \times n}$, it is \emph{positive semidefinite} if $A$ is symmetric and \begin{equation*}
+     Given a matrix $A \in \mathbb{R}^{n \times n}$, it is \emph{positive semidefinite (psd)} if $A$ is symmetric and \begin{equation*}
           x^T A x \geq 0 \quad \forall x \in \mathbb{R}^n
      \end{equation*}
      And we denote it as $A \succcurlyeq 0$.
 \end{definition}
 
 \begin{prop}
-     A matrix is \emph{positive semidefinite} if and only if all its eigenvalues are greater than or equals to 0
+     A matrix is psd if and only if all its eigenvalues are greater than or equals to 0
 \end{prop}
 
 \begin{proof}
@@ -456,13 +457,13 @@ Intuitively, when the condition number is large, some error in the input along t
 our result would largely fluctuate because the error, magnified by the singular value, will dominate the input that is along
 the direction of the minimum singular value. 
 Therefore, the smaller the condition number is, the more stable our system is under fluctuations caused by noises.
-The rigorous explanation of the condition number can be found in. \cite{Cheney:Kincaid}
+The rigorous explanation of the condition number can be found in \cite{Cheney:Kincaid}.
 
 \subsection{Comparing Coefficient Algorithm}
 With all the tools in hand, we are now ready to introduce the \emph{COC} algorithm that will be used to solve the 
-decision problem described in \ref*{eq:dp}.
+decision problem described in \eqref{eq:dp}.
 
-The algorithm is build upon the following theorem.
+The algorithm is build upon the following theorem, one can find a detailed explanation of it in the third chapter of \cite{Blekherman:Parrilo:Thomas}.
 \begin{thm}
      \label{thm:key}
      Given $p(x) \in P_{n, 2d}$, if $p(x) \in \Sigma_{n, 2d}$, then for any basis $\mathcal{B}_{n, d}$ of $\mathbb{R}_{n, d}$, 
@@ -502,20 +503,20 @@ The algorithm is build upon the following theorem.
                \end{bmatrix} 
      \end{equation*}
 
-     Now the matrices in the middle is $C^T C = \mathcal{Q}$ a positive semidefinite matrix, which proofs the forward direction of this theorem.
+     Now the matrices in the middle is $C^T C = \mathcal{Q}$ a \emph{psd} matrix, which proofs the forward direction of this theorem.
 
-     On the other hand, if we know $p(x) = \mathcal{B}_{n, d}^T \mathcal{Q} \mathcal{B}_{n, d}$ where $\mathcal{Q}$ is a positive semidefinite matrix, 
+     On the other hand, if we know $p(x) = \mathcal{B}_{n, d}^T \mathcal{Q} \mathcal{B}_{n, d}$ where $\mathcal{Q}$ is a \emph{psd} matrix, 
      we can just apply the Cholesky decomposition to get $\mathcal{Q} = L^T L$, and recover the SOS form of $p(x)$ as
-     $\mathcal{B}_{n, d}^T L^T L \mathcal{B}_{n, d}$. \cite{Blekherman:Parrilo:Thomas}
+     $\mathcal{B}_{n, d}^T L^T L \mathcal{B}_{n, d}$. 
 \end{proof}
 
 \smallskip
-Therefore, we have reduced our problem decision problem to finding this positive semidefinite matrix. 
+Therefore, we have reduced our problem decision problem to finding this \emph{psd} matrix. 
 The above theorem provides a hint that the above problem can be solved via \emph{SDP}. Actually, it would be solving a sub-part of \emph{SDP}.
-When examine the formulation of \emph{SDP} in \ref{eq:2.3}, we would minimize a target function subject to a set of linear constraints and the variable being a \emph{positive semidefinite matrix}. 
-By examining the equation \ref{eq:2-4}, we can see that we have a set of constraints (later we will see that the set of constraints can be translated exactly into the constraints in \emph{SDP}) 
-and the requirement of $\mathcal{Q}$ being a \emph{positive semidefinite matrix}. 
-Therefore, we found that the existence condition that is provided in the theorem \ref{thm:key} is a subpart of the \emph{SDP}, 
+When examine the formulation of \emph{SDP} in \eqref{eq:2.3}, we would minimize a target function subject to a set of linear constraints and the variable being a \emph{psd} matrix. 
+By examining \eqref{eq:2-4}, we can see that we have a set of constraints (later we will see that the set of constraints can be translated exactly into the constraints in \emph{SDP}) 
+and the requirement of $\mathcal{Q}$ being a \emph{psd}.
+Therefore, we found that the existence condition that is provided in the Theorem \ref{thm:key} is a subpart of the \emph{SDP}, 
 which is determining whether there is a feasible point that satisfies the constraints that are imposed. 
 
 To address how the constraints $\mathcal{B}_{n, d} ^ T \mathcal{Q} \mathcal{B}_{n, d} = p(x)$ are translated into the constraints $\langle A, X \rangle = B$ in the \emph{SDP}, we have the following proposition.
@@ -526,10 +527,10 @@ To address how the constraints $\mathcal{B}_{n, d} ^ T \mathcal{Q} \mathcal{B}_{
           b_1 &
           ... &
           b_{ n+ d \choose d}
-     \end{bmatrix} ^ T$. Then by remark \ref{rem:idk}, we can form a basis $\mathcal{B}_{n, 2d} = \{b'_1, ..., b'_{n + 2d \choose 2d}\}$ from the vector $b$. 
+     \end{bmatrix} ^ T$. Then by Remark \ref{rem:idk}, we can form a basis $\mathcal{B}_{n, 2d} = \{b'_1, ..., b'_{n + 2d \choose 2d}\}$ from the vector $b$. 
      Suppose the $p(x)$ that we are interested in is written in the form $\sum_{i = 1}^{n + 2d \choose 2d } c_i b'_i$.
      Then, we have the reformulation of the constraints as $p(x) = \mathbf{b}^T \mathcal{Q} \mathbf{b} = \langle Q, \mathbf{bb}^T \rangle$, 
-     which when written separately in different rows is exactly the formulation in \ref{def:SDP}.
+     which when written separately in different rows is exactly the formulation in Definition \ref{def:SDP}.
 \end{prop}
 
 Notice that the constraints $p(x) = \langle Q, \mathbf{bb}^T \rangle$ involved in comparing two polynomials. 
