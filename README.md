@@ -13,6 +13,15 @@ pip install -r requirements.txt
 
 ## Logs
 
+### Feb 22 - Feb 29
+
+#### TODO
+    - Jacobi Polynomial Basis
+    - Optimizing the run time for integral by investigating the c_type of scipy
+
+#### DONE
+    - revise writeup (ready for review)
+
 ### Feb 8 – Feb 22
 
 #### TODO
