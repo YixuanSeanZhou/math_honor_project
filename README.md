@@ -5,8 +5,9 @@ At the very beginning of the week I will list some TODOs, and try to move TODOs 
 I will also list all the questions / problems in the HELP NEEDED section.
 
 ## Getting Started
-Before you run the jupyter notebook, you need to install the dependencies using the `requirements.txt` file.
-You can do so by opening up a terminal, and type:
+The project require `python3.7+` and the installation of `jupyter notebook`.
+
+To install the dependencies using the `requirements.txt` file, do
 ```
 pip install -r requirements.txt
 ```
