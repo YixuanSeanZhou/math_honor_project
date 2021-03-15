@@ -80,7 +80,7 @@ class cheby_first_kind:
         return T
 
     
-    def __init__(self, deg, num_var, coeff=None):
+    def __init__(self, deg, num_var, alpha=0, beta=0, coeff=None):
         '''
         Description:
             Initalize a basis of the polynomail space by the first kind chebyshev polynomials.
@@ -247,7 +247,7 @@ class cheby_second_kind:
         return U
     
 
-    def __init__(self, deg, num_var, coeff=None):
+    def __init__(self, deg, num_var, alpha=0, beta=0, coeff=None):
         '''
         Description:
             Initalize a basis of the polynomial space by the second kind chebyshev polynomials.

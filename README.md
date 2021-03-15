@@ -13,15 +13,19 @@ pip install -r requirements.txt
 ```
 
 ## Logs
+### Mar 14 - Mar 14
+
+
 
 ### Mar 8 - Mar 14
 
 #### TODO
-    - Jacobi Polynomial
+    
 
 #### DONE
     - Created python scripts and generaeted results for unviarate cases.
     - Failed to optimize with ctypes, so the integration need time.
+    - Jacobi Polynomial univariate
      
 
 ### Feb 22 - Mar 8

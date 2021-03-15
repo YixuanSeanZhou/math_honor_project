@@ -12,22 +12,7 @@ from src.basis.polynomial_base import basis
 
 
 
-def main(v, pb, mb, a):
-    #classes = []
-    #for key, val in basis:
-    #for c_m in classes:
-    #    for c_p in classes:
-    #        conds = []
-    #        x = []
-    #        with progressbar.ProgressBar(max_value=7) as bar:
-    #            for i in range(1, 8):
-    #                conds.append(experiment(c_m, c_p, i*2, 1))
-    #                x.append(i * 2)
-    #                bar.update(i)
-    #        plt.title(str(c_m.__name__) + ' - ' + str(c_p.__name__))
-    #        plt.plot(x, conds)
-    #        plt.savefig('univariate/' + str(c_m.__name__) + '_' + str(c_p.__name__) + '.png')
-    #        plt.show()
+def main(v, pb, mb, type_of_exp, a, b):
 
     poly_b = basis[pb]
     mtx_b = basis[mb]
@@ -36,7 +21,7 @@ def main(v, pb, mb, a):
 
     if int(v) == 1:
 
-        if not bool(int(a)):
+        if not bool(int(type_of_exp)):
             with progressbar.ProgressBar(max_value=7) as bar:
                 for i in range(1, 8):
                     conds.append(experiment(mtx_b, poly_b, i*2, 1))
@@ -61,11 +46,15 @@ def main(v, pb, mb, a):
                     x = [] 
                     with progressbar.ProgressBar(max_value=7) as bar:
                         for i in range(1, 8):
-                            conds.append(experiment(vm, vp, i*2, 1))
+                            conds.append(experiment(vm, vp, i*2, 1, a, b))
                             x.append(i * 2)
                             bar.update(i)
 
-                    plt.title(str(mb) + ' - ' + str(pb))
+                    if km == 'jacobi':
+                        km += '_a_' + str(a) + '_b_' + str(b)
+                    if kp == 'jacobi':
+                        kp += '_a_' + str(a) + '_b_' + str(b)
+                    plt.title(str(km) + ' - ' + str(kp))
                     plt.plot(x, conds)
 
                     plt.savefig('./results/univariate/' + km + '_' + kp + '.png')
@@ -78,10 +67,10 @@ def main(v, pb, mb, a):
                             csvwriter.writerow(row)
         
     else:
-        if not bool(int(a)):
+        if not bool(int(type_of_exp)):
             with progressbar.ProgressBar(max_value=5) as bar:
                 for i in range(1, 6):
-                    conds.append(experiment(mtx_b, poly_b, i*2, 2))
+                    conds.append(experiment(mtx_b, poly_b, i*2, 2, a, b))
                     x.append(i * 2)
                     bar.update(i)
 
@@ -100,20 +89,28 @@ def main(v, pb, mb, a):
 if __name__ == '__main__':
     argv = sys.argv[1:]
     try:
-        opts, args = getopt.getopt(argv,"hb:m:v:a:",["polynomial_basis=", "matrix_basis=", "num_var="])
+        opts, args = getopt.getopt(argv,"hp:m:v:t:a:b:",["polynomial_basis=", "matrix_basis=", "num_var="])
     except getopt.GetoptError:
         sys.exit(1)
     for opt, arg in opts:
+        a = 0
+        b = 0
         if opt == '-h':
             #print(desc_str)
             sys.exit()
-        elif opt in ("-b", "--polynomial_basis"):
+        elif opt in ("-p", "--polynomial_basis"):
             pb = arg
         elif opt in ("-m", "--matrix_basis"):
             mb = arg
         elif opt in ("-v", "--num_var"):
             v = arg
-        elif opt in ("-a", "--all"):
-            a = arg
+        elif opt in ("-t", "--t"):
+            type_of_exp = arg
+        elif opt in ("-a"):
+            a = float(arg)
+        elif opt in ("-b"):
+            b = float(arg)
 
-    main(v, pb, mb, a)
+        
+
+    main(v, pb, mb, type_of_exp, a, b)

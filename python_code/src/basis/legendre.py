@@ -77,7 +77,7 @@ class legendre:
         return L
     
 
-    def __init__(self, deg, num_var, coeff=None):
+    def __init__(self, deg, num_var, alpha=0, beta=0, coeff=None):
         '''
         Description:
             Initalize a basis of the polynomial space by the second kind chebyshev polynomials.

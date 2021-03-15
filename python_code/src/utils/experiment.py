@@ -37,16 +37,16 @@ def A_mtx(m_mtx, base_type, base, num_var):
         #bar.update(i)
     return spmtx(A)
 
-def experiment(m_mtx_base, poly_base, deg, num_var):
+def experiment(m_mtx_base, poly_base, deg, num_var, a, b):
     if deg % 2 != 0:
         print("No need to experiment polynomial with even degree")
         return 0
 
     #print('calculating moment matrix')
-    r = m_mtx_base(deg = deg // 2, num_var = num_var)
+    r = m_mtx_base(deg=(deg // 2), num_var = num_var, alpha = a, beta = b)
     m_mtx = gen_mmoment_matrix(r.base_vec)
     #print('calculating A matrix')
-    base = poly_base(deg=deg, num_var = num_var)
+    base = poly_base(deg=deg, num_var = num_var, alpha = a, beta = b)
     A = A_mtx(m_mtx, base_type=base, base=base.base, num_var=base.num_var)
     #print('calculating condition number')
     c_num = condition_num(A)

@@ -55,7 +55,7 @@ class mono_poly:
             return terms
     
 
-    def __init__(self, deg, num_var, coeff=None):
+    def __init__(self, deg, num_var, alpha=0, beta=0, coeff=None):
         '''
         Description:
             Initalize a basis of the polynomail space by the first kind chebyshev polynomials.
