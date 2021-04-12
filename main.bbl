@@ -7,6 +7,10 @@
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{BPT13}
 
+\bibitem[AM15]{ahmadi2015applications}
+Amir~Ali Ahmadi and Anirudha Majumdar, \emph{Some applications of polynomial
+  optimization in operations research and real-time decision making}, 2015.
+
 \bibitem[BPT13]{Blekherman:Parrilo:Thomas}
 G.~Blekherman, P.A. Parrilo, and R.R. Thomas, \emph{Semidefinite optimization
   and convex algebraic geometry}, MOS-SIAM Series on Optimization, vol.~13,
@@ -20,8 +24,30 @@ E.~Cheney and D.~Kincaid, \emph{Numerical mathematics and computing},
 Gene Golub, \emph{Matrix computations}, Johns Hopkins University Press,
   Baltimore, 1996.
 
+\bibitem[Jos16]{josz:tel-01478431}
+C{\'e}dric Josz, \emph{{Application of polynomial optimization to electricity
+  transmission networks}}, Theses, {Universit{\'e} Pierre et Marie Curie -
+  Paris VI}, July 2016.
+
+\bibitem[MF04]{Mathews2004Numerical}
+John~H. Mathews and Kurtis~K. Fink, \emph{Numerical methods using matlab (4th
+  edition)}, 4 ed., Pearson, January 2004.
+
+\bibitem[MN12]{M-Nagy2012}
+Gergely M{\'a}di-Nagy, \emph{Polynomial bases on the numerical solution of the
+  multivariate discrete moment problem}, Annals of Operations Research
+  \textbf{200} (2012), no.~1, 75--92.
+
 \bibitem[Rec14]{Recher:Masterthesis}
 M.~Recher, \emph{Zur numerischen {A}uswirkung von {B}asiswahlen in der
   polynomiellen {O}ptimierung}, 2014, Master Thesis, Universität zu Köln.
+
+\bibitem[Rez96]{Reznick96someconcrete}
+Bruce Reznick, \emph{Some concrete aspects of hilbert's 17th problem}, In
+  Contemporary Mathematics, American Mathematical Society, 1996, pp.~251--272.
+
+\bibitem[Str06]{strang2006linear}
+Gilbert Strang, \emph{Linear algebra and its applications}, Thomson,
+  Brooks/Cole, Belmont, CA, 2006.
 
 \end{thebibliography}
