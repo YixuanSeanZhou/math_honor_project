@@ -13,7 +13,17 @@ pip install -r requirements.txt
 ```
 
 ## Logs
-### Mar 14 - Mar 14
+
+### Apr 15 - Apr 22
+
+
+#### TODO
+- Fixing the issues that are brought up in the Thursday meeting
+- Finish writing the polynomial survey section
+- Finish writing the SDP section.
+
+#### DONE
+- Met with Professor Dressler to discuss on the previous iteration of the writeup.
 
 
 

@@ -670,7 +670,7 @@ We define the \emph{coefficient extraction map} as the following map,
 \end{definition}
 
 \smallskip
-When fixing $s_j$, we have the \emph{coefficient extraction map} being a linear map with respect to the polynomial $p(x)$. Indeed, we have 
+When fixing $s_j$, we have the {coefficient extraction map} being a linear map with respect to the polynomial $p(x)$. Indeed, we have 
 \begin{equation*}
      \begin{split}
           \mathcal{C}(\lambda p, b'_j) = \lambda \mathcal{C}(p, b'_j) \quad \lambda \in \mathbb{R}
@@ -698,14 +698,14 @@ When fixing $s_j$, we have the \emph{coefficient extraction map} being a linear 
 \end{remark}
 
 \begin{remark}
-     We should actually write the \emph{coefficient extraction map} as $\mathcal{C}_{\mathcal{B'}_{n,2d}}$,
+     We should actually write the {coefficient extraction map} as $\mathcal{C}_{\mathcal{B'}_{n,2d}}$,
      since it depends on the base itself. However, when the base is clear, we just write it as $\mathcal{C}$.
 \end{remark}
 
 \smallskip 
-We can generalize the \emph{coefficient extraction map} to take in a matrix as the first argument, and just entry-wise apply the map. With an abuse of notation, we have 
+We can generalize the {coefficient extraction map} to take in a matrix as the first argument, and just entry-wise apply the map. With an abuse of notation, we have 
 \begin{definition}
-     Given a matrix of polynomials $(p_{i, j}(x))_{i, j}$ all in the bases Let the \emph{coefficient extraction map} be defined as 
+     Given a matrix of polynomials $(p_{i, j}(x))_{i, j}$ all in the bases Let the {coefficient extraction map} be defined as 
      \begin{equation*}
           \begin{split}
                & \mathcal{C}: \mathbb{R}[x]_{\leq n, 2d}^{m \times n} \times \mathbb{R}[x]_{\leq n, 2d} \rightarrow \mathbb{R}^{m \times n} \\
@@ -798,8 +798,8 @@ We list the polynomial bases that we are interested in the following sections, a
 \subsection{Polynomial Basis}
 \label{Sec:polynomial Basis}
 In this section, we briefly survey the polynomial bases that is considered in this thesis,
-and their associated \emph{coefficient extraction map} (defined in Definition \ref{def:cem}).
-We also analyze the runtime of the \emph{coefficient extraction map}.
+and their associated {coefficient extraction map} (defined in Definition \ref{def:cem}).
+We also analyze the runtime of the {coefficient extraction map}.
 
 \subsubsection{Monomial Basis}
 The most canonical basis for $\mathbb{R}[\mathbf{x}]_{n, d}$ is the monomial basis. 
@@ -807,7 +807,7 @@ The most canonical basis for $\mathbb{R}[\mathbf{x}]_{n, d}$ is the monomial bas
      \mathcal{B}_{n, d} = \{1, x_1, x_2, ..., x_1^2, x_1 x_2, ..., x_n^d\}
 \end{equation*}
 
-The \emph{coefficient extraction map} associated to this basis is straightforward, 
+The {coefficient extraction map} associated to this basis is straightforward, 
 one would expand a given polynomial and group them by terms. Formally, we can capture this process with the following algorithm.
 
 \begin{algorithm}[H]
@@ -855,14 +855,14 @@ The univariate \emph{Chebyshev Polynomial of the First Kind} can be constructed 
      &T_1(x) = x \\
      &T_{d+1}(x) = 2x T_d(x) - T_{d-1}(x)
 \end{align*}
-where $T_d(x)$ denotes the $d$ degree univariate \emph{ChebyShev Polynomial of the First Kind}.
+where $T_d(x)$ denotes the $d$ degree univariate ChebyShev Polynomial of the First Kind.
 
-Due to its orthogonality, the associated \emph{coefficient extraction map} would be 
+Due to its orthogonality, the associated coefficient extraction map would be 
 
 \begin{algorithm}[H]
      \SetAlgoLined
      \KwResult{Coefficient of b in p}
-     \KwIn{Polynomial p, Chebyshev First Kind basis b, Chebyshev First Kind Base B}
+     \KwIn{p be any polynomial, b be an element of a multivariate Chebyshev First Kind basis}
      coeff = $\int_{-1}^1 \frac{pb}{\sqrt{1-x^2}} dx$;\\
      norm = $\int_{-1}^1 \frac{bb}{\sqrt{1-x^2}} dx$;\\
      return $\frac{\text{coeff}}{\text{norm}}$;\\
@@ -871,9 +871,9 @@ Due to its orthogonality, the associated \emph{coefficient extraction map} would
 
 When handling multivariate cases, we can again use Remark \ref{rem:upgrade} to obtain bases in higher dimensions.
 
-The \emph{coefficient extraction map} seems to be tedious to define in higher dimension cases.
+The {coefficient extraction map} seems to be tedious to define in higher dimension cases.
 However, building upon the idea of Mádi-Nagy we have the following proposition which enable us to easily 
-construct \emph{coefficient extraction map} for orthogonal polynomials in higher dimensions. \cite{M-Nagy2012}
+construct {coefficient extraction map} for orthogonal polynomials in higher dimensions. \cite{M-Nagy2012}
 
 \begin{prop}
      \label{prop:COOLPROP}
@@ -907,7 +907,7 @@ construct \emph{coefficient extraction map} for orthogonal polynomials in higher
      Inductively, one can generalize this to higher dimensions as well.
 \end{proof}
 
-Now using this Proposition \ref{prop:COOLPROP}, we have the \emph{coefficient extraction map} for multivariate \emph{ChebyShev Polynomials of the First Kind} be
+Now using this Proposition \ref{prop:COOLPROP}, we have the {coefficient extraction map} for multivariate \emph{ChebyShev Polynomials of the First Kind} be
 \begin{equation*}
      \mathcal{C}(p(\mathbf{x}), b(\mathbf{x})) = \int_{-1}^1 \frac{p(x_1, ..., x_n)b(x_1, ..., x_n)}{\sqrt{1-x_1^2} \sqrt{1-x_2^2} ... \sqrt{1-x_n^2}} dx_1dx_2 ... dx_n.
 \end{equation*} 
@@ -918,61 +918,61 @@ The univariate \emph{Chebyshev Polynomial of the Second Kind} can be constructed
      &U_1(x) = 2x \\
      &U_{d+1}(x) = 2x U_d(x) - U_{d-1}(x)
 \end{align*}
-where $U_d(x)$ denotes the $d$ degree univariate \emph{ChebyShev Polynomial of the Second Kind}.
+where $U_d(x)$ denotes the $d$ degree univariate ChebyShev polynomial of the Second Kind.
 
-The associated \emph{coefficient extraction map} would be
+The associated {coefficient extraction map} would be
 
 \begin{algorithm}[H]
      \SetAlgoLined
      \KwResult{Coefficient of b in p}
-     \KwIn{Polynomial p, Chebyshev Second Kind basis b, Chebyshev Second Kind Base B}
+     \KwIn{p be any polynomial, b be an element of a multivariate Chebyshev Second Kind basis}
      coeff = $\int_{-1}^1 pb\sqrt{1-x^2} dx$;\\
      norm = $\int_{-1}^1 bb\sqrt{1-x^2} dx$;\\
      return $\frac{\text{coeff}}{\text{norm}}$;\\
      \caption{Coefficient Extraction Map for Chebyshev Second Kind}
 \end{algorithm}
 
-By the same process described above, we can construct multivariate \emph{Chebyshev Polynomial of the Second Kind} using Remark \ref{rem:upgrade},
-and we can construct the associated \emph{coefficient extraction map} using Proposition \ref{prop:COOLPROP}.
+By the same process described above, we can construct multivariate {Chebyshev polynomial of the Second Kind} using Remark \ref{rem:upgrade},
+and we can construct the associated {coefficient extraction map} using Proposition \ref{prop:COOLPROP}.
 
 \smallskip
 
 \paragraph{Legendre Polynomials}
 \emph{Legendre Polynomials} is special orthogonal polynomial basis that
 has a vast number of mathematical properties, and numerous applications.
-One of the most modern applications that \emph{Legendre Polynomials} are used in
+One of the most modern applications that {Legendre polynomials} are used in
 is machine learning. According to Yang, Hou and Luo, who developed a neural
-network based on \emph{Legendre Polynomials} to solve ordinary differential equations \cite{Yang2018}.
-Also, according to Dash, implementing \emph{Legendre Polynomial} in \emph{recurrent neural networks} based predicter can
+network based on {Legendre polynomials} to solve ordinary differential equations \cite{Yang2018}.
+Also, according to Dash, implementing {Legendre polynomial} in \emph{recurrent neural networks} based predicter can
 significantly increase the performance of the prediction \cite{DASH20201000}. 
 
-There are still many ways to construct the \emph{Legendre Polynomials}. 
-In order to implement \emph{Legendre Polynomials}, we present the \emph{Rodrigues' formula}
-that generates univariate \emph{Legendre Polynomials}.
+There are still many ways to construct the {Legendre polynomials}. 
+In order to implement {Legendre polynomials}, we present the \emph{Rodrigues' formula}
+that generates univariate {Legendre polynomials}.
 \begin{equation*}
      P_n(x) = \frac{1}{2^n n!} \frac{d^n}{dx^n} (x^2 - x)^n
 \end{equation*}
-where $P_n(x)$ denotes the univariate \emph{Legendre Polynomials} of degree $n$,
+where $P_n(x)$ denotes the univariate {Legendre polynomials} of degree $n$,
 $\frac{d^n}{dx^n}$ denotes the n'th derivative with respect to $x$. 
 
-Another way to construct the \emph{Legendre Polynomials} is to define this basis
+Another way to construct the {Legendre Polynomials} is to define this basis
 as the solution to an orthogonal system with respect to the weight function 
 $w(x)=1$ over the interval $[-1, 1]$. That is $P_n(x)$ is a polynomial such that
 \begin{equation*}
      \int_{-1}^{1} P_m(x) P_n(x) = 0 \quad \textit{if } n \neq m.
 \end{equation*}
 
-Though this formulation is terrible for solving the exact expression of \emph{Legendre Polynomials},
-it shows that \emph{Legendre Polynomials} is an orthogonal polynomial with respect to the inner product $\int_{-1}^{1} dx$. 
-Thus, this definition directly provided us the \emph{coefficient extraction map} associated to \emph{Legendre Polynomials} in the univariate case. 
+Though this formulation is terrible for solving the exact expression of {Legendre Polynomials},
+it shows that {Legendre polynomials} is an orthogonal polynomial with respect to the inner product $\int_{-1}^{1} dx$. 
+Thus, this definition directly provided us the {coefficient extraction map} associated to \emph{Legendre Polynomials} in the univariate case. 
 
 Then, via the same treatment introduced in Remark \ref{rem:upgrade} and Proposition \ref{prop:COOLPROP},
-we have the \emph{coefficient extraction map} associated to \emph{Legendre Polynomials} be the following algorithm.
+we have the {coefficient extraction map} associated to {Legendre polynomials} be the following algorithm.
 
 \begin{algorithm}[H]
      \SetAlgoLined
      \KwResult{Coefficient of b in p}
-     \KwIn{Polynomial p, Legendre basis b, Legendre Base B}
+     \KwIn{p be any polynomial, b be an element of a multivariate Legendre basis}
      coeff = $\int_{-1}^1 ... \int_{-1}^1  p(\mathbf{x})b(\mathbf{x}) dx_1 ... dx_n$;\\
      norm = $\int_{-1}^1 ... \int_{-1}^1 b(\mathbf{x}) b(\mathbf{x}) dx_1 ... dx_n$;\\
      return $\frac{\text{coeff}}{\text{norm}}$;\\
@@ -980,7 +980,36 @@ we have the \emph{coefficient extraction map} associated to \emph{Legendre Polyn
 \end{algorithm}
 
 \paragraph{Jacobi Polynomials}
-The last kind of orthogonal polynomial that we will consider is the \emph{Jacobi polynomial}
+The last kind of orthogonal polynomial that we will consider is the \emph{Jacobi polynomial}. 
+Not surprisingly, there are many ways to construct the polynomial. 
+The way that is most handy in implementation is the \emph{Rodrigues's formula}. In univariate case, we have
+\begin{equation*}
+     P^{(\alpha, \beta)}_n(x) = \frac{(-1)^n}{2^n n!} (1-x)^{-\alpha} (1+x)^{-\beta} \frac{d^n}{dx^n} [(1-x)^{\alpha}(1+x)^{\beta}(1-x^2)^n],
+\end{equation*}
+where $P^{(\alpha, \beta)}_n(x)$ is the Jacobi polynomial with parameter $\alpha, \beta$ with degree $n$. 
+
+The Jacobi polynomials are orthogonal under the inner product
+\begin{equation*}
+    \langle P^{(\alpha, \beta)}_i(x), P^{(\alpha, \beta)}_j(x) \rangle = \int_{-1}^1 (1-x)^{\alpha} (1+x)^{\beta} P^{(\alpha, \beta)}_i(x) P^{(\alpha, \beta)}_j(x) dx.
+\end{equation*}
+
+In fact, Jacobi polynomials are the general case for all the orthogonal polynomials that are mentioned above. 
+When setting $\alpha = 0, \beta = 0$, we obtain the Legendre polynomials. (So it is not surprising that they both can be generated using Rodrigues' formula).
+
+With the same treatment stated in Remark \ref{rem:upgrade} and Proposition \ref{prop:COOLPROP},
+we have the {coefficient extraction map} associated to multivariate Jacobi polynomials be the following algorithm.
+
+\begin{algorithm}[H]
+     \SetAlgoLined
+     \KwResult{Coefficient of b in p}
+     \KwIn{p be any Polynomial, b be an element of a multivariate Jacobi basis}
+     coeff = $\int_{-1}^1 ... \int_{-1}^1 (1-x_1)^{\alpha} (1+x_n)^{\beta} ... (1-x_n)^{\alpha} (1+x_n)^{\beta} p(\mathbf{x})b(\mathbf{x}) dx_1 ... dx_n$;\\
+     norm = $\int_{-1}^1 ... \int_{-1}^1 (1-x_1)^{\alpha} (1+x_n)^{\beta} ... (1-x_n)^{\alpha} (1+x_n)^{\beta} b(\mathbf{x}) b(\mathbf{x}) dx_1 ... dx_n$;\\
+     return $\frac{\text{coeff}}{\text{norm}}$;\\
+     \caption{Coefficient Extraction Map for Jacobi Polynomial}
+\end{algorithm}
+
+
 
 
 \subsection{Solving Semidefinite Program}
