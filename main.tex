@@ -32,6 +32,7 @@
 \newtheorem{conj}[thm]{Conjecture}
 \newtheorem{remark}[thm]{Remark}
 
+\setcounter{secnumdepth}{5}
 
 \theoremstyle{definition}
 
@@ -194,33 +195,45 @@ Short description
 
 \section{Introduction} 
 
-\emph{Polynomials optimizations} are very powerful in terms of expressing and solving problems in applied math and engineering. 
-For instance, Ahmadi and Majumdar suggested that when applied in the field of artificial intelligence, \emph{Polynomials optimizations} can be used in solving \emph{real-time decision problems} \cite{ahmadi2015applications}.
-Josz suggested that \emph{Polynomials optimizations} can also be used in solving the \emph{optimal power flow problem} in the field of electric power systems design \cite{josz:tel-01478431}. 
-In such problems, one usually wants to minimize an objective function subjects to some constraints, that is,
-\begin{equation*}
-    \min \ f(x) \quad \textit{s.t. } g_i(x) \geq 0.
-\end{equation*}
+\emph{Polynomial optimization} are ubiquitous in applied mathematics and engineering. 
+For instance, Ahmadi and Majumdar \cite{ahmadi2015applications} suggested to use
+polynomial optimization in the field of \emph{artificial intelligence} for solving
+\emph{real-time decision problems}. 
+In the field of electric power system design, the \emph{optimal power flow problem}
+can be reduced to polynomial optimization problem as well, see \cite{josz:tel-01478431}.
 
-Other optimization techniques, for example the gradient decent algorithm, seeks to exploit the properties of the objective functions to find a local minimizer and hopes (with justifications in special cases) that the function value at the minimizer is close the global minimum. 
-On the other hand, \emph{Polynomials optimizations} attempt to solve this problem by directly finding the global minimizer of the objective function. When we assume that we have an unconsecrated optimization problem, 
-the general form of the \emph{Polynomials optimizations} can be expressed as
+In general, an \emph{optimization} problem takes for the form 
 \begin{equation*}
-     \max \ r \quad \textit{s.t. } f(x) - r \geq 0.
-\end{equation*}
+     \min \ f(\mathbf{x}) \quad \textit{s.t. } g_i(\mathbf{x}) \geq 0, h_j(\mathbf{x}) = 0,
+ \end{equation*}
+where $f, g, h$ are arbitrary functions of the variables $\mathbf{x}$. 
+The function $f$ is called the \emph{objective function}, and the functions $g, h$ are called the \emph{constraints}.
+That is when solving an optimization problem, one tries to minimize the objective function subject to certain constraints.
+There are several ways to address this problem, which are collected as \emph{nonlinear optimization methods}. 
+Some famous optimization approaches includes \emph{gradient decent} and \emph{Newton's method}. 
+Those optimization algorithms seeks to exploit the properties of the objective functions to find a
+local minimizer $\mathbf{x}^*$ and hopes (with justifications in special cases) that the function value at the minimizer is close
+to the global minimum. Whereas polynomial optimization takes a different approach.
 
-To solve this problem, we would need to decide whether a given polynomial, $f(x) - r$ is a \emph{nonnegative polynomial} (see Definition \ref{def:NGP}) or not.
-It turns out that this problem has been well studied in real algebraic geometry dates back to the beginning of 20th century. 
+Polynomial optimization, by its name, is the optimization problem where $f, g, h$ are all polynomials.
+In this thesis, we focus on the polynomial optimization in unconstrained case, that is the feasible domain of the problem is $\mathbb{R}^n$.
+Then, instead of finding a local minimizer $\mathbf{x}^*$, polynomial optimization tries to minimize the polynomial $f$ globally by finding its max lower bound.
+That is we can equivalently formulate the problem as 
+\begin{equation*}
+     \max \ r \quad \textit{s.t. } f(\mathbf{x}) - r \geq 0 \quad \forall x \in \mathbb{R}^n,
+ \end{equation*}
+where the objective function $f$ is a polynomial of $\mathbf{x}$, and the lower bound $r$ is a real number. 
+
+To solve this problem, we would need to decide whether a given polynomial, $f(\mathbf{x}) - r$ is \emph{nonnegative} (see Definition \ref{def:NGP}).
+It turns out that this problem has been well studied in real algebraic geometry since the beginning of the 20th century. 
 However, it turns out that deciding whether an arbitrary multivariate polynomial is nonnegative is,
-in the language of computational complexity, \emph{NP-Hard} (computationally infeasible). 
+in the language of computational complexity, \emph{NP-hard} (computationally infeasible). 
 
-Therefore, instead of directly decide whether a polynomial is nonnegative, people start to seek certificates (sufficient conditions) for a polynomial being nonnegative.
-One of the most famous and canonical certificates is whether a polynomial can be expressed as a \emph{sum of squares (SOS)} (see Definition \ref{def:SOS}),
-This certificate problem is given by a \emph{semidefinite program (SDP)} (see Definition \ref{def:SDP}) and
-has known algorithms that can compute the result in polynomial times (efficiently) with respect to the input size \cite{Blekherman:Parrilo:Thomas}.
-
-% Though Hilbert has showed that the set of all \emph{SOS} coincide with the set of all \emph{nonnegative polynomials} only if the polynomials are univariate, quadratic, or bivariate with degree 4,
-% the \emph{SOS} is still the mostly well-known and well-used certificate in this decision problem due to its simplicity and the existence of efficient solvers. \cite{Blekherman:Parrilo:Thomas}
+Therefore, instead of directly deciding the \emph{nonnegativity} of a polynomial, one wants to find sufficient conditions
+that certify nonnegativity of a polynomial which are easier to check. Such conditions are called \emph{certificate of nonnegativity}.
+The most famous and canonical certificate is \emph{sums of squares (SOS)} (see Definition \ref{def:SOS}).
+Deciding if a polynomial is a sums of squares can be formulated as a \emph{semidefinite program (SDP)} (see Definition \ref{def:SDP}).
+SDPs have known algorithms that, under mild conditions, can be solved in polynomial time (efficiently) with respect to the input size \cite[Chapter~2]{Blekherman:Parrilo:Thomas}.
 
 When solving the \emph{SDP}, the solver is actually dealing with a set of linear constraints, which can be compactly written in the form $Ax = b$, obtained by the process of \emph{comparison of coefficients (COC)}.
 Though this process is formally introduced in Section 2.3, the intuition behind it is quite simple. 
@@ -250,17 +263,24 @@ And in Section 4, we discuses the result that is obtained in Section 3 and some 
 
 I would like to express my deepest gratefulness to my program advisor Mareike Dressler for offering this opportunity to do this honor project. 
 During the past three quarters, she not only has been providing insightful ideas about the direction of this project should be going, 
-but also has been guiding me through the process of doing research. The project could not have done without her support and help. Thank you.
+but also has been guiding me through the process of doing research. 
+As an expert in this field, she patiently explained in details of the concepts behind the problem.
+As an advisor, she showed me how to find sources and how to write a paper. 
+As a mentor, she shared insightful thoughts with me about academia, industry, and life.
+Especially with these special period of time, when we are all blocked by the pandemic, 
+she still offered incredible patience and shining positive attitudes whenever we talk. 
+This project could not have done without her support and help. 
+Thank you.
 
 \newpage
 
 \section{Preliminaries}
 \label{Sec:Preliminaries}
 
-In this section, we introduce all the background material that is necessary to
-understand the problem and describe the algorithm that is used to carry out the \emph{comparison of coefficients (COC)}
-process. All the notations is also be introduced in this section, 
-and a brief survey of the polynomial base that are considered in this paper is included in the end.
+In this section, we introduce the notation and the necessary background material
+to understand the problem. 
+Moreover, we describe the algorithm that is used to carry out the \emph{comparison of coefficients (COC)}
+process and provide a brief survey of the polynomial base that are considered in this thesis.
 
 % The first subsection focus on related definitions and results from linear algebra. 
 % The second subsection contains all the tools that we need from real algebraic geometry and \emph{semidefinite programming} for describing the algorithm \emph{(COC)}
@@ -272,49 +292,45 @@ and a brief survey of the polynomial base that are considered in this paper is i
 First, we rigorously define the decision problem that is considered in this paper. 
 Thus, in this subsection we define the terms that are used related to \emph{polynomials}.
 
-Throughout this paper, we use bold letters for vectors, e.g. $\mathbf{x} = (x_1, ..., x_n) \in \mathbb{R}^n$.
-The set of all $m$ by $n$ real matrices is denoated as $\mathbb{R}^{m \times n}$ 
-The ring (set) of real-valued n-variate polynomials is denoted as $\mathbb{R}[\mathbf{x}]$, 
-and the set of all $n$-variate real polynomials with degree less than or equals to $d$ is denoted as $\mathbb{R}[\mathbf{x}]_{n, d}$.
+Throughout, we use bold letters for vectors, e.g. $\mathbf{x} = (x_1, ..., x_n) \in \mathbb{R}^n$.
+The set of all $m$ by $n$ real matrices is denoted as $\mathbb{R}^{m \times n}$, and the ring (set) of real-valued n-variate polynomials is denoted as $\mathbb{R}[\mathbf{x}]$, 
+We use $\mathbb{R}[\mathbf{x}]_{n, d}$ for the set of all $n$-variate real polynomials with degree less than or equal to $d$.
+
+
+A polynomial is an expression consisting of variables and coefficients, that involves only the operations of addition, subtraction, multiplication, and non-negative integer exponentiation of variables.
+Therefore, a univariate polynomial takes the form, $p(x) = \sum_{i = 1} ^{l} c_i x^{\alpha(i)}$, with $c_i$ be the leading coefficient and $\alpha(i)$ be the degree of the term. 
+And we can introduce more variables to it. 
 
 \begin{example}
-     In mathematics, a polynomial is an expression consisting of variables and coefficients, that involves only the operations of addition, subtraction, multiplication, and non-negative integer exponentiation of variables.
-     Therefore, a polynomial takes the form, 
-     $p(x, y, z) = x^4 + 2xyz - 6y + 7$ with $x, y, z$ being variables. This polynomial has $3$ variables and has degree $4$, thus it 
+     $p(x, y, z) = x^4 + 2xyz - 6y + 7$ with $x, y, z$ being variables. 
+     This polynomial has $3$ variables and has degree $4$, thus it 
      belongs to $\mathbb{R}[\mathbf{x}]_{3, 4}$.
 \end{example}
 
 Some quick observations that we can get about the set $\mathbb{R}[\mathbf{x}]_{n, d}$ are:
 \begin{prop}
      \label{prop:vs}
-     $\mathbb{R}[\mathbf{x}]_{n, d}$ form a vector space.
+     $\mathbb{R}[\mathbf{x}]_{n, d}$ forms a finite real vector space, with dimension ${n \choose d}$.
 \end{prop}
     
 \begin{proof}
      Suppose $p(\mathbf{x}), q(\mathbf{x}) \in \mathbb{R}[\mathbf{x}]_{n, d}$, $c \in \mathbb{R}$, then we have,
      Then we have $cp \in \mathbb{R}[\mathbf{x}]_{n, d}$ because multiplication by a scalar does not increase the degree nor introduce new variables.
-     And $p + q \in \mathbb{R}[\mathbf{x}]_{n, d}$ for the same reason. 
+     And $p + q \in \mathbb{R}[\mathbf{x}]_{n, d}$ for the same reason. This proves the first part of the claim. 
 
-\end{proof}
-
-\begin{prop}
-     The dimension of the vector space $\mathbb{R}[\mathbf{x}]_{n, d}$ is ${n \choose d}$.
-\end{prop}
-
-\begin{proof}
-     Any $n$ variate $d$ degree polynomial can be written in the form 
+     For the dimension of $\mathbb{R}[\mathbf{x}]_{n, d}$, we observe that
+     any $n$ variate $d$ degree polynomial can be written in the form 
      \begin{equation*}c_0 + c_1 x_1 + c_2 x_2 + ... + c_{n+1} x_1^2 + c_{n+2} x_1 x_2 + ... + c_l x_n^d.
      \end{equation*}
      So the set $B = \{1, x_1, x_2, ..., x_1^2, x_1 x_2, ... x_n^d\}$ spans $\mathbb{R}[\mathbf{x}]_{n, d}$.
      Also, it is a linear independent set. Thus, it forms a basis of $\mathbb{R}[\mathbf{x}]_{n, d}$.
      By counting, the cardinality of $B$, $|B| = {n+d \choose d}$, which is thus the dimension of $\mathbb{R}[\mathbf{x}]_{n, d}$.
+
 \end{proof}
 
-\begin{definition}
-     We denote a basis of $\mathbb{R}[\mathbf{x}]_{n, d}$ by $\mathcal{B}_{n, d}$.
-\end{definition}
-
-A canonical basis to this $\mathbb{R}[\mathbf{x}]_{n, d}$ is the one that is presented in the above proof, the monomial basis,
+Let $\mathcal{B}_{n, d}$ be a basis of $\mathbb{R}[\mathbf{x}]_{n, d}$. 
+A canonical basis to $\mathbb{R}[\mathbf{x}]_{n, d}$ is the one used in the proof above, 
+namely the monomial basis,
 \begin{equation*}
      \mathcal{B}_{n, d} = \{1, x_1, x_2, ..., x_n, x_1 ^ 2, x_1 x_2, ..., x_n^d\}.
 \end{equation*}
@@ -322,12 +338,13 @@ A canonical basis to this $\mathbb{R}[\mathbf{x}]_{n, d}$ is the one that is pre
 \begin{remark}
      \label{rem:upgrade}
      Given $\mathcal{B}_{n, d}$ be a basis of $\mathbb{R}[\mathbf{x}]_{n, d}$. 
-     If we list the elements of $\mathcal{B}_{n, d}$ in a column vector, write as $b$, 
-     then $b b^T$ form a matrix whose upper triangle entries can be collected to form a basis of $\mathbb{R}[\mathbf{x}]_{n, 2d}$.
+     If we list the elements of the basis $\mathcal{B}_{n, d}$ in a column vector, $\mathbf{b}$, 
+     then $\mathbf{b} \mathbf{b}^T$ forms a matrix whose upper triangular
+     entries can be collected to form a basis of $\mathbb{R}[\mathbf{x}]_{n, 2d}$.
 \end{remark}
 
 \begin{example}
-     Let $\mathcal{B}_{2, 1} = \{1, x, y\}$, be a basis of $\mathbb{R}[\mathbf{x}]_{2, 1}$, then 
+     Let $\mathcal{B}_{2, 1} = \{1, x, y\}$ be a basis of $\mathbb{R}[\mathbf{x}]_{2, 1}$, then 
      \begin{equation*}
           \begin{bmatrix}
                1 \\
@@ -338,45 +355,56 @@ A canonical basis to this $\mathbb{R}[\mathbf{x}]_{n, d}$ is the one that is pre
                1 & x & y
           \end{bmatrix}
           = \begin{bmatrix}
-               1 & x & y \\
-               x & x^2 & xy \\
-               y & xy & y^2 \\
+               \color{blue} 1 & \color{blue}x & \color{blue}y \\
+               x & \color{blue}x^2 & \color{blue}xy \\
+               y & xy & \color{blue}y^2 \\
           \end{bmatrix}
      \end{equation*}
-     Then the upper triangle of the result form a basis of $\mathbb{R}[\mathbf{x}]_{2, 2}$.
+     The elements of the upper triangle of the resulted matrix, $\{1, x, y, x^2, xy, y^2\}$ form a basis of $\mathbb{R}[\mathbf{x}]_{2, 2}$.
 \end{example}
 
 \smallskip
 
-Then, we define the terminologies related to the decision problem.
+Next, we define the terminologies related to the decision problem.
 
 \begin{definition}
      \label{def:NGP}
-     Let $P_{n, 2d}$ denote the set of nonnegative polynomials with 
+     Let $P_{n, 2d}$ denote the set of \emph{nonnegative polynomials} with 
      $n$ variables and degree at most $2d$, that is 
      \begin{equation*}
-          P_{n, 2d} = \{ p \in \mathbb{R}[\mathbf{x}]_{n, 2d}: p(\mathbf{x}) \geq 0, \textit{ for all } \mathbf{x} \in \mathbb{R}^d \}.
+          P_{n, 2d} = \{ p \in \mathbb{R}[\mathbf{x}]_{n, 2d}: p(\mathbf{x}) \geq 0, \textit{ for all } \mathbf{x} \in \mathbb{R}^n \}.
      \end{equation*}
 \end{definition}
 
 
-The reason that we chose to write $2d$ in the definition is that \emph{nonnegative polynomials} always have even degrees.
+The reason that we chose to write $2d$ in the definition is that {nonnegative polynomials} always have even degrees.
 A polynomial with odd degree would be negative when we fix all the other variables and move one variable to positive or negative infinity. 
 
 \begin{definition}
      \label{def:SOS}
           Let $\Sigma_{n,2d}$ denote the set of polynomials with $n$ variables and degree at most
-          $2d$ that are \emph{Sum of Squares}, that is
+          $2d$ that are \emph{sum of squares}, that is
           \begin{equation*}
                \Sigma_{n, 2d} = \{ p \in \mathbb{R}[x]_{n, 2d}: \text{ exists } q_1(x), ..., q_k(x) \in \mathbb{R}[x]_{n,d} \text{ } s.t. \text{ }  p(x) = \sum_{i=1}^k q_i^2(x)\}.
           \end{equation*}     
 \end{definition}
 
-Notice that $\Sigma_{n,2d} \subseteqq P_{n, 2d}$ because sum of squares of real numbers are always nonnegative. 
+Notice that $\Sigma_{n,2d} \subseteq P_{n, 2d}$ because sum of squares of real numbers are always nonnegative. 
+In fact, these two sets are \emph{convex cones}. 
+For more about the convex cone formulations, see \cite[Chapter~3]{Blekherman:Parrilo:Thomas}
 
-Date backs to 1888, Hilbert showed that there are only three special cases where the $\Sigma_{n,2d} = P_{n, 2d}$: 
-univariate polynomials, quadratic polynomials, and bivariate polynomials of degree four. Namely, when $n = 1$, or $d = 2$, or $n = 2$ and $d = 4$ \cite{Reznick96someconcrete}.
-However, as discussed in the introduction, the decision problem of whether an arbitrary polynomial $p(\mathbf{x}) \in P_{n, 2d}$ is impossible to be solved in a computationally feasible way.
+In 1888, Hilbert in \cite{hilbert_david_1888_1428214} showed that there are only three special cases where the two cones coincide, i.e. $\Sigma_{n,2d} = P_{n, 2d}$: 
+univariate polynomials, quadratic polynomials, and bivariate polynomials of degree four. Namely, when $n = 1$, or $d = 2$, or $n = 2$ and $d = 4$.
+It is interesting that though Hilbert proved the $\Sigma_{n,2d}$ is a strict subset of $P_{n, 2d}$ other than the 3 special cases, 
+a concrete example of a nonnegative polynomial that is not SOS is very hard to find. 
+In fact, it takes almost one hundred years until Motzkin in \cite{motzkin1967arithmetic} 
+discovered \emph{Motzkin' polynomial} 
+\begin{equation*}
+     p(x, y) = X^4Y^2 + X^2Y^4 - 3 X^2Y^2 + 1,
+\end{equation*}
+which is in $\mathbb{R}[x]_{2, 6}$ a nonnegative polynomial but cannot be written in SOS.
+
+Coming back to our original problem, as discussed in the introduction, the decision problem of whether an arbitrary polynomial $p(\mathbf{x}) \in P_{n, 2d}$ is computationally hard.
 Whereas, we can efficiently decide whether $p(\mathbf{x}) \in \Sigma_{n, 2d}$ using \emph{semidefinite program}, which we introduce in next subsection. 
 As a result, although using the latter certificate we fail to identify some nonnegative polynomials, but that is the trade off that we make in order to solve the problem in a computationally feasible way.
 
@@ -391,20 +419,22 @@ Just to reiterate, the \emph{decision problem} that is considered in this paper 
 \subsection{Linear Algebra And Semidefinite Programming}
 \label{Sec:Linear Algebra}
 
-As we have seen that the $\mathbb{R}[\mathbf{x}]_{n, 2d}$ form a vector space, the tools from linear algebra plays an important role in the analysis. 
+Since $\mathbb{R}[\mathbf{x}]_{n, 2d}$ forms a vector space, the tools from linear algebra play an important role in the analysis. 
 Besides, both \emph{SDP} and the measurement of stability of system require some tools from linear algebra. 
 Thus, we devote this subsection introducing all the required tools. 
 
 \begin{definition}
-     Given a matrix $A \in \mathbb{R}^{n \times n}$, we say it is \emph{symmetric} if $A^T = A$. We denote the set of \emph{symmetric matrix} as $S^n$.  
+     Given a matrix $A \in \mathbb{R}^{n \times n}$, we say it is \emph{symmetric} if $A^T = A$. We denote the set of \emph{symmetric matrix} as $\mathcal{S}^n$.  
 \end{definition}
 
-A famous result of \emph{symmetric matrix} is:
-\begin{thm} [\cite{golub1996matrix}] Spectral Theorem
+A famous result of \emph{symmetric matries} is:
+\begin{thm} [Spectral Theorem \cite{golub1996matrix}]
 
-     Given a symmetric matrix$A \in \mathbb{R}^{n \times n}$, it can be diagonalized as \begin{equation*} A = P^{-1}DP. \end{equation*} where $D$ is a diagonal matrix with all real values, and $P$ is an orthonormal matrix.
+     Given a symmetric matrix$A \in \mathbb{R}^{n \times n}$, 
+     it can be diagonalized as \begin{equation*} A = P^{-1}DP, \end{equation*}
+     where $D$ is a diagonal matrix with real entries, and $P$ is an orthonormal matrix.
      
-     In other word, $A$ has all real eigenvalues, and their corresponding eigenvectors form an orthonormal basis of $\mathbb{R}^n$. 
+     In other words, all eigenvalues of $A$ are real, and their corresponding eigenvectors form an orthonormal basis of $\mathbb{R}^n$. 
 \end{thm} 
 
 \smallskip
@@ -412,31 +442,39 @@ A famous result of \emph{symmetric matrix} is:
 Then we introduce the key idea that related to \emph{SDP}, the \emph{positive semidefinite matrix}.
 
 \begin{definition}
-     Given a matrix $A \in \mathbb{R}^{n \times n}$, it is \emph{positive semidefinite (psd)} if $A$ is symmetric and \begin{equation*}
+     A matrix $A \in \mathbb{R}^{n \times n}$, it is \emph{positive semidefinite (psd)} if $A$ is symmetric and \begin{equation*}
           x^T A x \geq 0 \quad \forall x \in \mathbb{R}^n.
      \end{equation*}
      We denote it as $A \succcurlyeq 0$.
 \end{definition}
 
 \begin{prop}
-     A matrix is psd if and only if all its eigenvalues are greater than or equals to 0.
+     A matrix is psd if and only if all its eigenvalues are greater than or equal to 0.
 \end{prop}
 
 \begin{proof}
-     If a matrix $A$ has eigenvalue $\lambda < 0$, then if $x$ is the corresponding eigenvector, we have $x^T A x = \lambda x^T x < 0$.
-     On the other hand, if $A$ has all positive eigenvalues, because $A$ being a symmetric matrix, 
-     its eigenvectors form a basis. Thus, for any $x \in \mathbb{R}^n$, we have
+     Towards a contradiction, suppose matrix $A$ has eigenvalue $\lambda < 0$.
+     For $x$ being its corresponding eigenvector, we have $x^T A x = \lambda x^T x < 0$, a contradiction.
+     
+     On the other hand, assume $A$ has all positive eigenvalues. By $A$ being a symmetric matrix, 
+     its eigenvectors form a basis. 
+     Thus, for any $x \in \mathbb{R}^n$, we have
      $x = \sum_{i = 1} ^ n c_i v_i $ where $v_i$ are the eigenvectors of $A$, that are also orthonormal to each other.
      Hence, $x^T A x$ = $\sum_{i = 1} ^ n \lambda_i$. Since all $\lambda_i \geq 0$, we have that $x ^ T A x \geq 0$.
 \end{proof}
 
 \begin{definition}
      \label{def:SDP}
-     A \emph{Semidefinite Problem (SDP)} in standard primal form is written as
-     \begin{equation}
-          \textit{minimize } \langle C, X \rangle \quad \textit{subject to } \langle A_i, X \rangle = b_i, i=1,...,k \quad X \succcurlyeq 0 \label{eq:2.3}.
+     A \emph{semidefinite program (SDP)} in standard primal form is
+     \begin{equation}\label{eq:2.3}.
+          \begin{split}
+               \textit{minimize } \langle C, X \rangle & \quad \textit{subject to } \langle A_i, X \rangle = b_i, \quad i=1,...,k \\
+               & \quad \textit{\ \ \ \ \ \ \ \ \ \ \ \ \ } X \succcurlyeq 0 
+          \end{split}
      \end{equation}
 \end{definition}
+
+%              \textit{minimize } \langle C, X \rangle & \textit{subject to } \langle A_i, X \rangle = b_i, i=1,...,k \\ X \succcurlyeq 0 
 
 \smallskip
 
@@ -566,7 +604,7 @@ To address how the constraints $\mathcal{B}_{n, d} ^ T \mathcal{Q} \mathcal{B}_{
           b_1 &
           ... &
           b_{ n+ d \choose d}
-     \end{bmatrix} ^ T$. Then by Remark \ref{rem:idk}, we can form a basis $\mathcal{B}_{n, 2d} = \{b'_1, ..., b'_{n + 2d \choose 2d}\}$ from the vector $b$. 
+     \end{bmatrix} ^ T$. Then by Remark \ref{rem:upgrade}, we can form a basis $\mathcal{B}_{n, 2d} = \{b'_1, ..., b'_{n + 2d \choose 2d}\}$ from the vector $b$. 
      Suppose the $p(x)$ that we are interested in is written in the form $\sum_{i = 1}^{n + 2d \choose 2d } c_i b'_i$.
      Then, we have the reformulation of the constraints as $p(x) = \mathbf{b}^T \mathcal{Q} \mathbf{b} = \langle Q, \mathbf{bb}^T \rangle$, 
      which when written separately in different rows is exactly the formulation in Definition \ref{def:SDP}.
@@ -797,7 +835,11 @@ $O(nd)$ is the cost of operations to get the coefficient for each basis $b$ in $
 Other than the monomial basis, the bulk of the focus of this thesis is on the orthogonal polynomial.
 The reason is that due to its orthogonality, the coefficient extraction map is relatively easy to construct. 
 
+\smallskip
+
 \paragraph{Chebyshev Polynomials}
+
+
 There are two kinds of polynomials are widely used in numerical analysis,
 the \emph{Chebyshev Polynomial of the First Kind} and \emph{Chebyshev Polynomial of the Second Kind}.
 The roots of these polynomials, called \emph{Chebyshev nodes} 
@@ -811,17 +853,19 @@ The univariate \emph{Chebyshev Polynomial of the First Kind} can be constructed 
 \begin{align*} 
      &T_0(x) = 1 \\ 
      &T_1(x) = x \\
-     &T_{n+1}(x) = 2x T_n(x) - T_{n-1}(x)
+     &T_{d+1}(x) = 2x T_d(x) - T_{d-1}(x)
 \end{align*}
+where $T_d(x)$ denotes the $d$ degree univariate \emph{ChebyShev Polynomial of the First Kind}.
+
 Due to its orthogonality, the associated \emph{coefficient extraction map} would be 
 
 \begin{algorithm}[H]
      \SetAlgoLined
      \KwResult{Coefficient of b in p}
      \KwIn{Polynomial p, Chebyshev First Kind basis b, Chebyshev First Kind Base B}
-     c = $\int_{-1}^1 \frac{pb}{\sqrt{1-x^2}} dx$;\\
-     n = $\int_{-1}^1 \frac{bb}{\sqrt{1-x^2}} dx$;\\
-     return c/n;\\
+     coeff = $\int_{-1}^1 \frac{pb}{\sqrt{1-x^2}} dx$;\\
+     norm = $\int_{-1}^1 \frac{bb}{\sqrt{1-x^2}} dx$;\\
+     return $\frac{\text{coeff}}{\text{norm}}$;\\
      \caption{Coefficient Extraction Map for Chebyshev First Kind}
 \end{algorithm}
 
@@ -872,8 +916,9 @@ The univariate \emph{Chebyshev Polynomial of the Second Kind} can be constructed
 \begin{align*} 
      &U_0(x) = 1 \\ 
      &U_1(x) = 2x \\
-     &U_{n+1}(x) = 2x U_n(x) - U_{n-1}(x).
+     &U_{d+1}(x) = 2x U_d(x) - U_{d-1}(x)
 \end{align*}
+where $U_d(x)$ denotes the $d$ degree univariate \emph{ChebyShev Polynomial of the Second Kind}.
 
 The associated \emph{coefficient extraction map} would be
 
@@ -881,16 +926,61 @@ The associated \emph{coefficient extraction map} would be
      \SetAlgoLined
      \KwResult{Coefficient of b in p}
      \KwIn{Polynomial p, Chebyshev Second Kind basis b, Chebyshev Second Kind Base B}
-     c = $\int_{-1}^1 pb\sqrt{1-x^2} dx$;\\
-     n = $\int_{-1}^1 bb\sqrt{1-x^2} dx$;\\
-     return c/n;\\
+     coeff = $\int_{-1}^1 pb\sqrt{1-x^2} dx$;\\
+     norm = $\int_{-1}^1 bb\sqrt{1-x^2} dx$;\\
+     return $\frac{\text{coeff}}{\text{norm}}$;\\
      \caption{Coefficient Extraction Map for Chebyshev Second Kind}
 \end{algorithm}
 
-And again, by the same process described above, we can construct multivariate \emph{Chebyshev Polynomial of the Second Kind} using Remark \ref{rem:upgrade},
+By the same process described above, we can construct multivariate \emph{Chebyshev Polynomial of the Second Kind} using Remark \ref{rem:upgrade},
 and we can construct the associated \emph{coefficient extraction map} using Proposition \ref{prop:COOLPROP}.
 
+\smallskip
 
+\paragraph{Legendre Polynomials}
+\emph{Legendre Polynomials} is special orthogonal polynomial basis that
+has a vast number of mathematical properties, and numerous applications.
+One of the most modern applications that \emph{Legendre Polynomials} are used in
+is machine learning. According to Yang, Hou and Luo, who developed a neural
+network based on \emph{Legendre Polynomials} to solve ordinary differential equations \cite{Yang2018}.
+Also, according to Dash, implementing \emph{Legendre Polynomial} in \emph{recurrent neural networks} based predicter can
+significantly increase the performance of the prediction \cite{DASH20201000}. 
+
+There are still many ways to construct the \emph{Legendre Polynomials}. 
+In order to implement \emph{Legendre Polynomials}, we present the \emph{Rodrigues' formula}
+that generates univariate \emph{Legendre Polynomials}.
+\begin{equation*}
+     P_n(x) = \frac{1}{2^n n!} \frac{d^n}{dx^n} (x^2 - x)^n
+\end{equation*}
+where $P_n(x)$ denotes the univariate \emph{Legendre Polynomials} of degree $n$,
+$\frac{d^n}{dx^n}$ denotes the n'th derivative with respect to $x$. 
+
+Another way to construct the \emph{Legendre Polynomials} is to define this basis
+as the solution to an orthogonal system with respect to the weight function 
+$w(x)=1$ over the interval $[-1, 1]$. That is $P_n(x)$ is a polynomial such that
+\begin{equation*}
+     \int_{-1}^{1} P_m(x) P_n(x) = 0 \quad \textit{if } n \neq m.
+\end{equation*}
+
+Though this formulation is terrible for solving the exact expression of \emph{Legendre Polynomials},
+it shows that \emph{Legendre Polynomials} is an orthogonal polynomial with respect to the inner product $\int_{-1}^{1} dx$. 
+Thus, this definition directly provided us the \emph{coefficient extraction map} associated to \emph{Legendre Polynomials} in the univariate case. 
+
+Then, via the same treatment introduced in Remark \ref{rem:upgrade} and Proposition \ref{prop:COOLPROP},
+we have the \emph{coefficient extraction map} associated to \emph{Legendre Polynomials} be the following algorithm.
+
+\begin{algorithm}[H]
+     \SetAlgoLined
+     \KwResult{Coefficient of b in p}
+     \KwIn{Polynomial p, Legendre basis b, Legendre Base B}
+     coeff = $\int_{-1}^1 ... \int_{-1}^1  p(\mathbf{x})b(\mathbf{x}) dx_1 ... dx_n$;\\
+     norm = $\int_{-1}^1 ... \int_{-1}^1 b(\mathbf{x}) b(\mathbf{x}) dx_1 ... dx_n$;\\
+     return $\frac{\text{coeff}}{\text{norm}}$;\\
+     \caption{Coefficient Extraction Map for Legendre Polynomial}
+\end{algorithm}
+
+\paragraph{Jacobi Polynomials}
+The last kind of orthogonal polynomial that we will consider is the \emph{Jacobi polynomial}
 
 
 \subsection{Solving Semidefinite Program}

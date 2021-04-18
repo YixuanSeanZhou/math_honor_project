@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.4.1)  10 APR 2021 22:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.4.1)  17 APR 2021 20:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -549,34 +549,34 @@ LaTeX Info: Redefining \smaller on input line 151.
  (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Try loading font information for U+msa on input line 185.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 186.
+LaTeX Font Info:    ... okay on input line 186.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 186.
+LaTeX Font Info:    ... okay on input line 186.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 186.
+LaTeX Font Info:    ... okay on input line 186.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 186.
+LaTeX Font Info:    ... okay on input line 186.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 186.
+LaTeX Font Info:    ... okay on input line 186.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 186.
+LaTeX Font Info:    ... okay on input line 186.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 186.
+LaTeX Font Info:    ... okay on input line 186.
+LaTeX Font Info:    Try loading font information for U+msa on input line 186.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 185.
+LaTeX Font Info:    Try loading font information for U+msb on input line 186.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 185.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 186.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
 \AtBeginShipoutBox=\box52
-Package hyperref Info: Link coloring OFF on input line 185.
+Package hyperref Info: Link coloring OFF on input line 186.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -584,14 +584,14 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count146
 )
-LaTeX Info: Redefining \ref on input line 185.
-LaTeX Info: Redefining \pageref on input line 185.
-LaTeX Info: Redefining \nameref on input line 185.
+LaTeX Info: Redefining \ref on input line 186.
+LaTeX Info: Redefining \pageref on input line 186.
+LaTeX Info: Redefining \nameref on input line 186.
  (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.out) (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
-Package xypdf Info: Line width: 0.47998pt on input line 185.
+Package xypdf Info: Line width: 0.47998pt on input line 186.
  (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count147
@@ -623,48 +623,55 @@ Non-PDF special ignored!
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 301.
+(amsmath)                 on input line 313.
 
-[4] [5] [6] [7]
+[4] [5]
+Overfull \hbox (3.26385pt too wide) detected at line 474
+[]\OML/cmm/m/it/12 :[]
+ []
 
-LaTeX Warning: Reference `rem:idk' on page 8 undefined on input line 569.
+[6] [7] [8]
+Underfull \vbox (badness 1024) has occurred while \output is active []
 
-[8] [9]
+ [9]
 
-LaTeX Warning: Reference `rem:idk' on page 10 undefined on input line 702.
+LaTeX Warning: Reference `rem:idk' on page 10 undefined on input line 740.
 
 [10]
-Overfull \hbox (16.91562pt too wide) in paragraph at lines 737--739
+Overfull \hbox (16.91562pt too wide) in paragraph at lines 775--777
 []\OT1/cmr/m/n/12 Set $[] = [\OML/cmm/m/it/12 a[]; \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 a[]:::; \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 a[]; a[]; \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 a[]; :::; a[]\OT1/cmr/m/n/12 ][] \OMS/cmsy/m/n/12 2 \U/msb/m/n/12 R[]$\OT1/cmr/m/n/12 , and $\OT1/cmr/bx/n/12 q \OT1/cmr/m/n/12 = [\OML/cmm/m/it/12 q[]; :::; q[]; q[]:::; q[]\OT1/cmr/m/n/12 ][] \OMS/cmsy/m/n/12 2
  []
 
-[11] [12] [13] [14] [15] [16] (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.bbl) [17]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 953.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 953.
+[11]
+Underfull \vbox (badness 2837) has occurred while \output is active []
+
+ [12] [13] [14] [15] [16] [17] [18] (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.bbl) [19]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1043.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1043.
  (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 953.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 953.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1043.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1043.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 2635E58450F26862E35DCD8D2DFCE55B;738.
+(rerunfilecheck)             Checksum: D1CD29E4C0F9BEEC705995B1EB9B10D0;738.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 953.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1043.
  ) 
 Here is how much of TeX's memory you used:
- 19675 strings out of 492649
- 345455 string characters out of 6129623
- 466495 words of memory out of 5000000
- 22981 multiletter control sequences out of 15000+600000
+ 19685 strings out of 492649
+ 345627 string characters out of 6129623
+ 464619 words of memory out of 5000000
+ 22984 multiletter control sequences out of 15000+600000
  15838 words of font info for 63 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 55i,22n,54p,1489b,436s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,22n,54p,1489b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf (17 pages, 302457 bytes).
+Output written on /Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf (19 pages, 314521 bytes).
 PDF statistics:
- 317 PDF objects out of 1000 (max. 8388607)
- 274 compressed objects within 3 object streams
- 84 named destinations out of 1000 (max. 500000)
+ 340 PDF objects out of 1000 (max. 8388607)
+ 295 compressed objects within 3 object streams
+ 91 named destinations out of 1000 (max. 500000)
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 

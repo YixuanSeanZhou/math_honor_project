@@ -5,7 +5,7 @@
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{BPT13}
+\begin{thebibliography}{YHL18}
 
 \bibitem[AM15]{ahmadi2015applications}
 Amir~Ali Ahmadi and Anirudha Majumdar, \emph{Some applications of polynomial
@@ -20,9 +20,19 @@ G.~Blekherman, P.A. Parrilo, and R.R. Thomas, \emph{Semidefinite optimization
 E.~Cheney and D.~Kincaid, \emph{Numerical mathematics and computing},
   International student edition, Cengage Learning, 2007.
 
+\bibitem[Das20]{DASH20201000}
+Rajashree Dash, \emph{Performance analysis of an evolutionary recurrent
+  legendre polynomial neural network in application to forex prediction},
+  Journal of King Saud University - Computer and Information Sciences
+  \textbf{32} (2020), no.~9, 1000--1011.
+
 \bibitem[Gol96]{golub1996matrix}
 Gene Golub, \emph{Matrix computations}, Johns Hopkins University Press,
   Baltimore, 1996.
+
+\bibitem[Hil88]{hilbert_david_1888_1428214}
+David Hilbert, \emph{{Ueber die Darstellung definiter Formen als Summe von
+  Formenquadraten}}, September 1888.
 
 \bibitem[Jos16]{josz:tel-01478431}
 C{\'e}dric Josz, \emph{{Application of polynomial optimization to electricity
@@ -38,16 +48,23 @@ Gergely M{\'a}di-Nagy, \emph{Polynomial bases on the numerical solution of the
   multivariate discrete moment problem}, Annals of Operations Research
   \textbf{200} (2012), no.~1, 75--92.
 
+\bibitem[Mot67]{motzkin1967arithmetic}
+Theodore~Samuel Motzkin, \emph{The arithmetic-geometric inequality},
+  Inequalities (Proc. Sympos. Wright-Patterson Air Force Base, Ohio, 1965)
+  (1967), 205--224.
+
 \bibitem[Rec14]{Recher:Masterthesis}
 M.~Recher, \emph{Zur numerischen {A}uswirkung von {B}asiswahlen in der
   polynomiellen {O}ptimierung}, 2014, Master Thesis, Universität zu Köln.
 
-\bibitem[Rez96]{Reznick96someconcrete}
-Bruce Reznick, \emph{Some concrete aspects of hilbert's 17th problem}, In
-  Contemporary Mathematics, American Mathematical Society, 1996, pp.~251--272.
-
 \bibitem[Str06]{strang2006linear}
 Gilbert Strang, \emph{Linear algebra and its applications}, Thomson,
   Brooks/Cole, Belmont, CA, 2006.
+
+\bibitem[YHL18]{Yang2018}
+Yunlei Yang, Muzhou Hou, and Jianshu Luo, \emph{A novel improved extreme
+  learning machine algorithm in solving ordinary differential equations by
+  legendre neural network methods}, Advances in Difference Equations
+  \textbf{2018} (2018), no.~1, 469.
 
 \end{thebibliography}

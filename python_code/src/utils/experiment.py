@@ -10,7 +10,7 @@ def gen_mmoment_matrix(base_vec):
     for i in range(m_mtx.shape[0]):
         for j in range(m_mtx.shape[1]):
             m_mtx[i, j] = sp.expand(m_mtx[i, j])
-    
+
     return m_mtx
 
 def a_vec(m_mtx, base_type, basis, num_var):
