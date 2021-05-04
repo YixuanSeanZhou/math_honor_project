@@ -53,6 +53,41 @@ class jacobi_poly:
             terms.append(self._rodrigues_formula(a, b, n, x))
         return terms
     
+    def _gen_terms_biv(self):
+        '''
+        Description:
+            Generate all the terms in a bases of bivaraite polynomials using
+            bivariate chebyshev polynomial of the first kind
+        Reference:
+             The construction of multivariate chebyshev is based on what Gergely Mádi-Nagy proposed in his
+            "Polynomial bases on the numerical solution of the multivariate discrete moment problem"
+        Input:
+            total_degree --- the maximun degree of the polynomial
+        '''
+        if self.degree == 0:
+            return [1]
+        total_degree = self.degree
+        var_list = []
+        for i in range(len(self.var_list)):
+            var_list.append(self.var_list.popleft())
+        self.var_list = deque()
+        self.var_list.append(var_list[0])
+        terms_x_0 = self._gen_terms_uni()
+        self.var_list.popleft()
+        
+        self.var_list.append(var_list[1])
+        terms_x_1 = self._gen_terms_uni()
+        self.var_list.popleft()
+        
+        for var in var_list:
+            self.var_list.append(var)
+        terms = []
+        for order_1 in range(len(terms_x_1)):
+            for order_0 in range(len(terms_x_0) - order_1):
+                terms.append(terms_x_0[order_0] * terms_x_1[order_1])
+                # terms.append(sp.expand(x_0 * x_1))
+        return terms
+    
     def __init__(self, deg, num_var, alpha, beta, coeff=None):
         '''
         Description:
@@ -126,7 +161,18 @@ class jacobi_poly:
             else:
                 return round(r / self.norm[basis], 5)
         if num_var == 2:
-            pass
+            x = self.var_list[0]
+            y = self.var_list[1]
+            a = self.alpha
+            b = self.beta
+            weight = (1-x)**a * (1+x)**b * (1-y)**a * (1+y) **b
+            f = lambdify(self.var_list, poly * basis * weight)
+            r = sci_int.nquad(f, [[-1,1],[-1, 1]], opts=[{'epsabs':1e-4, 'epsrel':1e-4, 'limit': 15}, 
+                                                         {'epsabs':1e-4, 'epsrel':1e-4, 'limit': 15}])[0]
+            if abs(r) < 1e-4:
+                return 0
+            else:
+                return round(r/self.norm[basis], 5)
     
 
 if __name__ == '__main__':

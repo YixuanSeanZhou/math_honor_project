@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.4.1)  17 APR 2021 21:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.4.1)  4 MAY 2021 13:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -543,68 +543,203 @@ LaTeX Info: Redefining \smaller on input line 151.
 \c@algocf=\count143
 \algocf@algoframe=\box50
 \algocf@algobox=\box51
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+ (/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+ (/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen262
+\captionmargin@=\dimen263
+\captionwidth=\dimen264
+\caption@tempdima=\dimen265
+\caption@indent=\dimen266
+\caption@parindent=\dimen267
+\caption@hangindent=\dimen268
 )
-\c@thm=\count144
-\c@FNC=\count145
+Package caption Info: AMS or SMF document class.
+\c@ContinuedFloat=\count144
+Package caption Info: hyperref package is loaded.
+)
+\c@subfigure=\count145
+\c@subtable=\count146
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/mwe/mwe.sty
+Package: mwe 2018/03/30 v0.5 Package to support minimal working examples (MWE)
+ (/usr/local/texlive/2018/texmf-dist/tex/latex/lipsum/lipsum.sty
+Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
+\c@lips@count=\count147
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/blindtext/blindtext.sty
+Package: blindtext 2012/01/06 V2.0 blindtext-Package
+\c@blindtext=\count148
+\c@Blindtext=\count149
+\c@blind@countparstart=\count150
+\blind@countxx=\count151
+\blindtext@numBlindtext=\count152
+\blind@countyy=\count153
+\c@blindlist=\count154
+\c@blindlistlevel=\count155
+\c@blindlist@level=\count156
+\blind@listitem=\count157
+\c@blind@listcount=\count158
+\c@blind@levelcount=\count159
+\blind@mathformula=\count160
+\blind@Mathformula=\count161
+\c@blind@randomcount=\count162
+\c@blind@randommax=\count163
+\c@blind@pangramcount=\count164
+\c@blind@pangrammax=\count165
+)) (/usr/local/texlive/2018/texmf-dist/tex/latex/diagbox/diagbox.sty
+Package: diagbox 2016/12/28 v2.2 Making table heads with diagonal lines
+ (/usr/local/texlive/2018/texmf-dist/tex/latex/pict2e/pict2e.sty
+Package: pict2e 2016/02/05 v0.3b Improved picture commands (HjG,RN,JT)
+ (/usr/local/texlive/2018/texmf-dist/tex/latex/pict2e/pict2e.cfg
+File: pict2e.cfg 2016/02/05 v0.1u pict2e configuration for teTeX/TeXLive
+)
+Package pict2e Info: Driver file: pdftex.def on input line 119.
+Package pict2e Info: Driver file for pict2e: p2e-pdftex.def on input line 121.
+ (/usr/local/texlive/2018/texmf-dist/tex/latex/pict2e/p2e-pdftex.def
+File: p2e-pdftex.def 2016/02/05 v0.1u Driver-dependant file (RN,HjG,JT)
+)
+\pIIe@GRAPH=\toks45
+\@arclen=\dimen269
+\@arcrad=\dimen270
+\@tempdimd=\dimen271
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/fp/fp.sty
+Package: fp 1995/04/02
+ `Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich (/usr/local/texlive/2018/texmf-dist/tex/latex/fp/defpattern.sty
+Package: defpattern 1994/10/12
+\actioncount=\count166
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/fp/fp-basic.sty
+Package: fp-basic 1996/05/13
+\FP@xs=\count167
+\FP@xia=\count168
+\FP@xib=\count169
+\FP@xfa=\count170
+\FP@xfb=\count171
+\FP@rega=\count172
+\FP@regb=\count173
+\FP@regs=\count174
+\FP@times=\count175
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/fp/fp-addons.sty
+Package: fp-addons 1995/03/15
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/fp/fp-snap.sty
+Package: fp-snap 1995/04/05
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/fp/fp-exp.sty
+Package: fp-exp 1995/04/03
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/fp/fp-trigo.sty
+Package: fp-trigo 1995/04/14
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/fp/fp-pas.sty
+Package: fp-pas 1994/08/29
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/fp/fp-random.sty
+Package: fp-random 1995/02/23
+\FPseed=\count176
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/fp/fp-eqn.sty
+Package: fp-eqn 1995/04/03
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/fp/fp-upn.sty
+Package: fp-upn 1996/10/21
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/fp/fp-eval.sty
+Package: fp-eval 1995/04/03
+)) (/usr/local/texlive/2018/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count177
+\calc@Bcount=\count178
+\calc@Adimen=\dimen272
+\calc@Bdimen=\dimen273
+\calc@Askip=\skip71
+\calc@Bskip=\skip72
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count179
+\calc@Cskip=\skip73
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/tools/array.sty
+Package: array 2018/04/07 v2.4g Tabular extension package (FMi)
+\col@sep=\dimen274
+\ar@mcellbox=\box52
+\extrarowheight=\dimen275
+\NC@list=\toks46
+\extratabsurround=\skip74
+\backup@length=\skip75
+\ar@cellbox=\box53
+)
+\diagbox@boxa=\box54
+\diagbox@boxb=\box55
+\diagbox@boxm=\box56
+\diagbox@wd=\dimen276
+\diagbox@ht=\dimen277
+\diagbox@insepl=\dimen278
+\diagbox@insepr=\dimen279
+\diagbox@outsepl=\dimen280
+\diagbox@outsepr=\dimen281
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count180
+\float@exts=\toks47
+\float@box=\box57
+\@float@everytoks=\toks48
+\@floatcapt=\box58
+)
+\c@thm=\count181
+\c@FNC=\count182
  (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 186.
-LaTeX Font Info:    ... okay on input line 186.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 186.
-LaTeX Font Info:    ... okay on input line 186.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 186.
-LaTeX Font Info:    ... okay on input line 186.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 186.
-LaTeX Font Info:    ... okay on input line 186.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 186.
-LaTeX Font Info:    ... okay on input line 186.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 186.
-LaTeX Font Info:    ... okay on input line 186.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 186.
-LaTeX Font Info:    ... okay on input line 186.
-LaTeX Font Info:    Try loading font information for U+msa on input line 186.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 191.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 191.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 191.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 191.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 191.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 191.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 191.
+LaTeX Font Info:    ... okay on input line 191.
+LaTeX Font Info:    Try loading font information for U+msa on input line 191.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 186.
+LaTeX Font Info:    Try loading font information for U+msb on input line 191.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 186.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 191.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
-\AtBeginShipoutBox=\box52
-Package hyperref Info: Link coloring OFF on input line 186.
+\AtBeginShipoutBox=\box59
+Package hyperref Info: Link coloring OFF on input line 191.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count146
+\c@section@level=\count183
 )
-LaTeX Info: Redefining \ref on input line 186.
-LaTeX Info: Redefining \pageref on input line 186.
-LaTeX Info: Redefining \nameref on input line 186.
+LaTeX Info: Redefining \ref on input line 191.
+LaTeX Info: Redefining \pageref on input line 191.
+LaTeX Info: Redefining \nameref on input line 191.
  (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.out) (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
-Package xypdf Info: Line width: 0.47998pt on input line 186.
+Package xypdf Info: Line width: 0.47998pt on input line 191.
  (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count147
-\scratchdimen=\dimen262
-\scratchbox=\box53
-\nofMPsegments=\count148
-\nofMParguments=\count149
-\everyMPshowfont=\toks45
-\MPscratchCnt=\count150
-\MPscratchDim=\dimen263
-\MPnumerator=\count151
-\makeMPintoPDFobject=\count152
-\everyMPtoPDFconversion=\toks46
+\scratchcounter=\count184
+\scratchdimen=\dimen282
+\scratchbox=\box60
+\nofMPsegments=\count185
+\nofMParguments=\count186
+\everyMPshowfont=\toks49
+\MPscratchCnt=\count187
+\MPscratchDim=\dimen283
+\MPnumerator=\count188
+\makeMPintoPDFobject=\count189
+\everyMPtoPDFconversion=\toks50
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
  (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -616,62 +751,109 @@ Package grfext Info: Graphics extension search list:
 (grfext)             \AppendGraphicsExtensions on input line 456.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-)) ABD: EveryShipout initializing macros [1
+)) ABD: EveryShipout initializing macros
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
+ [1
 Non-PDF special ignored!
 <special> papersize=614.295pt,794.96999pt
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 313.
+(amsmath)                 on input line 318.
 
 [4] [5]
-Overfull \hbox (3.26385pt too wide) detected at line 474
+Overfull \hbox (3.26385pt too wide) detected at line 479
 []\OML/cmm/m/it/12 :[]
  []
 
-[6] [7] [8]
-Underfull \vbox (badness 1024) has occurred while \output is active []
-
- [9]
-
-LaTeX Warning: Reference `rem:idk' on page 10 undefined on input line 740.
-
-[10]
-Overfull \hbox (16.91562pt too wide) in paragraph at lines 775--777
-[]\OT1/cmr/m/n/12 Set $[] = [\OML/cmm/m/it/12 a[]; \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 a[]:::; \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 a[]; a[]; \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 a[]; :::; a[]\OT1/cmr/m/n/12 ][] \OMS/cmsy/m/n/12 2 \U/msb/m/n/12 R[]$\OT1/cmr/m/n/12 , and $\OT1/cmr/bx/n/12 q \OT1/cmr/m/n/12 = [\OML/cmm/m/it/12 q[]; :::; q[]; q[]:::; q[]\OT1/cmr/m/n/12 ][] \OMS/cmsy/m/n/12 2
- []
-
-[11]
-Underfull \vbox (badness 2837) has occurred while \output is active []
-
- [12] [13] [14] [15] [16] [17] [18] (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.bbl) [19]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1072.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1072.
+[6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17]
+<imgs/monomial_monomial.png, id=250, 462.528pt x 346.896pt>
+File: imgs/monomial_monomial.png Graphic file (type png)
+<use imgs/monomial_monomial.png>
+Package pdftex.def Info: imgs/monomial_monomial.png  used on input line 1069.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs/cheby_first_kind_cheby_first_kind.png, id=252, 462.528pt x 346.896pt>
+File: imgs/cheby_first_kind_cheby_first_kind.png Graphic file (type png)
+<use imgs/cheby_first_kind_cheby_first_kind.png>
+Package pdftex.def Info: imgs/cheby_first_kind_cheby_first_kind.png  used on input line 1077.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs/cheby_second_kind_cheby_second_kind.png, id=253, 462.528pt x 346.896pt>
+File: imgs/cheby_second_kind_cheby_second_kind.png Graphic file (type png)
+<use imgs/cheby_second_kind_cheby_second_kind.png>
+Package pdftex.def Info: imgs/cheby_second_kind_cheby_second_kind.png  used on input line 1085.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs/legendre_legendre.png, id=254, 462.528pt x 346.896pt>
+File: imgs/legendre_legendre.png Graphic file (type png)
+<use imgs/legendre_legendre.png>
+Package pdftex.def Info: imgs/legendre_legendre.png  used on input line 1093.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+ [18 </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/monomial_monomial.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_first_kind_cheby_first_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_second_kind_cheby_second_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/legendre_legendre.png>]
+<imgs/cheby_first_kind_monomial.png, id=264, 462.528pt x 346.896pt>
+File: imgs/cheby_first_kind_monomial.png Graphic file (type png)
+<use imgs/cheby_first_kind_monomial.png>
+Package pdftex.def Info: imgs/cheby_first_kind_monomial.png  used on input line 1112.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs/monomial_cheby_second_kind.png, id=265, 462.528pt x 346.896pt>
+File: imgs/monomial_cheby_second_kind.png Graphic file (type png)
+<use imgs/monomial_cheby_second_kind.png>
+Package pdftex.def Info: imgs/monomial_cheby_second_kind.png  used on input line 1120.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs/legendre_monomial.png, id=266, 462.528pt x 346.896pt>
+File: imgs/legendre_monomial.png Graphic file (type png)
+<use imgs/legendre_monomial.png>
+Package pdftex.def Info: imgs/legendre_monomial.png  used on input line 1128.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs/jacobi_a_0_b_0_monomial.png, id=267, 462.528pt x 346.896pt>
+File: imgs/jacobi_a_0_b_0_monomial.png Graphic file (type png)
+<use imgs/jacobi_a_0_b_0_monomial.png>
+Package pdftex.def Info: imgs/jacobi_a_0_b_0_monomial.png  used on input line 1136.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs/cheby_first_kind_cheby_second_kind.png, id=268, 462.528pt x 346.896pt>
+File: imgs/cheby_first_kind_cheby_second_kind.png Graphic file (type png)
+<use imgs/cheby_first_kind_cheby_second_kind.png>
+Package pdftex.def Info: imgs/cheby_first_kind_cheby_second_kind.png  used on input line 1151.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs/cheby_second_kind_cheby_first_kind.png, id=269, 462.528pt x 346.896pt>
+File: imgs/cheby_second_kind_cheby_first_kind.png Graphic file (type png)
+<use imgs/cheby_second_kind_cheby_first_kind.png>
+Package pdftex.def Info: imgs/cheby_second_kind_cheby_first_kind.png  used on input line 1159.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs/legendre_cheby_first_kind.png, id=270, 462.528pt x 346.896pt>
+File: imgs/legendre_cheby_first_kind.png Graphic file (type png)
+<use imgs/legendre_cheby_first_kind.png>
+Package pdftex.def Info: imgs/legendre_cheby_first_kind.png  used on input line 1167.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs/cheby_first_kind_legendre.png, id=271, 462.528pt x 346.896pt>
+File: imgs/cheby_first_kind_legendre.png Graphic file (type png)
+<use imgs/cheby_first_kind_legendre.png>
+Package pdftex.def Info: imgs/cheby_first_kind_legendre.png  used on input line 1175.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+ [19 </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_first_kind_monomial.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/monomial_cheby_second_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/legendre_monomial.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/jacobi_a_0_b_0_monomial.png>] [20 </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_first_kind_cheby_second_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_second_kind_cheby_first_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/legendre_cheby_first_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_first_kind_legendre.png>] [21] [22] [23] (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.bbl) [24]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1228.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1228.
  (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1072.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1072.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1228.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1228.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D1CD29E4C0F9BEEC705995B1EB9B10D0;738.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1072.
+(rerunfilecheck)             Checksum: B7AC843D2109C5A4B95953E17CACCB30;884.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1228.
  ) 
 Here is how much of TeX's memory you used:
- 19687 strings out of 492649
- 345647 string characters out of 6129623
- 464619 words of memory out of 5000000
- 22984 multiletter control sequences out of 15000+600000
- 15838 words of font info for 63 fonts, out of 8000000 for 9000
+ 22249 strings out of 492649
+ 385729 string characters out of 6129623
+ 624506 words of memory out of 5000000
+ 25444 multiletter control sequences out of 15000+600000
+ 18208 words of font info for 72 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 55i,22n,54p,1489b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,22n,54p,1489b,539s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf (19 pages, 316439 bytes).
+Output written on /Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf (24 pages, 505685 bytes).
 PDF statistics:
- 344 PDF objects out of 1000 (max. 8388607)
- 299 compressed objects within 3 object streams
- 93 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 401 PDF objects out of 1000 (max. 8388607)
+ 326 compressed objects within 4 object streams
+ 101 named destinations out of 1000 (max. 500000)
+ 177 words of extra memory for PDF output out of 10000 (max. 10000000)
 

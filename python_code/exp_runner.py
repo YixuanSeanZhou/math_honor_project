@@ -24,7 +24,7 @@ def main(v, pb, mb, type_of_exp, a, b):
         if not bool(int(type_of_exp)):
             with progressbar.ProgressBar(max_value=7) as bar:
                 for i in range(1, 8):
-                    conds.append(experiment(mtx_b, poly_b, i*2, 1))
+                    conds.append(experiment(mtx_b, poly_b, i*2, 1, a, b))
                     x.append(i * 2)
                     bar.update(i)
 
