@@ -1095,7 +1095,7 @@ And among all the orthogonal polynomials, the Chebyshev first kind polynomial se
          {\small Legendre polynomial with legendre moment matrix}% 
      \end{subfigure}
      \caption[ Condition number of the coefficient moment matrix for same basis]%
-     {\small Condition number of the coefficient moment matrix for same basis}% 
+     {\small Condition number of the coefficient moment matrix for same basis (Univariate)}% 
  \end{figure*}
 
 Another phenomenon that we observe is that the monomial polynomial base do not work well
@@ -1138,7 +1138,7 @@ to blow up with the increasing of the degree of the polynomials.
          {\small Jacobi polynomial with monomial moment matrix}% 
      \end{subfigure}
      \caption[ Monomial with Orthogonal Polynomials ]%
-     {\small Monomial with Orthogonal Polynomials}% 
+     {\small Monomial with Orthogonal Polynomials (Univariate)}% 
  \end{figure*}
 
 On the other hand, the orthogonal polynomials tend to work very well when they are between each other.
@@ -1177,7 +1177,7 @@ We can see the scale of the condition number for is dramatically smaller than th
          {\small Chebyshev first kind polynomial with Legendre moment matrix}% 
      \end{subfigure}
      \caption[ Monomial with Orthogonal Polynomials ]%
-     {\small Monomial with Orthogonal Polynomials}% 
+     {\small Monomial with Orthogonal Polynomials (Univariate)}% 
  \end{figure*}
 
  \newpage
@@ -1196,10 +1196,51 @@ We left out the Jacobi polynomial, because Chebyshev polynomials and Legendre po
           Legendre & 8.260979e+03	& 9.981569e+01 & 6.871414e+01 & 3.691980e+01\\\hline
           
           \end{tabular}
-          \caption{\label{tab:table-name}condition number of coefficient moment matrix with degree 14.}
+          \caption{\label{tab:table-name}condition num of coefficient moment matrix with degree 14 (univ).}
 \end{table*}
 \newpage
 \subsection{Bivariate Polynomials}
+We performed the same experiments for the bivariate cases. We stopped the experiments when the degree of the polynomial reaches 8, 
+which is smaller than 14, what we did for the univariate case, due to the computational cost. 
+However, we observe similar phenomenon. 
+
+Again, the condition number is smaller when the basis of the polynomials and the basis of the moment matrix is the same. 
+\begin{figure*}[hbt!]
+     \centering
+     \begin{subfigure}[b]{0.475\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{imgs_biv/monomial_monomial.png}
+         \caption[Monomial polynomial with monomial moment matrix]%
+         {\small monomial polynomial with monomial moment matrix}% 
+
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.475\textwidth}  
+         \centering 
+         \includegraphics[width=\textwidth]{imgs_biv/cheby_first_kind_cheby_first_kind.png}
+         \caption[ChebyShev first kind polynomial with ChebyShev first kind moment matrix]%
+         {\small ChebyShev first kind polynomial with ChebyShev first kind moment matrix}% 
+ 
+     \end{subfigure}
+     \vskip\baselineskip
+     \begin{subfigure}[b]{0.475\textwidth}   
+         \centering 
+         \includegraphics[width=\textwidth]{imgs_biv/cheby_second_kind_cheby_second_kind.png}
+         \caption[ChebyShev second kind polynomial with ChebyShev second kind moment matrix]%
+         {\small ChebyShev second kind polynomial with ChebyShev second kind moment matrix}% 
+
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.475\textwidth}   
+         \centering 
+         \includegraphics[width=\textwidth]{imgs_biv/legendre_legendre.png}
+         \caption[Legendre polynomial with legendre moment matrix]%
+         {\small Legendre polynomial with legendre moment matrix}% 
+     \end{subfigure}
+     \caption[ Condition number of the coefficient moment matrix for same basis]%
+     {\small Condition number of the coefficient moment matrix for same basis}% 
+ \end{figure*}
+
 
 %\begin{figure}
 
@@ -1207,7 +1248,7 @@ We left out the Jacobi polynomial, because Chebyshev polynomials and Legendre po
 
 
 \newpage
-\section{Discussion}
+\section{Discussion and Outlook}
 
 
 \newpage

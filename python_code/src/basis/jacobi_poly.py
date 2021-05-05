@@ -111,6 +111,8 @@ class jacobi_poly:
         
         if num_var == 1:
             terms = self._gen_terms_uni()
+        else:
+            terms = self._gen_terms_biv()
        
         self.base = terms
         self.base_vec = spmtx(terms) # arrange the terms in a vector format

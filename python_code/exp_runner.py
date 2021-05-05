@@ -84,6 +84,35 @@ def main(v, pb, mb, type_of_exp, a, b):
                 for i, x in enumerate(x):
                     row = [x, conds[i]]
                     csvwriter.writerow(row)
+        else:
+            for kp, vp in basis.items():
+                for km, vm in basis.items():
+                    if 'jacobi' == km or 'jacobi' == kp:
+                        continue
+                    print(kp + '__vs__' + km)
+                    conds = []
+                    x = [] 
+                    with progressbar.ProgressBar(max_value=4) as bar:
+                        for i in range(1, 5):
+                            conds.append(experiment(vm, vp, i*2, 2, a, b))
+                            x.append(i * 2)
+                            bar.update(i)
+
+                    if km == 'jacobi':
+                        km += '_a_' + str(a) + '_b_' + str(b)
+                    if kp == 'jacobi':
+                        kp += '_a_' + str(a) + '_b_' + str(b)
+                    plt.title(str(km) + ' - ' + str(kp))
+                    plt.plot(x, conds)
+
+                    plt.savefig('./results/bivariate/' + km + '_' + kp + '.png')
+                    plt.clf()
+                    with open('./results/bivariate/'+ km + '_' + kp + '.csv', mode='w') as csvfile:
+                        csvwriter = csv.writer(csvfile) 
+                        csvwriter.writerow(['degree', 'con_num'])
+                        for i, x in enumerate(x):
+                            row = [x, conds[i]]
+                            csvwriter.writerow(row)
 
 
 if __name__ == '__main__':
