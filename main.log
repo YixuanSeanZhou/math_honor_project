@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.4.1)  4 MAY 2021 17:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.4.1)  8 MAY 2021 20:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -671,75 +671,75 @@ Package: array 2018/04/07 v2.4g Tabular extension package (FMi)
 \diagbox@insepr=\dimen279
 \diagbox@outsepl=\dimen280
 \diagbox@outsepr=\dimen281
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count180
-\float@exts=\toks47
-\float@box=\box57
-\@float@everytoks=\toks48
-\@floatcapt=\box58
 )
-\c@thm=\count181
-\c@FNC=\count182
- (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.aux)
+\c@thm=\count180
+\c@FNC=\count181
+ (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.aux
+
+LaTeX Warning: Label `tab:table-name' multiply defined.
+
+
+LaTeX Warning: Label `tab:table-name' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 191.
-LaTeX Font Info:    ... okay on input line 191.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 191.
-LaTeX Font Info:    ... okay on input line 191.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 191.
-LaTeX Font Info:    ... okay on input line 191.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 191.
-LaTeX Font Info:    ... okay on input line 191.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 191.
-LaTeX Font Info:    ... okay on input line 191.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 191.
-LaTeX Font Info:    ... okay on input line 191.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 191.
-LaTeX Font Info:    ... okay on input line 191.
-LaTeX Font Info:    Try loading font information for U+msa on input line 191.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 190.
+LaTeX Font Info:    ... okay on input line 190.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 190.
+LaTeX Font Info:    ... okay on input line 190.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 190.
+LaTeX Font Info:    ... okay on input line 190.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 190.
+LaTeX Font Info:    ... okay on input line 190.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 190.
+LaTeX Font Info:    ... okay on input line 190.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 190.
+LaTeX Font Info:    ... okay on input line 190.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 190.
+LaTeX Font Info:    ... okay on input line 190.
+LaTeX Font Info:    Try loading font information for U+msa on input line 190.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 191.
+LaTeX Font Info:    Try loading font information for U+msb on input line 190.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 191.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 190.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
-\AtBeginShipoutBox=\box59
-Package hyperref Info: Link coloring OFF on input line 191.
+\AtBeginShipoutBox=\box57
+Package hyperref Info: Link coloring OFF on input line 190.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count183
+\c@section@level=\count182
 )
-LaTeX Info: Redefining \ref on input line 191.
-LaTeX Info: Redefining \pageref on input line 191.
-LaTeX Info: Redefining \nameref on input line 191.
+LaTeX Info: Redefining \ref on input line 190.
+LaTeX Info: Redefining \pageref on input line 190.
+LaTeX Info: Redefining \nameref on input line 190.
  (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.out) (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
-Package xypdf Info: Line width: 0.47998pt on input line 191.
+Package xypdf Info: Line width: 0.47998pt on input line 190.
  (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count184
+\scratchcounter=\count183
 \scratchdimen=\dimen282
-\scratchbox=\box60
-\nofMPsegments=\count185
-\nofMParguments=\count186
-\everyMPshowfont=\toks49
-\MPscratchCnt=\count187
+\scratchbox=\box58
+\nofMPsegments=\count184
+\nofMParguments=\count185
+\everyMPshowfont=\toks47
+\MPscratchCnt=\count186
 \MPscratchDim=\dimen283
-\MPnumerator=\count188
-\makeMPintoPDFobject=\count189
-\everyMPtoPDFconversion=\toks50
+\MPnumerator=\count187
+\makeMPintoPDFobject=\count188
+\everyMPtoPDFconversion=\toks48
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
  (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -753,7 +753,6 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) ABD: EveryShipout initializing macros
 Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
  [1
 Non-PDF special ignored!
@@ -762,118 +761,187 @@ Non-PDF special ignored!
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 318.
+(amsmath)                 on input line 315.
 
-[4] [5]
-Overfull \hbox (3.26385pt too wide) detected at line 479
-[]\OML/cmm/m/it/12 :[]
- []
-
-[6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17]
-<imgs/monomial_monomial.png, id=250, 462.528pt x 346.896pt>
+[4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16]
+<imgs/monomial_monomial.png, id=258, 462.528pt x 346.896pt>
 File: imgs/monomial_monomial.png Graphic file (type png)
 <use imgs/monomial_monomial.png>
-Package pdftex.def Info: imgs/monomial_monomial.png  used on input line 1069.
+Package pdftex.def Info: imgs/monomial_monomial.png  used on input line 1111.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
-<imgs/cheby_first_kind_cheby_first_kind.png, id=252, 462.528pt x 346.896pt>
+<imgs/cheby_first_kind_cheby_first_kind.png, id=260, 462.528pt x 346.896pt>
 File: imgs/cheby_first_kind_cheby_first_kind.png Graphic file (type png)
 <use imgs/cheby_first_kind_cheby_first_kind.png>
-Package pdftex.def Info: imgs/cheby_first_kind_cheby_first_kind.png  used on input line 1077.
+Package pdftex.def Info: imgs/cheby_first_kind_cheby_first_kind.png  used on input line 1119.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
-<imgs/cheby_second_kind_cheby_second_kind.png, id=253, 462.528pt x 346.896pt>
+<imgs/cheby_second_kind_cheby_second_kind.png, id=261, 462.528pt x 346.896pt>
 File: imgs/cheby_second_kind_cheby_second_kind.png Graphic file (type png)
 <use imgs/cheby_second_kind_cheby_second_kind.png>
-Package pdftex.def Info: imgs/cheby_second_kind_cheby_second_kind.png  used on input line 1085.
+Package pdftex.def Info: imgs/cheby_second_kind_cheby_second_kind.png  used on input line 1127.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
-<imgs/legendre_legendre.png, id=254, 462.528pt x 346.896pt>
+<imgs/legendre_legendre.png, id=262, 462.528pt x 346.896pt>
 File: imgs/legendre_legendre.png Graphic file (type png)
 <use imgs/legendre_legendre.png>
-Package pdftex.def Info: imgs/legendre_legendre.png  used on input line 1093.
+Package pdftex.def Info: imgs/legendre_legendre.png  used on input line 1135.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
-<imgs/cheby_first_kind_monomial.png, id=255, 462.528pt x 346.896pt>
+ [17 </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/monomial_monomial.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_first_kind_cheby_first_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_second_kind_cheby_second_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/legendre_legendre.png>]
+<imgs/cheby_first_kind_monomial.png, id=272, 462.528pt x 346.896pt>
 File: imgs/cheby_first_kind_monomial.png Graphic file (type png)
 <use imgs/cheby_first_kind_monomial.png>
-Package pdftex.def Info: imgs/cheby_first_kind_monomial.png  used on input line 1112.
+Package pdftex.def Info: imgs/cheby_first_kind_monomial.png  used on input line 1154.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
-<imgs/monomial_cheby_second_kind.png, id=256, 462.528pt x 346.896pt>
+<imgs/monomial_cheby_second_kind.png, id=273, 462.528pt x 346.896pt>
 File: imgs/monomial_cheby_second_kind.png Graphic file (type png)
 <use imgs/monomial_cheby_second_kind.png>
-Package pdftex.def Info: imgs/monomial_cheby_second_kind.png  used on input line 1120.
+Package pdftex.def Info: imgs/monomial_cheby_second_kind.png  used on input line 1162.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
-<imgs/legendre_monomial.png, id=257, 462.528pt x 346.896pt>
+<imgs/legendre_monomial.png, id=274, 462.528pt x 346.896pt>
 File: imgs/legendre_monomial.png Graphic file (type png)
 <use imgs/legendre_monomial.png>
-Package pdftex.def Info: imgs/legendre_monomial.png  used on input line 1128.
+Package pdftex.def Info: imgs/legendre_monomial.png  used on input line 1170.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
-<imgs/jacobi_a_0_b_0_monomial.png, id=258, 462.528pt x 346.896pt>
+<imgs/jacobi_a_0_b_0_monomial.png, id=275, 462.528pt x 346.896pt>
 File: imgs/jacobi_a_0_b_0_monomial.png Graphic file (type png)
 <use imgs/jacobi_a_0_b_0_monomial.png>
-Package pdftex.def Info: imgs/jacobi_a_0_b_0_monomial.png  used on input line 1136.
+Package pdftex.def Info: imgs/jacobi_a_0_b_0_monomial.png  used on input line 1178.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
-<imgs/cheby_first_kind_cheby_second_kind.png, id=259, 462.528pt x 346.896pt>
+<imgs/cheby_first_kind_cheby_second_kind.png, id=276, 462.528pt x 346.896pt>
 File: imgs/cheby_first_kind_cheby_second_kind.png Graphic file (type png)
 <use imgs/cheby_first_kind_cheby_second_kind.png>
-Package pdftex.def Info: imgs/cheby_first_kind_cheby_second_kind.png  used on input line 1151.
+Package pdftex.def Info: imgs/cheby_first_kind_cheby_second_kind.png  used on input line 1193.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
-<imgs/cheby_second_kind_cheby_first_kind.png, id=260, 462.528pt x 346.896pt>
+<imgs/cheby_second_kind_cheby_first_kind.png, id=277, 462.528pt x 346.896pt>
 File: imgs/cheby_second_kind_cheby_first_kind.png Graphic file (type png)
 <use imgs/cheby_second_kind_cheby_first_kind.png>
-Package pdftex.def Info: imgs/cheby_second_kind_cheby_first_kind.png  used on input line 1159.
+Package pdftex.def Info: imgs/cheby_second_kind_cheby_first_kind.png  used on input line 1201.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
-<imgs/legendre_cheby_first_kind.png, id=261, 462.528pt x 346.896pt>
+<imgs/legendre_cheby_first_kind.png, id=278, 462.528pt x 346.896pt>
 File: imgs/legendre_cheby_first_kind.png Graphic file (type png)
 <use imgs/legendre_cheby_first_kind.png>
-Package pdftex.def Info: imgs/legendre_cheby_first_kind.png  used on input line 1167.
+Package pdftex.def Info: imgs/legendre_cheby_first_kind.png  used on input line 1209.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
-<imgs/cheby_first_kind_legendre.png, id=262, 462.528pt x 346.896pt>
+<imgs/cheby_first_kind_legendre.png, id=279, 462.528pt x 346.896pt>
 File: imgs/cheby_first_kind_legendre.png Graphic file (type png)
 <use imgs/cheby_first_kind_legendre.png>
-Package pdftex.def Info: imgs/cheby_first_kind_legendre.png  used on input line 1175.
+Package pdftex.def Info: imgs/cheby_first_kind_legendre.png  used on input line 1217.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
- [18] [19 </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/monomial_monomial.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_first_kind_cheby_first_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_second_kind_cheby_second_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/legendre_legendre.png>] [20 </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_first_kind_monomial.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/monomial_cheby_second_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/legendre_monomial.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/jacobi_a_0_b_0_monomial.png>]
-<imgs_biv/monomial_monomial.png, id=287, 462.528pt x 346.896pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[18 </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_first_kind_monomial.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/monomial_cheby_second_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/legendre_monomial.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/jacobi_a_0_b_0_monomial.png>] [19 </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_first_kind_cheby_second_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_second_kind_cheby_first_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/legendre_cheby_first_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_first_kind_legendre.png>]
+<imgs_biv/monomial_monomial.png, id=300, 462.528pt x 346.896pt>
 File: imgs_biv/monomial_monomial.png Graphic file (type png)
 <use imgs_biv/monomial_monomial.png>
-Package pdftex.def Info: imgs_biv/monomial_monomial.png  used on input line 1212.
+Package pdftex.def Info: imgs_biv/monomial_monomial.png  used on input line 1256.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
-<imgs_biv/cheby_first_kind_cheby_first_kind.png, id=288, 462.528pt x 346.896pt>
+<imgs_biv/cheby_first_kind_cheby_first_kind.png, id=301, 462.528pt x 346.896pt>
 File: imgs_biv/cheby_first_kind_cheby_first_kind.png Graphic file (type png)
 <use imgs_biv/cheby_first_kind_cheby_first_kind.png>
-Package pdftex.def Info: imgs_biv/cheby_first_kind_cheby_first_kind.png  used on input line 1220.
+Package pdftex.def Info: imgs_biv/cheby_first_kind_cheby_first_kind.png  used on input line 1264.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
-<imgs_biv/cheby_second_kind_cheby_second_kind.png, id=289, 462.528pt x 346.896pt>
+<imgs_biv/cheby_second_kind_cheby_second_kind.png, id=302, 462.528pt x 346.896pt>
 File: imgs_biv/cheby_second_kind_cheby_second_kind.png Graphic file (type png)
 <use imgs_biv/cheby_second_kind_cheby_second_kind.png>
-Package pdftex.def Info: imgs_biv/cheby_second_kind_cheby_second_kind.png  used on input line 1228.
+Package pdftex.def Info: imgs_biv/cheby_second_kind_cheby_second_kind.png  used on input line 1272.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
-<imgs_biv/legendre_legendre.png, id=290, 462.528pt x 346.896pt>
+<imgs_biv/legendre_legendre.png, id=303, 462.528pt x 346.896pt>
 File: imgs_biv/legendre_legendre.png Graphic file (type png)
 <use imgs_biv/legendre_legendre.png>
-Package pdftex.def Info: imgs_biv/legendre_legendre.png  used on input line 1236.
+Package pdftex.def Info: imgs_biv/legendre_legendre.png  used on input line 1280.
 (pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
- [21 </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_first_kind_cheby_second_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_second_kind_cheby_first_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/legendre_cheby_first_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs/cheby_first_kind_legendre.png>] [22 </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/monomial_monomial.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/cheby_first_kind_cheby_first_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/cheby_second_kind_cheby_second_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/legendre_legendre.png>] [23] (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.bbl) [24]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1269.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1269.
+<imgs_biv/cheby_first_kind_monomial.png, id=304, 462.528pt x 346.896pt>
+File: imgs_biv/cheby_first_kind_monomial.png Graphic file (type png)
+<use imgs_biv/cheby_first_kind_monomial.png>
+Package pdftex.def Info: imgs_biv/cheby_first_kind_monomial.png  used on input line 1295.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs_biv/monomial_cheby_second_kind.png, id=305, 462.528pt x 346.896pt>
+File: imgs_biv/monomial_cheby_second_kind.png Graphic file (type png)
+<use imgs_biv/monomial_cheby_second_kind.png>
+Package pdftex.def Info: imgs_biv/monomial_cheby_second_kind.png  used on input line 1303.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs_biv/legendre_monomial.png, id=306, 462.528pt x 346.896pt>
+File: imgs_biv/legendre_monomial.png Graphic file (type png)
+<use imgs_biv/legendre_monomial.png>
+Package pdftex.def Info: imgs_biv/legendre_monomial.png  used on input line 1311.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs_biv/monomial_legendre.png, id=307, 462.528pt x 346.896pt>
+File: imgs_biv/monomial_legendre.png Graphic file (type png)
+<use imgs_biv/monomial_legendre.png>
+Package pdftex.def Info: imgs_biv/monomial_legendre.png  used on input line 1319.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[20 </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/monomial_monomial.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/cheby_first_kind_cheby_first_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/cheby_second_kind_cheby_second_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/legendre_legendre.png>]
+<imgs_biv/cheby_first_kind_cheby_second_kind.png, id=318, 462.528pt x 346.896pt>
+File: imgs_biv/cheby_first_kind_cheby_second_kind.png Graphic file (type png)
+<use imgs_biv/cheby_first_kind_cheby_second_kind.png>
+Package pdftex.def Info: imgs_biv/cheby_first_kind_cheby_second_kind.png  used on input line 1336.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs_biv/cheby_second_kind_cheby_first_kind.png, id=319, 462.528pt x 346.896pt>
+File: imgs_biv/cheby_second_kind_cheby_first_kind.png Graphic file (type png)
+<use imgs_biv/cheby_second_kind_cheby_first_kind.png>
+Package pdftex.def Info: imgs_biv/cheby_second_kind_cheby_first_kind.png  used on input line 1344.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs_biv/legendre_cheby_first_kind.png, id=320, 462.528pt x 346.896pt>
+File: imgs_biv/legendre_cheby_first_kind.png Graphic file (type png)
+<use imgs_biv/legendre_cheby_first_kind.png>
+Package pdftex.def Info: imgs_biv/legendre_cheby_first_kind.png  used on input line 1352.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+<imgs_biv/cheby_first_kind_legendre.png, id=321, 462.528pt x 346.896pt>
+File: imgs_biv/cheby_first_kind_legendre.png Graphic file (type png)
+<use imgs_biv/cheby_first_kind_legendre.png>
+Package pdftex.def Info: imgs_biv/cheby_first_kind_legendre.png  used on input line 1360.
+(pdftex.def)             Requested size: 216.60278pt x 162.45358pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[21 </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/cheby_first_kind_monomial.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/monomial_cheby_second_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/legendre_monomial.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/monomial_legendre.png>]
+Overfull \hbox (15.76413pt too wide) in paragraph at lines 1374--1385
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (15.76413pt too wide) in paragraph at lines 1390--1401
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[22 </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/cheby_first_kind_cheby_second_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/cheby_second_kind_cheby_first_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/legendre_cheby_first_kind.png> </Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/imgs_biv/cheby_first_kind_legendre.png>] [23] [24] (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.bbl) [25]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1429.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1429.
  (/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1269.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1269.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1429.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1429.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 7CAB1EBEE915C8BBCF1119C6899A4D8E;896.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1269.
+(rerunfilecheck)             Checksum: 026A22490E083008D66902D72037D1F2;901.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1429.
  ) 
 Here is how much of TeX's memory you used:
- 22267 strings out of 492649
- 386462 string characters out of 6129623
- 624510 words of memory out of 5000000
- 25460 multiletter control sequences out of 15000+600000
+ 22264 strings out of 492649
+ 387440 string characters out of 6129623
+ 625377 words of memory out of 5000000
+ 25451 multiletter control sequences out of 15000+600000
  18208 words of font info for 72 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 55i,22n,54p,1489b,539s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,22n,54p,1489b,535s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf (24 pages, 563018 bytes).
+Output written on /Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf (25 pages, 690474 bytes).
 PDF statistics:
- 410 PDF objects out of 1000 (max. 8388607)
- 327 compressed objects within 4 object streams
- 102 named destinations out of 1000 (max. 500000)
- 197 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 450 PDF objects out of 1000 (max. 8388607)
+ 350 compressed objects within 4 object streams
+ 111 named destinations out of 1000 (max. 500000)
+ 237 words of extra memory for PDF output out of 10000 (max. 10000000)
 

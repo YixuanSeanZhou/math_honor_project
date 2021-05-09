@@ -5,7 +5,7 @@
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{YHL18}
+\begin{thebibliography}{LLM14}
 
 \bibitem[AM15]{ahmadi2015applications}
 Amir~Ali Ahmadi and Anirudha Majumdar, \emph{Some applications of polynomial
@@ -39,6 +39,10 @@ C{\'e}dric Josz, \emph{{Application of polynomial optimization to electricity
   transmission networks}}, Theses, {Universit{\'e} Pierre et Marie Curie -
   Paris VI}, July 2016.
 
+\bibitem[LLM14]{Lay_David2014-12-24}
+David Lay, Steven Lay, and Judi McDonald, \emph{Linear algebra and its
+  applications}, hardcover ed., Pearson, 12 2014 (English).
+
 \bibitem[MF04]{Mathews2004Numerical}
 John~H. Mathews and Kurtis~K. Fink, \emph{Numerical methods using matlab (4th
   edition)}, 4 ed., Pearson, January 2004.
@@ -56,10 +60,6 @@ Theodore~Samuel Motzkin, \emph{The arithmetic-geometric inequality},
 \bibitem[Rec14]{Recher:Masterthesis}
 M.~Recher, \emph{Zur numerischen {A}uswirkung von {B}asiswahlen in der
   polynomiellen {O}ptimierung}, 2014, Master Thesis, Universität zu Köln.
-
-\bibitem[Str06]{strang2006linear}
-Gilbert Strang, \emph{Linear algebra and its applications}, Thomson,
-  Brooks/Cole, Belmont, CA, 2006.
 
 \bibitem[YHL18]{Yang2018}
 Yunlei Yang, Muzhou Hou, and Jianshu Luo, \emph{A novel improved extreme

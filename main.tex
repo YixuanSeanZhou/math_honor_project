@@ -21,7 +21,6 @@
 \usepackage{subcaption}
 \usepackage{mwe}
 \usepackage{diagbox}
-\usepackage{float}
 
 
 \headheight=8pt
@@ -200,65 +199,73 @@ Short description
 
 \section{Introduction} 
 
-\emph{Polynomial optimization} are ubiquitous in applied mathematics and engineering. 
+\emph{Polynomial optimization problems} are ubiquitous in applied mathematics and engineering. 
 For instance, Ahmadi and Majumdar \cite{ahmadi2015applications} suggested to use
 polynomial optimization in the field of \emph{artificial intelligence} for solving
 \emph{real-time decision problems}. 
-In the field of electric power system design, the \emph{optimal power flow problem}
-can be reduced to polynomial optimization problem as well, see \cite{josz:tel-01478431}.
+In electric power system design, the \emph{optimal power flow problem}
+can be reduced to a polynomial optimization problem as well, see \cite{josz:tel-01478431}.
 
-In general, an \emph{optimization} problem takes for the form 
-\begin{equation*}
-     \min \ f(\mathbf{x}) \quad \textit{s.t. } g_i(\mathbf{x}) \geq 0, h_j(\mathbf{x}) = 0,
- \end{equation*}
-where $f, g, h$ are arbitrary functions of the variables $\mathbf{x}$. 
+In general, an \emph{optimization problem} takes the form 
+\begin{equation}
+     \label{eq:optimization problem}
+     \begin{split}
+          \min_{\mathbf{x}} \ f(\mathbf{x}) & \quad \textit{subject to } g_i(\mathbf{x}) \geq 0 \\
+          & \quad \quad \quad \text{ \ \ \ \ \ \  } h_j(\mathbf{x}) = 0, 
+     \end{split}
+ \end{equation}
+where $f, g, h$ are arbitrary functions of the variables $\mathbf{x} = (x_1, ..., x_n)$. 
 The function $f$ is called the \emph{objective function}, and the functions $g, h$ are called the \emph{constraints}.
-That is when solving an optimization problem, one tries to minimize the objective function subject to certain constraints.
+Hence, when solving an optimization problem, one tries to minimize the objective function subject to certain constraints.
 There are several ways to address this problem, which are collected as \emph{nonlinear optimization methods}. 
-Some famous optimization approaches includes \emph{gradient decent} and \emph{Newton's method}. 
-Those optimization algorithms seeks to exploit the properties of the objective functions to find a
-local minimizer $\mathbf{x}^*$ and hopes (with justifications in special cases) that the function value at the minimizer is close
+Some famous optimization approaches are the \emph{gradient decent} and \emph{Newton's method}. 
+Those optimization algorithms seek to exploit the properties of the objective function to find a
+local minimizer $\mathbf{x}^*$ and hope (with justifications in special cases) that the function value at the minimizer is close
 to the global minimum. Whereas polynomial optimization takes a different approach.
 
-Polynomial optimization, by its name, is the optimization problem where $f, g, h$ are all polynomials.
-In this thesis, we focus on the polynomial optimization in unconstrained case, that is the feasible domain of the problem is $\mathbb{R}^n$.
-Then, instead of finding a local minimizer $\mathbf{x}^*$, polynomial optimization tries to minimize the polynomial $f$ globally by finding its max lower bound.
-That is we can equivalently formulate the problem as 
+Polynomial optimization, as the name suggests, is the specific case when the functions $f, g, h$ in \eqref{eq:optimization problem} are all polynomials.
+In this thesis, we focus on the unconstrained polynomial optimization problem, that is, the feasible domain is $\mathbb{R}^n$.
+Then, rather than finding a local minimizer $\mathbf{x}^*$, polynomial optimization minimizes the polynomial $f$ globally by finding its maximal lower bound.
+Hence, we can equivalently formulate the problem as 
 \begin{equation*}
-     \max \ r \quad \textit{s.t. } f(\mathbf{x}) - r \geq 0 \quad \forall x \in \mathbb{R}^n,
+     \max \ r \quad \textit{s.t. } f(\mathbf{x}) - r \geq 0 \quad \textit{for all } \mathbf{x} \in \mathbb{R}^n,
  \end{equation*}
-where the objective function $f$ is a polynomial of $\mathbf{x}$, and the lower bound $r$ is a real number. 
+where the objective function $f$ is a polynomial, and the lower bound $r$ is a real number. 
 
-To solve this problem, we would need to decide whether a given polynomial, $f(\mathbf{x}) - r$ is \emph{nonnegative} (see Definition \ref{def:NGP}).
-It turns out that this problem has been well studied in real algebraic geometry since the beginning of the 20th century. 
+To solve this problem, we need to decide whether a given polynomial is \emph{nonnegative} (see Definition \ref{def:NGP}).
+It turns out that this problem has been well studied in real algebraic geometry since the beginning of the 19th century. 
 However, it turns out that deciding whether an arbitrary multivariate polynomial is nonnegative is,
-in the language of computational complexity, \emph{NP-hard} (computationally infeasible). 
+in the language of computational complexity, \emph{NP-hard} (computationally infeasible), see \cite[Chapter 3]{Blekherman:Parrilo:Thomas}.
 
-Therefore, instead of directly deciding the \emph{nonnegativity} of a polynomial, one wants to find sufficient conditions
-that certify nonnegativity of a polynomial which are easier to check. Such conditions are called \emph{certificate of nonnegativity}.
+Therefore, one wants to find sufficient conditions that certify nonnegativity of a polynomial which are easier to check, 
+rather than directly deciding the \emph{nonnegativity} of a polynomial. 
+Such conditions are called \emph{certificates of nonnegativity}.
 The most famous and canonical certificate is \emph{sums of squares (SOS)} (see Definition \ref{def:SOS}).
 Deciding if a polynomial is a sums of squares can be formulated as a \emph{semidefinite program (SDP)} (see Definition \ref{def:SDP}).
-SDPs have known algorithms that, under mild conditions, can be solved in polynomial time (efficiently) with respect to the input size \cite[Chapter~2]{Blekherman:Parrilo:Thomas}.
+Under mild conditions, SDPs have known algorithms that can solve the problem in polynomial time (efficiently) with respect to the input size, see \cite[Chapter~2]{Blekherman:Parrilo:Thomas}.
 
-When solving the \emph{SDP}, the solver is actually dealing with a set of linear constraints, which can be compactly written in the form $Ax = b$, obtained by the process of \emph{comparison of coefficients (COC)}.
+When solving the SDP, the solver is actually dealing with a set of linear equations, which can be compactly written in the form $Ax = b$, obtained by the process of \emph{comparison of coefficients (COC)}.
 Though this process is formally introduced in Section 2.3, the intuition behind it is quite simple. 
 It can be understood in terms of vectors after realizing that the set of n-variate real polynomials with degree less than or equals to $d$, denoted by $\mathbb{R}[\mathbf{x}]_{n, d}$ forms a vector space.
 Then any polynomial $p(\mathbf{x}) \in \mathbb{R}[\mathbf{x}]_{n, d}$ can be uniquely identified as $p(\mathbf{x}) = \sum_{j = 0}^k c_j b_j$ given a basis $\mathcal{B} = \{b_0, ..., b_k\}$ of $\mathbb{R}[\mathbf{x}]_{n, d}$.
-Therefore, the process of \emph{COC} is just formulating the equality constraints by identifying the constants $c_0, ..., c_k$.
-For more about vector space and basis, one could refer to the book Linear Algebra and Its Applications by Lay, Lay and McDonald\cite{strang2006linear}.
+Hence, to determine whether 2 polynomials are equal, one can express the 2 polynomials in the same basis, 
+and comparing whether the coefficients are the same. This is the intuition behind COC. 
+The equalities that generated will then be used as the linear equations in SDP.
+For more about vector space and basis, one could refer to the book Linear Algebra and Its Applications \cite{Lay_David2014-12-24}.
 
-Because the linear system that formed by \emph{COC} depends on the basis $\mathcal{B}$,
-the stability of the linear system, measured by the \emph{condition number} (see Definition \ref{def:COND}), is drastically fluctuated depends on the $\mathcal{B}$ that we chose. 
+Because the linear system that formed by COC depends on the basis $\mathcal{B}$,
+the stability of the linear system, measured by the \emph{condition number} (see Definition \ref{def:COND}), 
+is drastically fluctuated depends on the $\mathcal{B}$ that we chose. 
 The stability of the system is very important in practice because this measure how robust the method is under noises in the data.
 Yet, it is unclear what basis generates the best result.
 In this paper, we perform numerical experiments, with the computer's aid, of different choices of the basis $\mathcal{B}$ to determine, 
-in different scenarios, what is the best choice of basis to carry out the process of \emph{COC} so that the resulted linear system is most stabled. 
+in different scenarios, what is the best choice of basis to carry out the process of COC so that the resulted linear system is most stabled. 
 
-The paper is organized as follows: In Section 2, we introduce the preliminary material, 
+The paper is organized as follows: In Section \ref{Sec:Preliminaries}, we introduce the preliminary material, 
 including the tools that we need throughout this paper, and the algorithm that will be employed to carry out the \emph{COC}.
 A brief survey of polynomial bases that are considered in this paper is also included in this section. 
-In Section 3, the main numerical results of the \emph{condition number} is presented. 
-And in Section 4, we discuses the result that is obtained in Section 3 and some thoughts on what are the further efforts that can be made to this problem.
+Section \ref{Sec: Num Results} presents the main numerical results of the condition number. 
+Finally, in Section \ref{Sec:Dis and Outlook}, we discuss the result that is obtained in Section \ref{Sec: Num Results} and some thoughts on what are the further efforts that can be made to this problem.
 
 
 
@@ -266,7 +273,7 @@ And in Section 4, we discuses the result that is obtained in Section 3 and some 
 
 \centerline{\textbf{Acknowledgements}}
 
-I would like to express my deepest gratefulness to my program advisor Mareike Dressler for offering this opportunity to do this honor project. 
+I would like to express my deepest gratefulness to my program advisor Professor Mareike Dressler for offering this opportunity to do this honor project. 
 During the past three quarters, she not only has been providing insightful ideas about the direction of this project should be going, 
 but also has been guiding me through the process of doing research. 
 As an expert in this field, she patiently explained in details of the concepts behind the problem.
@@ -294,42 +301,49 @@ process and provide a brief survey of the polynomial base that are considered in
 
 \subsection{Real Polynomials}
 \label{Sec:Real Polynomials}
-First, we rigorously define the decision problem that is considered in this paper. 
-Thus, in this subsection we define the terms that are used related to \emph{polynomials}.
+To rigorously define the considered decision problem,
+we define first recall the terms that are used related to \emph{polynomials}.
 
 Throughout, we use bold letters for vectors, e.g. $\mathbf{x} = (x_1, ..., x_n) \in \mathbb{R}^n$.
-The set of all $m$ by $n$ real matrices is denoted as $\mathbb{R}^{m \times n}$, and the ring (set) of real-valued n-variate polynomials is denoted as $\mathbb{R}[\mathbf{x}]$, 
+The set of all $m$ by $n$ real matrices is denoted as $\mathbb{R}^{m \times n}$, and the ring of real n-variate polynomials is denoted as $\mathbb{R}[\mathbf{x}]$. 
 We use $\mathbb{R}[\mathbf{x}]_{n, d}$ for the set of all $n$-variate real polynomials with degree less than or equal to $d$.
+Further, to ease the notations, we define the following function: 
+\begin{equation*}
+     \begin{split}
+          \mathcal{N}: & \mathbb{N} \to \mathbb{N} \\
+          \mathcal{N}(d) & \mapsto { N+d \choose d },
+     \end{split}
+\end{equation*}
+where ${ N+d \choose d }$ stands for the binomial coefficient $N+d$ choose $d$. 
 
-
-A polynomial is an expression consisting of variables and coefficients, that involves only the operations of addition, subtraction, multiplication, and non-negative integer exponentiation of variables.
-Therefore, a univariate polynomial takes the form, $p(x) = \sum_{i = 1} ^{l} c_i x^{\alpha(i)}$, with $c_i$ be the leading coefficient and $\alpha(i)$ be the degree of the term. 
-And we can introduce more variables to it. 
+A polynomial is an expression consisting of variables and coefficients that involves only the operations of addition, subtraction, multiplication, and non-negative integer exponentiation of variables.
+Therefore, a univariate polynomial takes the form, $p(x) = \sum_{i = 1} ^{l} c_i x^{\alpha(i)}$, with $c_i$ be the coefficients and $\alpha(i)$ be the degree of the term. 
+Clearly, this generalizes to more variables.
 
 \begin{example}
-     $p(x, y, z) = x^4 + 2xyz - 6y + 7$ with $x, y, z$ being variables. 
+     Let's consider $p(x, y, z) = x^4 + 2xyz - 6y + 7$ with $x, y, z$ being variables. 
      This polynomial has $3$ variables and has degree $4$, thus it 
      belongs to $\mathbb{R}[\mathbf{x}]_{3, 4}$.
 \end{example}
 
-Some quick observations that we can get about the set $\mathbb{R}[\mathbf{x}]_{n, d}$ are:
+Immediate observations about $\mathbb{R}[\mathbf{x}]_{n, d}$ are:
 \begin{prop}
      \label{prop:vs}
-     $\mathbb{R}[\mathbf{x}]_{n, d}$ forms a finite real vector space, with dimension ${n \choose d}$.
+     $\mathbb{R}[\mathbf{x}]_{n, d}$ forms a finite real vector space, and has dimension $\mathcal{N}(d)$.
 \end{prop}
     
 \begin{proof}
      Suppose $p(\mathbf{x}), q(\mathbf{x}) \in \mathbb{R}[\mathbf{x}]_{n, d}$, $c \in \mathbb{R}$, then we have,
-     Then we have $cp \in \mathbb{R}[\mathbf{x}]_{n, d}$ because multiplication by a scalar does not increase the degree nor introduce new variables.
-     And $p + q \in \mathbb{R}[\mathbf{x}]_{n, d}$ for the same reason. This proves the first part of the claim. 
+     $cp \in \mathbb{R}[\mathbf{x}]_{n, d}$ because multiplication by a scalar neither increases the degree nor introduces new variables.
+     We have $p + q \in \mathbb{R}[\mathbf{x}]_{n, d}$ for the same reason. This proves the first part of the claim. 
 
      For the dimension of $\mathbb{R}[\mathbf{x}]_{n, d}$, we observe that
-     any $n$ variate $d$ degree polynomial can be written in the form 
+     any $n$-variate degree $d$ polynomial can be written in the form 
      \begin{equation*}c_0 + c_1 x_1 + c_2 x_2 + ... + c_{n+1} x_1^2 + c_{n+2} x_1 x_2 + ... + c_l x_n^d.
      \end{equation*}
      So the set $B = \{1, x_1, x_2, ..., x_1^2, x_1 x_2, ... x_n^d\}$ spans $\mathbb{R}[\mathbf{x}]_{n, d}$.
-     Also, it is a linear independent set. Thus, it forms a basis of $\mathbb{R}[\mathbf{x}]_{n, d}$.
-     By counting, the cardinality of $B$, $|B| = {n+d \choose d}$, which is thus the dimension of $\mathbb{R}[\mathbf{x}]_{n, d}$.
+     Moreover, it is a linear independent set. Thus, it forms a basis of $\mathbb{R}[\mathbf{x}]_{n, d}$.
+     By counting, the cardinality of $B$, $|B| = {n+d \choose d} = \mathcal{N}(d)$, which is thus the dimension of $\mathbb{R}[\mathbf{x}]_{n, d}$.
 
 \end{proof}
 
@@ -343,7 +357,7 @@ namely the monomial basis,
 \begin{remark}
      \label{rem:upgrade}
      Given $\mathcal{B}_{n, d}$ be a basis of $\mathbb{R}[\mathbf{x}]_{n, d}$. 
-     If we list the elements of the basis $\mathcal{B}_{n, d}$ in a column vector, $\mathbf{b}$, 
+     If we list the elements of $\mathcal{B}_{n, d}$ in a column vector $\mathbf{b}$, 
      then $\mathbf{b} \mathbf{b}^T$ forms a matrix whose upper triangular
      entries can be collected to form a basis of $\mathbb{R}[\mathbf{x}]_{n, 2d}$.
 \end{remark}
@@ -365,7 +379,7 @@ namely the monomial basis,
                y & xy & \color{blue}y^2 \\
           \end{bmatrix}
      \end{equation*}
-     The elements of the upper triangle of the resulted matrix, $\{1, x, y, x^2, xy, y^2\}$ form a basis of $\mathbb{R}[\mathbf{x}]_{2, 2}$.
+     The entries of the upper triangle of the matrix, $\{\color{blue}1, x, y, x^2, xy, y^2\color{black}\}$ form a basis of $\mathbb{R}[\mathbf{x}]_{2, 2}$.
 \end{example}
 
 \smallskip
@@ -382,60 +396,63 @@ Next, we define the terminologies related to the decision problem.
 \end{definition}
 
 
-The reason that we chose to write $2d$ in the definition is that {nonnegative polynomials} always have even degrees.
+The reason that we chose to consider the degree $2d$ in the definition is that {nonnegative polynomials} always have even degrees.
 A polynomial with odd degree would be negative when we fix all the other variables and move one variable to positive or negative infinity. 
 
 \begin{definition}
      \label{def:SOS}
           Let $\Sigma_{n,2d}$ denote the set of polynomials with $n$ variables and degree at most
-          $2d$ that are \emph{sum of squares}, that is
+          $2d$ that are \emph{sum of squares (SOS)}, that is
           \begin{equation*}
-               \Sigma_{n, 2d} = \{ p \in \mathbb{R}[x]_{n, 2d}: \text{ exists } q_1(x), ..., q_k(x) \in \mathbb{R}[x]_{n,d} \text{ } s.t. \text{ }  p(x) = \sum_{i=1}^k q_i^2(x)\}.
+               \Sigma_{n, 2d} = \{ p \in \mathbb{R}[\mathbf{x}]_{n, 2d}: \textit{ exists } q_1(\mathbf{x}), ..., q_k(\mathbf{x}) \in \mathbb{R}[x]_{n,d} \textit{ s.t. }  p(\mathbf{x}) = \sum_{i=1}^k q_i^2(\mathbf{x})\}.
           \end{equation*}     
 \end{definition}
 
 Notice that $\Sigma_{n,2d} \subseteq P_{n, 2d}$ because sum of squares of real numbers are always nonnegative. 
-In fact, these two sets are \emph{convex cones}. 
-For more about the convex cone formulations, see \cite[Chapter~3]{Blekherman:Parrilo:Thomas}
+In fact, geometrically, these two sets are \emph{convex cones}, see \cite[Chapter~3]{Blekherman:Parrilo:Thomas}.
 
-In 1888, Hilbert in \cite{hilbert_david_1888_1428214} showed that there are only three special cases where the two cones coincide, i.e. $\Sigma_{n,2d} = P_{n, 2d}$: 
-univariate polynomials, quadratic polynomials, and bivariate polynomials of degree four. Namely, when $n = 1$, or $d = 2$, or $n = 2$ and $d = 4$.
-It is interesting that though Hilbert proved the $\Sigma_{n,2d}$ is a strict subset of $P_{n, 2d}$ other than the 3 special cases, 
-a concrete example of a nonnegative polynomial that is not SOS is very hard to find. 
-In fact, it takes almost one hundred years until Motzkin in \cite{motzkin1967arithmetic} 
-discovered \emph{Motzkin' polynomial} 
+One natural question to ask is whether these two cones are the same. In 1888, David Hilbert showed that they are usually not the same.
+
+\begin{thm} [\cite{hilbert_david_1888_1428214}]
+     There are only three special cases where the two cones coincide, i.e. $\Sigma_{n,2d} = P_{n, 2d}$: 
+     univariate polynomials, quadratic polynomials, and bivariate polynomials of degree four. Namely, when $n = 1$, or $d = 2$, or $n = 2$ and $d = 4$.
+\end{thm}
+
+However, Hilbert's proof is highly non-constructive. 
+Therefore, it takes 17 years until Motzkin, accidentally,
+find the first nonnegative polynomial that is not a SOS. 
+In \cite{motzkin1967arithmetic}, he presented the emph{Motzkin' polynomial},
+
 \begin{equation*}
-     p(x, y) = X^4Y^2 + X^2Y^4 - 3 X^2Y^2 + 1,
+     p(x, y) = x^4y^2 + x^2y^4 - 3 x^2y^2 + 1,
 \end{equation*}
-which is in $\mathbb{R}[x]_{2, 6}$ a nonnegative polynomial but cannot be written in SOS.
 
 Coming back to our original problem, as discussed in the introduction, the decision problem of whether an arbitrary polynomial $p(\mathbf{x}) \in P_{n, 2d}$ is computationally hard.
-Whereas, we can efficiently decide whether $p(\mathbf{x}) \in \Sigma_{n, 2d}$ using \emph{semidefinite program}, which we introduce in next subsection. 
-As a result, although using the latter certificate we fail to identify some nonnegative polynomials, but that is the trade off that we make in order to solve the problem in a computationally feasible way.
+Whereas we can efficiently decide whether $p(\mathbf{x}) \in \Sigma_{n, 2d}$ using \emph{semidefinite program}, which we introduce in next subsection. 
+Hence, we make the following trade off.
+We use the certificates to check the nonnegativity in a computationally feasible way,
+accepting fact that we fail to identify some nonnegative polynomials.
 
-Just to reiterate, the \emph{decision problem} that is considered in this paper is the following: 
+Hence, the \emph{decision problem} that is considered in this paper is the following: 
 \begin{equation}
      \textit{Given } p(\mathbf{x}) \in \mathbb{R}[\mathbf{x}]_{n, 2d}, \textit{ decide whether } p(\mathbf{x}) \in \Sigma_{n, 2d} \label{eq:dp}.
 \end{equation}
 
-
-\newpage
-
 \subsection{Linear Algebra And Semidefinite Programming}
 \label{Sec:Linear Algebra}
 
-Since $\mathbb{R}[\mathbf{x}]_{n, 2d}$ forms a vector space, the tools from linear algebra play an important role in the analysis. 
-Besides, both \emph{SDP} and the measurement of stability of system require some tools from linear algebra. 
+Since $\mathbb{R}[\mathbf{x}]_{n, 2d}$ forms a vector space, tools from linear algebra play an important role in the analysis of the structure and properties of it. 
+Besides, both semidefinite programming and the measurement of stability of system require some tools from linear algebra. 
 Thus, we devote this subsection introducing all the required tools. 
 
 \begin{definition}
      Given a matrix $A \in \mathbb{R}^{n \times n}$, we say it is \emph{symmetric} if $A^T = A$. We denote the set of \emph{symmetric matrix} as $\mathcal{S}^n$.  
 \end{definition}
 
-A famous result of \emph{symmetric matries} is:
+A famous result of \emph{symmetric matrices} is:
 \begin{thm} [Spectral Theorem \cite{golub1996matrix}]
 
-     Given a symmetric matrix$A \in \mathbb{R}^{n \times n}$, 
+     Given a symmetric matrix $A \in \mathbb{R}^{n \times n}$, 
      it can be diagonalized as \begin{equation*} A = P^{-1}DP, \end{equation*}
      where $D$ is a diagonal matrix with real entries, and $P$ is an orthonormal matrix.
      
@@ -444,38 +461,67 @@ A famous result of \emph{symmetric matries} is:
 
 \smallskip
 
-Then we introduce the key idea that related to \emph{SDP}, the \emph{positive semidefinite matrix}.
+Now, we introduce the key idea relating to semidefinite programming --- \emph{positive semidefinite matrix}.
 
 \begin{definition}
-     A matrix $A \in \mathbb{R}^{n \times n}$, it is \emph{positive semidefinite (psd)} if $A$ is symmetric and \begin{equation*}
-          x^T A x \geq 0 \quad \forall x \in \mathbb{R}^n.
+     A matrix $A \in \mathbb{R}^{n \times n}$ is \emph{positive semidefinite (psd)} if $A$ is symmetric and \begin{equation*}
+          x^T A x \geq 0 \quad \textit{ for all } x \in \mathbb{R}^n.
      \end{equation*}
      We denote it as $A \succcurlyeq 0$.
 \end{definition}
 
 \begin{prop}
-     A matrix is psd if and only if all its eigenvalues are greater than or equal to 0.
+     A matrix is psd if and only if all its eigenvalues are nonnegative.
 \end{prop}
 
 \begin{proof}
-     Towards a contradiction, suppose matrix $A$ has eigenvalue $\lambda < 0$.
+     Towards a contradiction, suppose $A$ has eigenvalue $\lambda < 0$.
      For $x$ being its corresponding eigenvector, we have $x^T A x = \lambda x^T x < 0$, a contradiction.
      
-     On the other hand, assume $A$ has all positive eigenvalues. By $A$ being a symmetric matrix, 
+     On the other hand, assume $A$ has only positive eigenvalues $\lambda_i$. 
+     By $A$ being a symmetric matrix, 
      its eigenvectors form a basis. 
      Thus, for any $x \in \mathbb{R}^n$, we have
      $x = \sum_{i = 1} ^ n c_i v_i $ where $v_i$ are the eigenvectors of $A$, that are also orthonormal to each other.
-     Hence, $x^T A x$ = $\sum_{i = 1} ^ n \lambda_i$. Since all $\lambda_i \geq 0$, we have that $x ^ T A x \geq 0$.
+     Hence, $x^T A x$ = $\sum_{i = 1} ^ n \lambda_i$. Since all $\lambda_i \geq 0$, we have $x ^ T A x \geq 0$.
 \end{proof}
 
 \begin{definition}
+     \label{def: mtx_inner_product}
+     Given $A, B \in \mathbb{R}^{m \times n}$, then the \emph{Frobenius inner product}\\ $\langle \cdot, \cdot \rangle: \mathbb{R}^{m \times n} \times \mathbb{R}^{m \times n} \to \mathbb{R}$ is defined as
+     \begin{equation*}
+          \langle A, B \rangle = Tr(A^TB),
+     \end{equation*}
+     where $Tr$ stands for the trace of the matrix.
+\end{definition}
+
+It is natural to generalize the above definition by the following,
+\begin{definition}
+     \label{def: mtx_inner_product_concat}
+     Let $k$ be a positive integer, $A \in \mathbb{R}^{m \times kn}, B \in \mathbb{R}^{m \times n}$, then the \emph{inner product} between $A$ and $B$, $\langle \cdot, \cdot \rangle: \mathbb{R}^{m \times kn} \times \mathbb{R}^{m \times n} \to \mathbb{R}^k$ is defined as
+     \begin{equation*}
+          \langle A, B \rangle = \begin{bmatrix}
+               \langle A_1, B \rangle \\
+               \vdots\\
+               \langle A_k, B \rangle
+          \end{bmatrix},
+     \end{equation*}
+     where $A = \begin{bmatrix}
+          A_1\\
+          \vdots\\
+          A_k\\
+     \end{bmatrix}$.
+\end{definition}
+
+\begin{definition}
      \label{def:SDP}
-     A \emph{semidefinite program (SDP)} in standard primal form is
-     \begin{equation}\label{eq:2.3}.
+     A \emph{semidefinite program (SDP)} in standard primal form is the following optimization problem.
+     Given $A, C, X \in \mathbb{R}^{m \times n}$, 
+     \begin{equation}\label{eq:2.3}
           \begin{split}
                \textit{minimize } \langle C, X \rangle & \quad \textit{subject to } \langle A_i, X \rangle = b_i, \quad i=1,...,k \\
-               & \quad \textit{\ \ \ \ \ \ \ \ \ \ \ \ \ } X \succcurlyeq 0 
-          \end{split}
+               & \quad \textit{\ \ \ \ \ \ \ \ \ \ \ \ \ \ } X \succcurlyeq 0 
+          \end{split}.
      \end{equation}
 \end{definition}
 
@@ -484,19 +530,21 @@ Then we introduce the key idea that related to \emph{SDP}, the \emph{positive se
 \smallskip
 
 One can compactly write the constraint $\langle A_i, X \rangle = b_i$ compactly in a matrix form, we can collect all the constraints and write it is $ \langle A, X \rangle = \mathbf{b}$ 
-The stability of this linear system is then of the interest of this paper. 
-The \emph{condition number} of the matrix $A$ is used to measure the stability of the above linear system. 
-The \emph{condition number} can be nicely calculated using the inverse (when the matrix is square) and the \emph{pesudo-inverse} (when the matrix is rectangle) of the matrix $A$.
+The aim of this thesis is to study the stability of this linear system. 
+The tool that to measure this stability is the \emph{condition numbers} of a matrix.
+
+If $A$ is a square matrix, then the condition number can easily be calculated using its inverse. 
+However, if $A$ is rectangular, then we need to use its \emph{pesudo-inverse}, see the following definition.
 
 \begin{definition}
      Given a matrix $A \in \mathbb{R}^{m \times n}$, the \emph{pesudo-inverse},
      which is also knows as the \emph{Moore-Penrose} inverse of $A$, is the matrix
      $A^\dagger$ satisfying:
      \begin{itemize}
-          \item $A A^\dagger A = A$
-          \item $A^\dagger A A^\dagger = A^\dagger$
-          \item $(A A^\dagger)^T = A A^\dagger$
-          \item $(A^\dagger A)^T = A A^\dagger$
+          \item $A A^\dagger A = A$,
+          \item $A^\dagger A A^\dagger = A^\dagger$,
+          \item $(A A^\dagger)^T = A A^\dagger$,
+          \item $(A^\dagger A)^T = A A^\dagger$.
         \end{itemize}
 \end{definition}
 
@@ -507,14 +555,14 @@ In particular, when $A$ has linearly independent columns, $A^\dagger$ can be com
 \begin{equation*}
      A^\dagger = (A^T A)^{-1} A^T.
 \end{equation*}
-In this case, the pesudo-inverse is called the \emph{left inverse} since $A^\dagger A = I$.
+In this case, the pesudo-inverse is called the \emph{left inverse}, since $A^\dagger A = I$.
 
 \smallskip
 And when $A$ has linearly independent rows, $A^\dagger$ can be computed as
 \begin{equation*}
-     A^\dagger = A^T (A A^T)^{-1}.
+     A^\dagger = A^T (A A^T)^{-1},
 \end{equation*}
-In this case, the pesudo-inverse is called the \emph{right inverse} since $A A^\dagger = I$. 
+and the pesudo-inverse is called the \emph{right inverse}, since $A A^\dagger = I$. 
 
 \begin{definition}
      \label{def:COND}
@@ -525,110 +573,107 @@ In this case, the pesudo-inverse is called the \emph{right inverse} since $A A^\
                 \infty & \textit{ otherwise }
           \end{cases}
      \end{equation*}
-     for any norm $|| \cdot ||$ imposed on $A$, for instance, \emph{Frobenius norm}.
+     for any norm $|| \cdot ||$ imposed on $A$.
 \end{definition}
 
-Here, I give a brief description of how the \emph{condition number} is related to the stability of the system by introducing another way to define it.
+To understand how the condition number is related to the stability of the system, we introduce another way to express it, namely
 \begin{equation*}
      \kappa(A) = \frac{\sigma_{max} (A)}{\sigma_{min} (A)}
 \end{equation*}
-where the $\sigma$ denotes the singular values of $A$.
+where the $\sigma_{max}$ and $\sigma_{min}$ denotes the maximal and minimal singular values of $A$ respectively.
 
-Thus, it can be understood as how stale our system is. 
-Intuitively, when the condition number is large, some error in the input along the max direction of the singular value,
-our result would largely fluctuate because the error, magnified by the singular value, would dominate the input that is along
-the direction of the minimum singular value. 
-Therefore, the smaller the condition number is, the more stable our system is under fluctuations caused by noises.
+Intuitively, when the condition number is large, error in the input along the max direction of the singular value 
+would dominate the input that is along the direction of the minimum singular value. 
+Therefore, the smaller the condition number is the more stable our system is under fluctuations caused by noises.
 The rigorous explanation of the condition number can be found in \cite{Cheney:Kincaid}.
 
-\newpage
-
-\subsection{Comparing Coefficient Algorithm}
+\subsection{Comparing of Coefficients Algorithm}
 With all the tools in hand, we are now ready to introduce the \emph{COC} algorithm that solves the 
 decision problem described in \eqref{eq:dp}.
 
-The algorithm is build upon the following theorem, one can find a detailed explanation of it in the third chapter of \cite{Blekherman:Parrilo:Thomas}.
+The algorithm is build upon the following theorem that shows how to translate \eqref{eq:dp} into an SDP, the theorem is given in the third chapter of \cite{Blekherman:Parrilo:Thomas}.
 \begin{thm}
      \label{thm:key}
-     Given $p(x) \in P_{n, 2d}$, if $p(x) \in \Sigma_{n, 2d}$, then for any basis $\mathcal{B}_{n, d}$ of $\mathbb{R}_{n, d}$, 
-     there exists a matrix such that
+     Let $p(x) \in P_{n, 2d}$. If $p(x) \in \Sigma_{n, 2d}$, then for any basis $\mathcal{B}_{n, d}$ of $\mathbb{R}[\mathbf{x}]_{n, d}$, 
+     there exists a matrix $Q \in \mathbb{R}^{\mathcal{N}(d) \times \mathcal{N}(d)}$ such that
      \begin{equation}
           \mathcal{B}_{n, d} ^ T \mathcal{Q} \mathcal{B}_{n, d} = p(x) \textit{ and } \mathcal{Q} \succcurlyeq 0 \label{eq:2-4}.
      \end{equation}
 \end{thm}
 
 \begin{proof}
-     For any $p(x) \in \mathbb{R}_{n, 2d}$, if $p(x) \in \Sigma_{n, 2d}$, then we can write 
+     If $p(x) \in \Sigma_{n, 2d}$, we can write 
      \begin{equation*}
           p(x) = \sum_{i = 1} ^ k q^2(x) = \begin{bmatrix} q_1(x),... ,q_k(x)] \end{bmatrix}  \begin{bmatrix} q_1 \\ \vdots \\ q_{k} \end{bmatrix}
      \end{equation*}
      Notice that $q_j(x) \in P_{n, d}.$ 
      
-     Now given $\mathcal{B}_{n, d} = \{b_1, ..., b_{n + d \choose d}\}$ be a basis of $P_{n, d},$ 
+     Now given $\mathcal{B}_{n, d} = \{b_1, ..., b_{\mathcal{N}(d)}\}$ be a basis of $\mathbb{R}[\mathbf{x}]_{n, d},$ 
      we have 
-     \begin{equation*} q_j(x) = \sum_{i = 1}^{n + d \choose d} c_j b_j = \begin{bmatrix} c_1,..., c_{n + d \choose d}] \end{bmatrix} \begin{bmatrix} b_1 \\ \vdots \\ b_{n + d \choose d} \end{bmatrix} \end{equation*}
+     \begin{equation*} q_j(x) = \sum_{i = 1}^{\mathcal{N}(d)} c_j b_j = \begin{bmatrix} c_1,..., c_{\mathcal{N}(d)}] \end{bmatrix} \begin{bmatrix} b_1 \\ \vdots \\ b_{\mathcal{N}(d)} \end{bmatrix} \end{equation*}
 
      By substituting the section equation into the first, we have
      \begin{equation*}
           p(x) = 
-               \begin{bmatrix} b_1 & ...& b_{n + d \choose d}
+               \begin{bmatrix} b_1 & ...& b_{\mathcal{N}(d)}
                \end{bmatrix} 
                \begin{bmatrix}
                c_{1,1} & ... & c_{1,k} \\
                \vdots\\
-               c_{{n + d \choose d},1} & ... & c_{{n + d \choose d},k}
+               c_{{\mathcal{N}(d)},1} & ... & c_{\mathcal{N}(d)}
                \end{bmatrix}
                \begin{bmatrix}
-                    c_{1,1} & ... & c_{1,{n + d \choose d}} \\
+                    c_{1,1} & ... & c_{1,{\mathcal{N}(d)}} \\
                     \vdots\\
-                    c_{k,1} & ... & c_{k, {n + d \choose d}}
+                    c_{k,1} & ... & c_{k, {\mathcal{N}(d)}}
                \end{bmatrix}
-               \begin{bmatrix} b_1 \\ \vdots \\ b_{n + d \choose d}
+               \begin{bmatrix} b_1 \\ \vdots \\ b_{\mathcal{N}(d)}
                \end{bmatrix} 
      \end{equation*}
 
-     Now the matrices in the middle is $C^T C = \mathcal{Q}$ a \emph{psd} matrix, which proofs the forward direction of this theorem.
+     Now the matrices in the middle is $C^T C = \mathcal{Q}$ a psd matrix, which proofs the forward direction of this theorem.
 
-     On the other hand, if we know $p(x) = \mathcal{B}_{n, d}^T \mathcal{Q} \mathcal{B}_{n, d}$ where $\mathcal{Q}$ is a \emph{psd} matrix, 
+     On the other hand, if we know $p(x) = \mathcal{B}_{n, d}^T \mathcal{Q} \mathcal{B}_{n, d}$ where $\mathcal{Q}$ is a psd matrix, 
      we can just apply the Cholesky decomposition to get $\mathcal{Q} = L^T L$, and recover the SOS form of $p(x)$ as
      $\mathcal{B}_{n, d}^T L^T L \mathcal{B}_{n, d}$. 
 \end{proof}
 
 \smallskip
-Therefore, we have reduced our problem decision problem to finding this \emph{psd} matrix. 
-The above theorem provides a hint that the above problem can be solved via \emph{SDP}. Actually, it would be solving a sub-part of \emph{SDP}.
-When examine the formulation of \emph{SDP} in \eqref{eq:2.3}, we would minimize a target function subject to a set of linear constraints and the variable being a \emph{psd} matrix. 
-By examining \eqref{eq:2-4}, we can see that we have a set of constraints (later we translate this set of constraints exactly into the constraints in \emph{SDP}) 
-and the requirement of $\mathcal{Q}$ being a \emph{psd}.
-Therefore, we found that the existence condition that is provided in the Theorem \ref{thm:key} is a subpart of the \emph{SDP}, 
-which is determining whether there is a feasible point that satisfies the constraints that are imposed. 
+Therefore, we have reduced our problem decision problem to finding a specific psd matrix. 
+Actually, it would be solving a feasibility of SDP problem.
+When examine the formulation of SDP in \eqref{eq:2.3}, we would minimize a target function subject to a set of linear constraints and the variable being a psd matrix. 
+By examining \eqref{eq:2-4}, we can see that we have a set of constraints (later we translate this set of constraints exactly into the constraints in SDP) 
+and the requirement of $\mathcal{Q}$ being a psd.
+Therefore, we found that the existence condition that is provided in the Theorem \ref{thm:key} is the subpart of the SDP
+which determines whether there is a feasible point that satisfies the constraints that are imposed. 
 
-To address how the constraints $\mathcal{B}_{n, d} ^ T \mathcal{Q} \mathcal{B}_{n, d} = p(x)$ are translated into the constraints $\langle A, X \rangle = B$ in the \emph{SDP}, we have the following proposition.
+To address how the constraints $\mathcal{B}_{n, d} ^ T \mathcal{Q} \mathcal{B}_{n, d} = p(x)$ are translated into the constraints $\langle A, X \rangle = B$ in the SDP, we have the following proposition.
 
 \begin{prop}
      \label{prop:2.19}
-     We pick a basis of $\mathcal{B}_{n, d} = \{b_1, ..., b_{n + d \choose d}\}$ of $\mathbb{R}_{n, d}$, and list it in a vector form $ \mathbf{b} =\begin{bmatrix}
+     We pick a basis of $\mathcal{B}_{n, d} = \{b_1, \cdots, b_{\mathcal{N}(d)}\}$ of $\mathbb{R}[\mathbf{x}]_{n, d}$, and list it in a vector $ \mathbf{b} =\begin{bmatrix}
           b_1 &
-          ... &
-          b_{ n+ d \choose d}
-     \end{bmatrix} ^ T$. Then by Remark \ref{rem:upgrade}, we can form a basis $\mathcal{B}_{n, 2d} = \{b'_1, ..., b'_{n + 2d \choose 2d}\}$ from the vector $b$. 
-     Suppose the $p(x)$ that we are interested in is written in the form $\sum_{i = 1}^{n + 2d \choose 2d } c_i b'_i$.
-     Then, we have the reformulation of the constraints as $p(x) = \mathbf{b}^T \mathcal{Q} \mathbf{b} = \langle Q, \mathbf{bb}^T \rangle$, 
+          \cdots &
+          b_{\mathcal{N}(d)}
+     \end{bmatrix} ^ T$. Then by Remark \ref{rem:upgrade}, we can form a basis $\mathcal{B}_{n, 2d} = \{b'_1, ..., b'_{n + 2d \choose 2d}\}$ from $\mathbf{b}$. 
+     Suppose the polynomial $p(x)$ of interest is given by $\sum_{i = 1}^{n + 2d \choose 2d } c_i b'_i$.
+     Then, we have the reformulation of the constraints as $p(x) = \mathbf{b}^T \mathcal{Q} \mathbf{b} = \langle \mathcal{Q}, \mathbf{bb}^T \rangle$, 
      which when written separately in different rows is exactly the formulation in Definition \ref{def:SDP}.
 \end{prop}
 
-Notice that the constraints $p(x) = \langle Q, \mathbf{bb}^T \rangle$ involved in comparing two polynomials. 
-By Theorem \ref{prop:vs}, $\mathbb{R}[\mathbf{x}]_{n, 2d}$ form a vector space. 
-The equality of two vectors is established by comparing the coordinates of the two vectors when under the same basis. 
+Notice that the constraints $p(x) = \langle Q, \mathbf{bb}^T \rangle$ requires us compare two polynomials to determine whether they are equal. 
+By Theorem \ref{prop:vs}, we have the equality of two vectors is established by comparing the coordinates of the two vectors when under the same basis. 
 Thus, when the basis of $p(x)$ is the same as the basis formed by the upper triangle of $\mathbf{bb}^T$, we can compare the 
 coordinates of the vectors to establish the equality. And the coordinates for polynomials are called their coefficients. 
-Thus, we name this process as \emph{Comparing of Coefficients (COC)} and the paper is designated to evaluate the stability of the constrants $p(x) = \langle Q, \mathbf{bb}^T \rangle$.
+Thus, we name this process as \emph{comparing of coefficients (COC)} and the paper is designated to evaluate the stability of the constrants $p(x) = \langle Q, \mathbf{bb}^T \rangle$.
 
-As we have mentioned, the stability is measured by the \emph{condition number} of a matrix. Thus, we would need to re-write the constraints in to the form $A x = c$. 
-Therefore, the problem need to be further reformulated. And how the choices of the basis are involved in this process would also be introduced.
+As we have mentioned, the stability is measured by the condition number of a matrix. 
+Thus, we would need to re-write the constraints in to the form $A x = c$. 
+Therefore, the problem need to be further reformulated. 
+To distinguish the choices of the involved basis in this process, we introduce two specific matrices following the ideas of \cite{Recher:Masterthesis}.
 
 \begin{definition}[\cite{Recher:Masterthesis}]
-     We call the matrix $bb^T$ in Proposition \ref{prop:2.19} the \emph{Moment Matrix}, we denote this matrix as $\mathcal{M}$, and it is a symmetric matrix by definition.
+     We call the matrix $\mathbf{bb}^T$ in Proposition \ref{prop:2.19} the \emph{moment matrix}, we denote this matrix as $\mathcal{M}$, and it is a symmetric matrix by definition.
 \end{definition}
 
 \begin{example}
@@ -636,34 +681,34 @@ Therefore, the problem need to be further reformulated. And how the choices of t
 \end{example}
 
 \smallskip
-The \emph{Moment Matrix} provides the first choice of basis that is involved in the process of \emph{COC}. 
+The moment matrix provides the first basis choice involved in the COC process. 
 Suppose the given polynomial $p(x) = \sum_{j = 0} ^ k c_j b_j$ 
-is in the same basis as the resulted basis of the \emph{Moment Matrix}, 
+is in the same basis as the resulted basis of the moment matrix, 
 that is the upper triangle of $\mathbf{bb^T}$ consists $b_0, ..., b_k$. 
 Because $\mathcal{Q} \succcurlyeq 0$, $\mathcal{Q}$ is symmetric, 
 it is completely determined by its upper triangle.
 Let $\mathbf{q} = \begin{bmatrix} q_{0,0}, ..., q_{0, m}, q_{1,1}, q_{1, 2}, ..., q_{m, m} \end{bmatrix}^T$ 
-be the vector consists of all the elements of the upper triangle of $\mathcal{Q}$.
-The constrants $p(x) = \langle Q, \mathbf{bb}^T \rangle$ can then be reformulated as a set of linear equations 
+be the vector consisting of all the elements of the upper triangle of $\mathcal{Q}$.
+The constraints $p(x) = \langle Q, \mathbf{bb}^T \rangle$ can then be reformulated as a set of linear equations 
 $A \mathbf{q} = \mathbf{c}$ where $ \mathbf{c} = \begin{bmatrix}
      c_0, ..., c_k
 \end{bmatrix}^T$ 
-is the vector of the coefficients of the $p(x)$, 
+is the coefficients vector of $p(x)$, 
 and $A$ is a matrix that is used to establish the equality of polynomials. 
-Then, we can measure the stability of the constraints $p(x) = \langle Q, \mathbf{bb}^T \rangle$ by the \emph{condition number} of $A$. 
+Then, we can measure the stability of the constraints $p(x) = \langle Q, \mathbf{bb}^T \rangle$ by the condition number of $A$. 
 
 Since, this matrix $A$ is not the final matrix that is used in analysis, the procedure of obtaining $A$ is omitted. 
 
 \smallskip
 
-Now, what if the $p(x)$ is written in a basis that is different from the basis constructed by the \emph{Moment Matrix}?
-One might argue that we can simply apply a change of basis matrix to convert $p(x)$ into the basis that is used in \emph{Moment Matrix}. 
+Now, what if the $p(x)$ is written in a basis that is different from the basis constructed by the moment matrix?
+One might argue that we can simply apply a change of basis matrix to convert $p(x)$ into the basis that is used in moment matrix. 
 However, that is no efficient and accurate way to obtain a change of basis matrix. 
 The reason is that a change of basis matrix would involve writing the basis of one polynomial in terms of the basis of the other. 
-This itself is a huge process of \emph{Comparing of Coefficients} and would result in an increase of perturbation to the system because the \emph{condition number} is never smaller than 1 \cite{golub1996matrix}.
+This itself is a huge process of \emph{Comparing of Coefficients} and would result in an increase of perturbation to the system because the condition number is never smaller than 1 \cite{golub1996matrix}.
 Therefore, we shall introduce the \emph{Coefficient Moment Matrix}. In the remaining part of this section, we shall build our way to it.
 
-Suppose the \emph{Moment Matrix} is constructed with the basis $\mathcal{B}_{n, d}$ and the polynomial $p(x)$ is written in the basis $\mathcal{B}'_{n, 2d}$. 
+Suppose the moment matrix is constructed with the basis $\mathcal{B}_{n, d}$ and the polynomial $p(x)$ is written in the basis $\mathcal{B}'_{n, 2d}$. 
 That is supposed $\mathcal{B}'_{n, 2d} = \{b'_0, ..., b'_k\}$ where $k = {n + 2d \choose 2d} - 1$, we have $p(x) = c_0b'_0 + ... + c_kb'_k$.
 \begin{definition}[\cite{Recher:Masterthesis}]
      \label{def:cem}
@@ -817,11 +862,9 @@ Then, finally, we can re-write the constraint $p(x) = \mathbf{b}^T Q \mathbf{b}$
           c_l
      \end{bmatrix} = \mathbf{c}
 \end{equation*}
-Thus, the numerical property of the \emph{SDP} problem is completely captured by the \emph{condition number} of $A$. 
+Thus, the numerical property of the SDP problem is completely captured by the condition number of $A$. 
 Therefore, we write code in \emph{python} to examine different combinations of bases under different degrees and number of variate in the Preliminaries sections. 
-We list the polynomial bases that we are interested in the following sections, and briefly touch upon \emph{semidifinite program} before we present our results.
-
-\newpage
+We list the polynomial bases that we are interested in the following sections, and briefly touch upon SDP before we present our results.
 
 \subsection{Polynomial Basis}
 \label{Sec:polynomial Basis}
@@ -1037,8 +1080,6 @@ we have the {coefficient extraction map} associated to multivariate Jacobi polyn
      \caption{Coefficient Extraction Map for Jacobi Polynomial}
 \end{algorithm}
 
-\newpage
-
 
 \subsection{Solving Semidefinite Program}
 \label{Sec:Solving Semidefinite Program}
@@ -1050,6 +1091,7 @@ Toy examples maybe
 
 \newpage
 \section{Numerical Results}
+\label{Sec: Num Results}
 
 In this section, we discuss the numerical results when performing experiments. 
 We will divide the discussion into two subsections, one devoted for the univariate polynomials, 
@@ -1062,7 +1104,7 @@ when the basis of the give polynomial and the basis of the moment matrix are the
 the condition number of the resulted coefficient moment matrix tends to be small and stable. 
 In particular, the monomial polynomial basis seems to have the smallest condition number among the other polynomials.
 And among all the orthogonal polynomials, the Chebyshev first kind polynomial seems the have the best behavior.
-\begin{figure*}[hbt!]
+\begin{figure*}[h]
      \centering
      \begin{subfigure}[b]{0.475\textwidth}
          \centering
@@ -1095,7 +1137,7 @@ And among all the orthogonal polynomials, the Chebyshev first kind polynomial se
          {\small Legendre polynomial with legendre moment matrix}% 
      \end{subfigure}
      \caption[ Condition number of the coefficient moment matrix for same basis]%
-     {\small Condition number of the coefficient moment matrix for same basis (Univariate)}% 
+     {\small Condition number of the coefficient moment matrix for same basis (univ)}% 
  \end{figure*}
 
 Another phenomenon that we observe is that the monomial polynomial base do not work well
@@ -1105,7 +1147,7 @@ or the other way around,
 the condition number of the coefficient moment matrix tends 
 to blow up with the increasing of the degree of the polynomials.
 
-\begin{figure*}[hbt!]
+\begin{figure*}[h]
      \centering
      \begin{subfigure}[b]{0.475\textwidth}
          \centering
@@ -1138,13 +1180,13 @@ to blow up with the increasing of the degree of the polynomials.
          {\small Jacobi polynomial with monomial moment matrix}% 
      \end{subfigure}
      \caption[ Monomial with Orthogonal Polynomials ]%
-     {\small Monomial with Orthogonal Polynomials (Univariate)}% 
+     {\small Monomial with Orthogonal Polynomials (univ)}% 
  \end{figure*}
 
 On the other hand, the orthogonal polynomials tend to work very well when they are between each other.
 We can see the scale of the condition number for is dramatically smaller than the condition numbers with monomial involved. 
 
- \begin{figure*}[hbt!]
+ \begin{figure*}[h]
      \centering
      \begin{subfigure}[b]{0.475\textwidth}
          \centering
@@ -1177,13 +1219,13 @@ We can see the scale of the condition number for is dramatically smaller than th
          {\small Chebyshev first kind polynomial with Legendre moment matrix}% 
      \end{subfigure}
      \caption[ Monomial with Orthogonal Polynomials ]%
-     {\small Monomial with Orthogonal Polynomials (Univariate)}% 
+     {\small Monomial with Orthogonal Polynomials (univ)}% 
  \end{figure*}
 
  \newpage
 Here, we summarize the results in a table of the 4 polynomials we are experimented with when the degree of the polynomial is 14. 
 We left out the Jacobi polynomial, because Chebyshev polynomials and Legendre polynomials are special cases of it.
-\begin{table*}[hbt!]
+\begin{table*}[h]
      \small
      \begin{tabular}{|l||*{4}{c|}}\hline
 
@@ -1204,8 +1246,10 @@ We performed the same experiments for the bivariate cases. We stopped the experi
 which is smaller than 14, what we did for the univariate case, due to the computational cost. 
 However, we observe similar phenomenon. 
 
-Again, the condition number is smaller when the basis of the polynomials and the basis of the moment matrix is the same. 
-\begin{figure*}[hbt!]
+Just like in the univariate case, in general, the condition number is smaller when the basis of the polynomials and the basis of the moment matrix is the same. 
+The monomial still have the smallest condition number, and Chebyshev first kind is outperforming other orthogonal basis by a small margin. 
+
+\begin{figure*}[h]
      \centering
      \begin{subfigure}[b]{0.475\textwidth}
          \centering
@@ -1238,17 +1282,133 @@ Again, the condition number is smaller when the basis of the polynomials and the
          {\small Legendre polynomial with legendre moment matrix}% 
      \end{subfigure}
      \caption[ Condition number of the coefficient moment matrix for same basis]%
-     {\small Condition number of the coefficient moment matrix for same basis}% 
+     {\small condition num of the coefficient moment matrix for same basis (biv)}% 
  \end{figure*}
 
+When we have a combination of monomials and orthogonal polynomials, the condition number again grow very fast as
+the degree of the polynomial increase. 
 
+\begin{figure*}[h]
+     \centering
+     \begin{subfigure}[b]{0.475\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{imgs_biv/cheby_first_kind_monomial.png}
+         \caption[ChebyShev First Kind polynomial with monomial moment matrix]%
+         {\small ChebyShev first kind polynomial with monomial moment matrix}% 
+
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.475\textwidth}  
+         \centering 
+         \includegraphics[width=\textwidth]{imgs_biv/monomial_cheby_second_kind.png}
+         \caption[monomial polynomial with ChebyShev second Kind moment matrix]%
+         {\small monomial polynomial with ChebyShev second Kind moment matrix}% 
+ 
+     \end{subfigure}
+     \vskip\baselineskip
+     \begin{subfigure}[b]{0.475\textwidth}   
+         \centering 
+         \includegraphics[width=\textwidth]{imgs_biv/legendre_monomial.png}
+         \caption[Legendre polynomial with monomial moment matrix]%
+         {\small Legendre polynomial with monomial moment matrix}% 
+
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.475\textwidth}   
+         \centering 
+         \includegraphics[width=\textwidth]{imgs_biv/monomial_legendre.png}
+         \caption[Jacobi polynomial with monomial moment matrix]%
+         {\small Jacobi polynomial with monomial moment matrix}% 
+     \end{subfigure}
+     \caption[ Monomial with Orthogonal Polynomials ]%
+     {\small Monomial with Orthogonal Polynomials (biv)}% 
+ \end{figure*}
+\newpage
+ When we are comingling orthogonal polynomials, the behavior of the system is more stable. 
+ However, when we have Chebyshve first kind as the basis for the give polynomial
+ and Legendre polynomial for the basis of the coefficient moment matrix, the condition number is 
+ actually lower comparing to we use both Chebyshev first kind or both Legendre basis.
+
+ \begin{figure*}[h]
+     \centering
+     \begin{subfigure}[b]{0.475\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{imgs_biv/cheby_first_kind_cheby_second_kind.png}
+         \caption[ChebyShev First Kind polynomial with monomial moment matrix]%
+         {\small ChebyShev first kind polynomial with ChebyShev second kind moment matrix}% 
+
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.475\textwidth}  
+         \centering 
+         \includegraphics[width=\textwidth]{imgs_biv/cheby_second_kind_cheby_first_kind.png}
+         \caption[ChebyShev second kind polynomial with ChebyShev first kind moment matrix]%
+         {\small ChebyShev second kind polynomial with ChebyShev first kind moment matrix}% 
+ 
+     \end{subfigure}
+     \vskip\baselineskip
+     \begin{subfigure}[b]{0.475\textwidth}   
+         \centering 
+         \includegraphics[width=\textwidth]{imgs_biv/legendre_cheby_first_kind.png}
+         \caption[Legendre polynomial with ChebyShev first kind moment matrix]%
+         {\small Legendre polynomial with ChebyShev first kind moment matrix}% 
+
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.475\textwidth}   
+         \centering 
+         \includegraphics[width=\textwidth]{imgs_biv/cheby_first_kind_legendre.png}
+         \caption[Chebyshev first kind polynomial with Legendre moment matrix]%
+         {\small Chebyshev first kind polynomial with Legendre moment matrix}% 
+     \end{subfigure}
+     \caption[ Monomial with Orthogonal Polynomials ]%
+     {\small Monomial with Orthogonal Polynomials (biv)}% 
+ \end{figure*}
+ \newpage
+ Here, we do two tables to summarize the condition number of the combinations of the 4 basis that we tested on
+ in both univariate case and bivariate case. When comparing the two tables, we can see that the condition number is 
+ significantly larger than the univariate case. 
+
+ \begin{table*}[h]
+     \small
+     \begin{tabular}{|l||*{4}{c|}}\hline
+
+          \backslashbox[50mm]{Polynomial Basis}{Moment Matrix Basis}
+          &\makebox[6em]{Monomial}&\makebox[6em]{Chebyshev 1st}
+          &\makebox[6em]{Chebyshev 2nd}&\makebox[6em]{Legendre}\\\hline\hline
+          Monomial & 1.2114041e+01 & 9.2931794e+02 & 7.3426803e+02 & 3.4094072e+02	\\\hline
+          Chebyshev 1st & 2.4395198e+02 & 1.6377406e+01 & 2.2771550e+01 & 1.3558274e+01 \\\hline
+          Chebyshev 2nd & 4.4894498e+02 & 5.3861887e+01 & 1.7604737e+01 & 2.9399442e+01 \\\hline
+          Legendre & 8.5482089e+01	& 3.9905724e+01 & 3.2969591e+01 & 1.8699677e+01 \\\hline
+          
+          \end{tabular}
+          \caption{\label{tab:table-name}condition num of coefficient moment matrix with degree 8 (univ).}
+\end{table*}
+
+ \begin{table*}[h]
+     \small
+     \begin{tabular}{|l||*{4}{c|}}\hline
+
+          \backslashbox[50mm]{Polynomial Basis}{Moment Matrix Basis}
+          &\makebox[6em]{Monomial}&\makebox[6em]{Chebyshev 1st}
+          &\makebox[6em]{Chebyshev 2nd}&\makebox[6em]{Legendre}\\\hline\hline
+          Monomial & 6.0303522e+01 & 3.8821664e+03 & 2.2060581e+03 & 1.3954908e+03	\\\hline
+          Chebyshev 1st & 8.2003242e+02 & 8.2741589e+01 & 1.2690227e+02 & 7.2356027e+01\\\hline
+          Chebyshev 2nd & 1.3583584e+03 & 4.7372727e+02 & 9.5693596e+01 & 2.0181265e+02\\\hline
+          Legendre & 3.0351806e+02	& 1.9649165e+02 & 1.4316038e+02 & 9.3276473e+01 \\\hline
+          
+          \end{tabular}
+          \caption{\label{tab:table-name}condition num of coefficient moment matrix with degree 8 (biv).}
+\end{table*}
 %\begin{figure}
 
 %\end{figure}
 
-
 \newpage
+
+
 \section{Discussion and Outlook}
+\label{Sec:Dis and Outlook}
 
 
 \newpage
