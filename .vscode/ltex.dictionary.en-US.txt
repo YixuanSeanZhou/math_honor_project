@@ -9,3 +9,5 @@ constrants
 perterbulation
 orthonomal
 TODO
+expload
+applicatible

@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex main"] 1620530095 "main.aux" "main.bbl" "main" 1620530145
+["bibtex main"] 1622103731 "main.aux" "main.bbl" "main" 1622103733
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/amscls/amsalpha.bst" 1513722769 28675 71ba1b1ee8387ac88670b0ea0eb2399a ""
-  "main.aux" 1620530096 7911 8a8cd32bb9ac5dc569a8388ff98bf2fa ""
-  "main.bib" 1620229208 11206 a007a397be6e751f611c85059a4e7655 ""
+  "main.aux" 1622103732 7981 7f546684477106c3cc99b1bbf778aff0 ""
+  "main.bib" 1622103602 13129 afbef666e4a321cac12ef2ce682b2e64 ""
   (generated)
   "main.blg"
   "main.bbl"
-["pdflatex"] 1620530095 "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.tex" "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf" "main" 1620530145
-  "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.aux" 1620530096 7911 8a8cd32bb9ac5dc569a8388ff98bf2fa ""
-  "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.tex" 1620530142 69514 3fb7cfc2c8e28b750f54fd28da09c0c0 ""
+["pdflatex"] 1622103731 "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.tex" "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf" "main" 1622103733
+  "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.aux" 1622103732 7981 7f546684477106c3cc99b1bbf778aff0 ""
+  "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.tex" 1622103728 74012 d72a1040f17c488a4dddfe1a80901323 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -238,14 +238,14 @@
   "imgs_biv/monomial_cheby_second_kind.png" 1620165856 18423 d96a5a320bc518b4f79b3bf2fc7f082c ""
   "imgs_biv/monomial_legendre.png" 1620162102 20352 efa072d7d0d9f929a7a9f0aaa828b15d ""
   "imgs_biv/monomial_monomial.png" 1620162053 17680 6ca09e041e6091d74a85120476c2eafe ""
-  "main.aux" 1620530096 7911 8a8cd32bb9ac5dc569a8388ff98bf2fa ""
-  "main.bbl" 1620530095 2980 1579bc6e3e173b5774ec7d033298d042 "bibtex main"
-  "main.out" 1620530096 901 026a22490e083008d66902d72037d1f2 ""
-  "main.tex" 1620530142 69514 3fb7cfc2c8e28b750f54fd28da09c0c0 ""
+  "main.aux" 1622103732 7981 7f546684477106c3cc99b1bbf778aff0 ""
+  "main.bbl" 1622103731 3501 efaa057e14e76a1cc48f1d1cf688b788 "bibtex main"
+  "main.out" 1622103732 825 da19b7d5560cd03732d0e3f0789193bb ""
+  "main.tex" 1622103728 74012 d72a1040f17c488a4dddfe1a80901323 ""
   (generated)
-  "main.aux"
-  "main.pdf"
   "main.out"
+  "main.pdf"
+  "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf"
   "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.log"
   "main.log"
-  "/Users/weisun/Desktop/UCSD/Honor_Project_Dressler/math_honor_project/main.pdf"
+  "main.aux"

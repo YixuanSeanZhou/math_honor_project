@@ -5,7 +5,7 @@
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{LLM14}
+\begin{thebibliography}{DKdW18}
 
 \bibitem[AM15]{ahmadi2015applications}
 Amir~Ali Ahmadi and Anirudha Majumdar, \emph{Some applications of polynomial
@@ -26,6 +26,10 @@ Rajashree Dash, \emph{Performance analysis of an evolutionary recurrent
   Journal of King Saud University - Computer and Information Sciences
   \textbf{32} (2020), no.~9, 1000--1011.
 
+\bibitem[DKdW18]{dressler2018optimization}
+Mareike Dressler, Adam Kurpisz, and Timo de~Wolff, \emph{Optimization over the
+  boolean hypercube via sums of nonnegative circuit polynomials}, 2018.
+
 \bibitem[Gol96]{golub1996matrix}
 Gene Golub, \emph{Matrix computations}, Johns Hopkins University Press,
   Baltimore, 1996.
@@ -33,6 +37,11 @@ Gene Golub, \emph{Matrix computations}, Johns Hopkins University Press,
 \bibitem[Hil88]{hilbert_david_1888_1428214}
 David Hilbert, \emph{{Ueber die Darstellung definiter Formen als Summe von
   Formenquadraten}}, September 1888.
+
+\bibitem[IdW16]{Iliman2016}
+Sadik Iliman and Timo de~Wolff, \emph{Amoebas, nonnegative polynomials and sums
+  of squares supported on circuits}, Research in the Mathematical Sciences
+  \textbf{3} (2016), no.~1, 9.
 
 \bibitem[Jos16]{josz:tel-01478431}
 C{\'e}dric Josz, \emph{{Application of polynomial optimization to electricity
@@ -60,6 +69,9 @@ Theodore~Samuel Motzkin, \emph{The arithmetic-geometric inequality},
 \bibitem[Rec14]{Recher:Masterthesis}
 M.~Recher, \emph{Zur numerischen {A}uswirkung von {B}asiswahlen in der
   polynomiellen {O}ptimierung}, 2014, Master Thesis, Universität zu Köln.
+
+\bibitem[Wan21]{wang2021nonnegative}
+Jie Wang, \emph{Nonnegative polynomials and circuit polynomials}, 2021.
 
 \bibitem[YHL18]{Yang2018}
 Yunlei Yang, Muzhou Hou, and Jianshu Luo, \emph{A novel improved extreme

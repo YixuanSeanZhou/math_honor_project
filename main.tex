@@ -214,8 +214,8 @@ In general, an \emph{optimization problem} takes the form
           & \quad \quad \quad \text{ \ \ \ \ \ \  } h_j(\mathbf{x}) = 0, 
      \end{split}
  \end{equation}
-where $f, g, h$ are arbitrary functions of the variables $\mathbf{x} = (x_1, ..., x_n)$. 
-The function $f$ is called the \emph{objective function}, and the functions $g, h$ are called the \emph{constraints}.
+where $f, g_i, h_j$ are arbitrary functions of the variables $\mathbf{x} = (x_1, ..., x_n)$. 
+The function $f$ is called the \emph{objective function}, and the functions $g_i, h_j$ are called the \emph{constraints}.
 Hence, when solving an optimization problem, one tries to minimize the objective function subject to certain constraints.
 There are several ways to address this problem, which are collected as \emph{nonlinear optimization methods}. 
 Some famous optimization approaches are the \emph{gradient decent} and \emph{Newton's method}. 
@@ -223,10 +223,10 @@ Those optimization algorithms seek to exploit the properties of the objective fu
 local minimizer $\mathbf{x}^*$ and hope (with justifications in special cases) that the function value at the minimizer is close
 to the global minimum. Whereas polynomial optimization takes a different approach.
 
-Polynomial optimization, as the name suggests, is the specific case when the functions $f, g, h$ in \eqref{eq:optimization problem} are all polynomials.
-In this thesis, we focus on the unconstrained polynomial optimization problem, that is, the feasible domain is $\mathbb{R}^n$.
-Then, rather than finding a local minimizer $\mathbf{x}^*$, polynomial optimization minimizes the polynomial $f$ globally by finding its maximal lower bound.
-Hence, we can equivalently formulate the problem as 
+Polynomial optimization, as the name suggests, is the specific case when the functions $f, g_i, h_j$ in \eqref{eq:optimization problem} are polynomials.
+In this thesis, we focus on unconstrained polynomial optimization, that is, the feasible domain is $\mathbb{R}^n$.
+Then, instead of minimizing a polynomial, one can search for its maximal lower bound.
+Hence, we can equivalently formulate the unconstrained problem as 
 \begin{equation*}
      \max \ r \quad \textit{s.t. } f(\mathbf{x}) - r \geq 0 \quad \textit{for all } \mathbf{x} \in \mathbb{R}^n,
  \end{equation*}
@@ -235,13 +235,13 @@ where the objective function $f$ is a polynomial, and the lower bound $r$ is a r
 To solve this problem, we need to decide whether a given polynomial is \emph{nonnegative} (see Definition \ref{def:NGP}).
 It turns out that this problem has been well studied in real algebraic geometry since the beginning of the 19th century. 
 However, it turns out that deciding whether an arbitrary multivariate polynomial is nonnegative is,
-in the language of computational complexity, \emph{NP-hard} (computationally infeasible), see \cite[Chapter 3]{Blekherman:Parrilo:Thomas}.
+in the language of computational complexity, \emph{co-NP-hard} (computationally infeasible), see \cite[Chapter 3]{Blekherman:Parrilo:Thomas}.
 
 Therefore, one wants to find sufficient conditions that certify nonnegativity of a polynomial which are easier to check, 
 rather than directly deciding the \emph{nonnegativity} of a polynomial. 
 Such conditions are called \emph{certificates of nonnegativity}.
-The most famous and canonical certificate is \emph{sums of squares (SOS)} (see Definition \ref{def:SOS}).
-Deciding if a polynomial is a sums of squares can be formulated as a \emph{semidefinite program (SDP)} (see Definition \ref{def:SDP}).
+The most famous and canonical nonnegativity certificate is \emph{sums of squares (SOS)} (see Definition \ref{def:SOS}).
+Deciding if a polynomial is a sum of squares can be formulated as a \emph{semidefinite program (SDP)} (see Definition \ref{def:SDP}).
 Under mild conditions, SDPs have known algorithms that can solve the problem in polynomial time (efficiently) with respect to the input size, see \cite[Chapter~2]{Blekherman:Parrilo:Thomas}.
 
 When solving the SDP, the solver is actually dealing with a set of linear equations, which can be compactly written in the form $Ax = b$, obtained by the process of \emph{comparison of coefficients (COC)}.
@@ -292,7 +292,7 @@ Thank you.
 In this section, we introduce the notation and the necessary background material
 to understand the problem. 
 Moreover, we describe the algorithm that is used to carry out the \emph{comparison of coefficients (COC)}
-process and provide a brief survey of the polynomial base that are considered in this thesis.
+process and provide a brief survey of the polynomial bases that are considered in this thesis.
 
 % The first subsection focus on related definitions and results from linear algebra. 
 % The second subsection contains all the tools that we need from real algebraic geometry and \emph{semidefinite programming} for describing the algorithm \emph{(COC)}
@@ -302,26 +302,26 @@ process and provide a brief survey of the polynomial base that are considered in
 \subsection{Real Polynomials}
 \label{Sec:Real Polynomials}
 To rigorously define the considered decision problem,
-we define first recall the terms that are used related to \emph{polynomials}.
+we first recall the terms related to \emph{polynomials}.
 
 Throughout, we use bold letters for vectors, e.g. $\mathbf{x} = (x_1, ..., x_n) \in \mathbb{R}^n$.
-The set of all $m$ by $n$ real matrices is denoted as $\mathbb{R}^{m \times n}$, and the ring of real n-variate polynomials is denoted as $\mathbb{R}[\mathbf{x}]$. 
+The set of all $m$ by $n$ real matrices is denoted as $\mathbb{R}^{m \times n}$ and the ring of real n-variate polynomials is denoted as $\mathbb{R}[\mathbf{x}]$. 
 We use $\mathbb{R}[\mathbf{x}]_{n, d}$ for the set of all $n$-variate real polynomials with degree less than or equal to $d$.
 Further, to ease the notations, we define the following function: 
 \begin{equation*}
      \begin{split}
-          \mathcal{N}: & \mathbb{N} \to \mathbb{N} \\
-          \mathcal{N}(d) & \mapsto { N+d \choose d },
+          \mathcal{N} \colon & \mathbb{N} \to \mathbb{N} \\
+          \mathcal{N}(d) & \mapsto { n+d \choose d },
      \end{split}
 \end{equation*}
-where ${ N+d \choose d }$ stands for the binomial coefficient $N+d$ choose $d$. 
+where ${ n+d \choose d }$ stands for the binomial coefficient $n+d$ choose $d$. 
 
 A polynomial is an expression consisting of variables and coefficients that involves only the operations of addition, subtraction, multiplication, and non-negative integer exponentiation of variables.
-Therefore, a univariate polynomial takes the form, $p(x) = \sum_{i = 1} ^{l} c_i x^{\alpha(i)}$, with $c_i$ be the coefficients and $\alpha(i)$ be the degree of the term. 
+Therefore, a univariate polynomial takes the form, $p(x) = \sum_{i = 1} ^{l} c_i x^{\alpha(i)}$, with $c_i$ being the coefficients and $\alpha(i)$ being the exponents of the term. 
 Clearly, this generalizes to more variables.
 
 \begin{example}
-     Let's consider $p(x, y, z) = x^4 + 2xyz - 6y + 7$ with $x, y, z$ being variables. 
+     Consider $p(x, y, z) = x^4 + 2xyz - 6y + 7$ with $x, y, z$ being variables. 
      This polynomial has $3$ variables and has degree $4$, thus it 
      belongs to $\mathbb{R}[\mathbf{x}]_{3, 4}$.
 \end{example}
@@ -329,7 +329,7 @@ Clearly, this generalizes to more variables.
 Immediate observations about $\mathbb{R}[\mathbf{x}]_{n, d}$ are:
 \begin{prop}
      \label{prop:vs}
-     $\mathbb{R}[\mathbf{x}]_{n, d}$ forms a finite real vector space, and has dimension $\mathcal{N}(d)$.
+     $\mathbb{R}[\mathbf{x}]_{n, d}$ forms a finite real vector space of dimension $\mathcal{N}(d)$.
 \end{prop}
     
 \begin{proof}
@@ -343,12 +343,13 @@ Immediate observations about $\mathbb{R}[\mathbf{x}]_{n, d}$ are:
      \end{equation*}
      So the set $B = \{1, x_1, x_2, ..., x_1^2, x_1 x_2, ... x_n^d\}$ spans $\mathbb{R}[\mathbf{x}]_{n, d}$.
      Moreover, it is a linear independent set. Thus, it forms a basis of $\mathbb{R}[\mathbf{x}]_{n, d}$.
-     By counting, the cardinality of $B$, $|B| = {n+d \choose d} = \mathcal{N}(d)$, which is thus the dimension of $\mathbb{R}[\mathbf{x}]_{n, d}$.
+     By counting the involved monomials, the cardinality of $B$ is $|B| = {n+d \choose d} = \mathcal{N}(d)$, 
+     which yields the dimension of $\mathbb{R}[\mathbf{x}]_{n, d}$.
 
 \end{proof}
 
 Let $\mathcal{B}_{n, d}$ be a basis of $\mathbb{R}[\mathbf{x}]_{n, d}$. 
-A canonical basis to $\mathbb{R}[\mathbf{x}]_{n, d}$ is the one used in the proof above, 
+In the proof above, we used a canonical basis to $\mathbb{R}[\mathbf{x}]_{n, d}$, 
 namely the monomial basis,
 \begin{equation*}
      \mathcal{B}_{n, d} = \{1, x_1, x_2, ..., x_n, x_1 ^ 2, x_1 x_2, ..., x_n^d\}.
@@ -356,7 +357,6 @@ namely the monomial basis,
 
 \begin{remark}
      \label{rem:upgrade}
-     Given $\mathcal{B}_{n, d}$ be a basis of $\mathbb{R}[\mathbf{x}]_{n, d}$. 
      If we list the elements of $\mathcal{B}_{n, d}$ in a column vector $\mathbf{b}$, 
      then $\mathbf{b} \mathbf{b}^T$ forms a matrix whose upper triangular
      entries can be collected to form a basis of $\mathbb{R}[\mathbf{x}]_{n, 2d}$.
@@ -404,7 +404,7 @@ A polynomial with odd degree would be negative when we fix all the other variabl
           Let $\Sigma_{n,2d}$ denote the set of polynomials with $n$ variables and degree at most
           $2d$ that are \emph{sum of squares (SOS)}, that is
           \begin{equation*}
-               \Sigma_{n, 2d} = \{ p \in \mathbb{R}[\mathbf{x}]_{n, 2d}: \textit{ exists } q_1(\mathbf{x}), ..., q_k(\mathbf{x}) \in \mathbb{R}[x]_{n,d} \textit{ s.t. }  p(\mathbf{x}) = \sum_{i=1}^k q_i^2(\mathbf{x})\}.
+               \Sigma_{n, 2d} = \{ p \in \mathbb{R}[\mathbf{x}]_{n, 2d}: \textit{ there exists } q_1(\mathbf{x}), ..., q_k(\mathbf{x}) \in \mathbb{R}[x]_{n,d} \textit{ s.t. }  p(\mathbf{x}) = \sum_{i=1}^k q_i^2(\mathbf{x})\}.
           \end{equation*}     
 \end{definition}
 
@@ -419,12 +419,12 @@ One natural question to ask is whether these two cones are the same. In 1888, Da
 \end{thm}
 
 However, Hilbert's proof is highly non-constructive. 
-Therefore, it takes 17 years until Motzkin, accidentally,
-find the first nonnegative polynomial that is not a SOS. 
-In \cite{motzkin1967arithmetic}, he presented the emph{Motzkin' polynomial},
+Therefore, it took almost 70 years until Motzkin, accidentally,
+found the first nonnegative polynomial that is not a SOS. 
+In \cite{motzkin1967arithmetic}, he presented the \emph{Motzkin' polynomial},
 
 \begin{equation*}
-     p(x, y) = x^4y^2 + x^2y^4 - 3 x^2y^2 + 1,
+     p(x, y) = x^4y^2 + x^2y^4 - 3 x^2y^2 + 1.
 \end{equation*}
 
 Coming back to our original problem, as discussed in the introduction, the decision problem of whether an arbitrary polynomial $p(\mathbf{x}) \in P_{n, 2d}$ is computationally hard.
@@ -433,7 +433,7 @@ Hence, we make the following trade off.
 We use the certificates to check the nonnegativity in a computationally feasible way,
 accepting fact that we fail to identify some nonnegative polynomials.
 
-Hence, the \emph{decision problem} that is considered in this paper is the following: 
+Hence, the \emph{decision problem} that is considered in this thesis is the following: 
 \begin{equation}
      \textit{Given } p(\mathbf{x}) \in \mathbb{R}[\mathbf{x}]_{n, 2d}, \textit{ decide whether } p(\mathbf{x}) \in \Sigma_{n, 2d} \label{eq:dp}.
 \end{equation}
@@ -441,7 +441,8 @@ Hence, the \emph{decision problem} that is considered in this paper is the follo
 \subsection{Linear Algebra And Semidefinite Programming}
 \label{Sec:Linear Algebra}
 
-Since $\mathbb{R}[\mathbf{x}]_{n, 2d}$ forms a vector space, tools from linear algebra play an important role in the analysis of the structure and properties of it. 
+Since $\mathbb{R}[\mathbf{x}]_{n, 2d}$ forms a vector space, we use tools from linear algebra 
+to analyze its structure and properties.
 Besides, both semidefinite programming and the measurement of stability of system require some tools from linear algebra. 
 Thus, we devote this subsection introducing all the required tools. 
 
@@ -677,7 +678,7 @@ To distinguish the choices of the involved basis in this process, we introduce t
 \end{definition}
 
 \begin{example}
-     Here is another place to do an example to illustrate Moment Matrix.
+     Here is another place to do an example to illustrate moment matrix.
 \end{example}
 
 \smallskip
@@ -689,13 +690,13 @@ Because $\mathcal{Q} \succcurlyeq 0$, $\mathcal{Q}$ is symmetric,
 it is completely determined by its upper triangle.
 Let $\mathbf{q} = \begin{bmatrix} q_{0,0}, ..., q_{0, m}, q_{1,1}, q_{1, 2}, ..., q_{m, m} \end{bmatrix}^T$ 
 be the vector consisting of all the elements of the upper triangle of $\mathcal{Q}$.
-The constraints $p(x) = \langle Q, \mathbf{bb}^T \rangle$ can then be reformulated as a set of linear equations 
+The constraints $p(x) = \langle \mathcal{Q}, \mathbf{bb}^T \rangle$ can then be reformulated as a set of linear equations 
 $A \mathbf{q} = \mathbf{c}$ where $ \mathbf{c} = \begin{bmatrix}
      c_0, ..., c_k
 \end{bmatrix}^T$ 
 is the coefficients vector of $p(x)$, 
 and $A$ is a matrix that is used to establish the equality of polynomials. 
-Then, we can measure the stability of the constraints $p(x) = \langle Q, \mathbf{bb}^T \rangle$ by the condition number of $A$. 
+Then, we can measure the stability of the constraints $p(x) = \langle \mathcal{Q}, \mathbf{bb}^T \rangle$ by the condition number of $A$. 
 
 Since, this matrix $A$ is not the final matrix that is used in analysis, the procedure of obtaining $A$ is omitted. 
 
@@ -703,10 +704,10 @@ Since, this matrix $A$ is not the final matrix that is used in analysis, the pro
 
 Now, what if the $p(x)$ is written in a basis that is different from the basis constructed by the moment matrix?
 One might argue that we can simply apply a change of basis matrix to convert $p(x)$ into the basis that is used in moment matrix. 
-However, that is no efficient and accurate way to obtain a change of basis matrix. 
+However, that is inefficient and inaccurate. 
 The reason is that a change of basis matrix would involve writing the basis of one polynomial in terms of the basis of the other. 
-This itself is a huge process of \emph{Comparing of Coefficients} and would result in an increase of perturbation to the system because the condition number is never smaller than 1 \cite{golub1996matrix}.
-Therefore, we shall introduce the \emph{Coefficient Moment Matrix}. In the remaining part of this section, we shall build our way to it.
+This itself is a huge process of COC and would result in an increase of perturbation to the system because the condition number is never smaller than 1 \cite{golub1996matrix}.
+Therefore, we shall introduce the \emph{coefficient moment matrix}. In the remaining part of this section, we shall build our way to it.
 
 Suppose the moment matrix is constructed with the basis $\mathcal{B}_{n, d}$ and the polynomial $p(x)$ is written in the basis $\mathcal{B}'_{n, 2d}$. 
 That is supposed $\mathcal{B}'_{n, 2d} = \{b'_0, ..., b'_k\}$ where $k = {n + 2d \choose 2d} - 1$, we have $p(x) = c_0b'_0 + ... + c_kb'_k$.
@@ -785,7 +786,7 @@ We can generalize the {coefficient extraction map} to take in a matrix as the fi
 \end{remark}
 
 \smallskip
-Notice that, let $\mathcal{B}_{n, d} = \{b_0,...,b_l\}$, where $l = {n + d \choose d} - 1$, 
+Notice that, let $\mathcal{B}_{n, d} = \{b_0,...,b_l\}$, where $l = \mathcal{N}(d) - 1$, 
 let $\mathbf{b} = [b_1, ..., b_l]^T$, $M = \mathbf{b} \cdot \mathbf{b}^T \in \mathbb{R}^{l, l}$. 
 Then given $p(x)$ in $\mathcal{B}'_{n, 2d} = \{b'_0, ..., b'_k\}$, $p = c_0b'_0 + ... + c_k b'_k$, 
 given $Q \in \mathbb{R}^{l, l}$ be the change of basis matrix from $\mathcal{B}_{n, 2d}$ to $\mathcal{B}'_{n, 2d}$, 
@@ -798,16 +799,17 @@ where $\mathcal{B}_{n, 2d}$ is generated by $\mathcal{B}_{n, d}$ using remark \r
 Define the matrix $\mathcal{A}_j = \mathcal{C}(M, b'_j)$ be the \emph{coefficient moment matrix} of $b'_j$.
 \end{definition}
 
+An immediate observation we can make is the following proposition.
 \begin{prop}
      $\mathcal{A}_j$ is symmetric, because $M$ is symmetric.
 \end{prop}
 
 \smallskip
-Recall, the \emph{SOS} problem is to decide, given a polynomial $p(x)$, 
+Recall, the SOS problem is to decide, given a polynomial $p(x)$, 
 whether there exists a $Q \succcurlyeq 0$ such that $p = \mathbf{b}^TQ \mathbf{b}$, where $\mathbf{b}$ be the vector generated by $\mathcal{B}_{n, d}$.
-Suppose $p(x)$ is given in $\mathcal{B'}_{n, 2d}$, we can then reformulate the constraints $\mathbf{b}^TQ \mathbf{b}$ using the \emph{coefficient moment matrix} as
+Suppose $p(x)$ is given in $\mathcal{B'}_{n, 2d}$, we can then reformulate the constraints $\mathbf{b}^TQ \mathbf{b}$ using the {coefficient moment matrix} as
 \begin{equation}
-     \langle Q, \mathcal{A}_j \rangle = c_j \quad \forall j = 0,...,{n + 2d \choose 2d} - 1
+     \langle Q, \mathcal{A}_j \rangle = c_j \quad \forall j = 0,..., \mathcal{N}(2d)- 1
 \end{equation} 
 
 \smallskip
@@ -850,7 +852,7 @@ We can re-write the inner product $\langle Q, \mathcal{A}_j \rangle$ using the f
 \end{equation*}
 
 \smallskip
-Then, finally, we can re-write the constraint $p(x) = \mathbf{b}^T Q \mathbf{b}$, as the system of linear equations that 
+Then, finally, we can re-write the constraint $p(x) = \mathbf{b}^T Q \mathbf{b}$, as the system of linear equations 
 \begin{equation*}
      \mathcal{A} \mathbf{q} = \begin{bmatrix}
           a_0^T \\
@@ -873,6 +875,7 @@ and their associated {coefficient extraction map} (defined in Definition \ref{de
 We also analyze the runtime of the {coefficient extraction map}.
 
 \subsubsection{Monomial Basis}
+\label{alg:mcem}
 The most canonical basis for $\mathbb{R}[\mathbf{x}]_{n, d}$ is the monomial basis. 
 \begin{equation*}
      \mathcal{B}_{n, d} = \{1, x_1, x_2, ..., x_1^2, x_1 x_2, ..., x_n^d\}
@@ -882,6 +885,7 @@ The {coefficient extraction map} associated to this basis is straightforward,
 one would expand a given polynomial and group them by terms. Formally, we can capture this process with the following algorithm.
 
 \begin{algorithm}[H]
+     
      \SetAlgoLined
      \KwResult{Coefficient of b in p}
      \KwIn{Polynomial p, Monomial basis b, Monomial Base B}
@@ -1244,7 +1248,7 @@ We left out the Jacobi polynomial, because Chebyshev polynomials and Legendre po
 \subsection{Bivariate Polynomials}
 We performed the same experiments for the bivariate cases. We stopped the experiments when the degree of the polynomial reaches 8, 
 which is smaller than 14, what we did for the univariate case, due to the computational cost. 
-However, we observe similar phenomenon. 
+We observe similar phenomenon as in univariate case.
 
 Just like in the univariate case, in general, the condition number is smaller when the basis of the polynomials and the basis of the moment matrix is the same. 
 The monomial still have the smallest condition number, and Chebyshev first kind is outperforming other orthogonal basis by a small margin. 
@@ -1368,7 +1372,7 @@ the degree of the polynomial increase.
  Here, we do two tables to summarize the condition number of the combinations of the 4 basis that we tested on
  in both univariate case and bivariate case. When comparing the two tables, we can see that the condition number is 
  significantly larger than the univariate case. 
-
+ \newpage
  \begin{table*}[h]
      \small
      \begin{tabular}{|l||*{4}{c|}}\hline
@@ -1400,6 +1404,7 @@ the degree of the polynomial increase.
           \end{tabular}
           \caption{\label{tab:table-name}condition num of coefficient moment matrix with degree 8 (biv).}
 \end{table*}
+\newpage
 %\begin{figure}
 
 %\end{figure}
@@ -1410,13 +1415,58 @@ the degree of the polynomial increase.
 \section{Discussion and Outlook}
 \label{Sec:Dis and Outlook}
 
+In this section, we state the observations that we made when generating the numerical results that we presented in the above section,
+and we also state some open problems that related to our findings for potential future efforts. 
 
-\newpage
-\section{Resume, Outlook, or/and Open Problems}
-\label{Sec:Outlook}
+To begin, we observe that using monomials basis as both basis for input polynomials and basis for the coefficient moment matrix 
+tends to be a good choice, since it constantly have very low condition number. 
+Therefore, the linear system that generated by COC is more robust when the input data is interpolated by random noises. 
+Moreover, when performing the experiments, the moment matrix with monomial basis has faster running time, 
+where we measure running time by computer time rather than in complexity theory terms. 
+As a result, deceivingly, one tends to conclude that we should just choose monomial bases for both input polynomial and the coefficient moment matrix.
+However, this is not true. 
+In fact, monomial basis has disadvantages in stability and running time. 
+
+In terms of the stability, in many cases
+the basis that the input polynomial is using is determined by the applications rather than by us when performing optimization.
+From we can see in the above section, if the input polynomials are expressed in orthogonal basis, then choosing monomial 
+polynomials as the basis if the coefficient moment matrix would horribly destroy the stability of the system as the condition number of the linear system blow up very quickly. 
+One might argue that we can simply perform a change of basis to convert orthogonal basis to monomials. However,
+this will also introduce the same level, if not more, of the changes to the condition numbers, because we would need to
+consider the condition number of the change of a basis matrix as well. 
+Hence, in that case we need to choose the suitable polynomial basis for our coefficient moment matrix that best serves the applications. 
+
+In terms of the running time, the reason that monomial basis have faster computer time is because when using orthogonal polynomials as the basis of the coefficients moment matrix, 
+we need to evaluate an integral that is needed for the orthogonal basis to extract the coefficients. 
+However, in applications, this is more or less is an overhead work that one shall perform before executing optimizations. 
+The reason is in applications, the number of variate and degree of the polynomials involved are pre-determined. 
+Therefore, one could just calculate the needed integral for each basis beforehand. 
+Hence, when performing the optimizations, 
+all one need to do is exploiting the linearity of the integrations to extract the coefficients that are needed. 
+Because of that, each step in the optimization process would only require constant time multiplication to 
+obtain the coefficients, rather than performing $O(mk + nd + l)$ coefficients extraction algorithm as indicated in \ref{alg:mcem}.
+
+As a result, one should try to use orthogonal basis in the coefficient moment matrix when the application allows to and 
+the stability of the linear system generated by the COC algoirthm is not too poor.
+
+Another observation that we can easily make, which is also indicted in the previous section, 
+is that when comingle monomial basis with orthogonal basis, the condition number of the linear system expload very fast. 
+This is a question that we didn't find an immediate answer to it. 
+One conjecture that we can make is because the orthogonal polynomials are all special cases of Jacobi polynomials,
+they share similar structures in their bases. As a result, when performing the integration, the result is relatively stable. 
+However, this might be a question that worth to take a closer look.
+Maybe there are some structures that polynomial basis has that can be used to deduce the stability of the system, rather than using numerical experiments. 
+
+Lastly, we would like to state, other than the canonical SOS certificate of the nonnegativity of polynomials, 
+there are many other certificates that captures different intuitions or have different usages in applications. 
+For example, \emph{sums of nonnegative circuit polynomials} (SOPN)\cite{Iliman2016}, 
+a recently introduced certificate of nonnegativity, is more applicable in constraint polynomial optimizations \cite{wang2021nonnegative},
+and can be used to substitute (SOS) for optimization problems over hypercube, on which (SOS) has worse performance comparing to other algorithms \cite{dressler2018optimization}. 
+Therefore, it would also be interesting to see whether different choices of polynomial basis can impact the stability of
+the system generated when using other certificates to try to determine whether a polynomial is nonnegative or not.
 
 
-what did you do, what questions are still open, natural next steps etc. 
+
 
 %\section*{Acknowledgements}
 %We thank the anonymous referees for their helpful comments.
