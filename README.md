@@ -14,6 +14,16 @@ pip install -r requirements.txt
 
 ## Logs
 
+### Jun 2 Meeting Questions and Todo
+
+#### Question:
+    - Trig polynomials form a basis?
+    - Easy and well knwon transformation form poly to trig poly?
+
+#### TODO:
+    - Working rewrite?
+    - Schedule meeting time during finals week
+
 ### Apr 15 - Apr 22
 
 
