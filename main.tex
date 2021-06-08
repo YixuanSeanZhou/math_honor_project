@@ -164,6 +164,7 @@
 \DeclareMathOperator{\Int}{int}
 \DeclareMathOperator{\SOS}{SOS}
 \DeclareMathOperator{\prep}{Prep}
+\DeclareMathOperator{\rank}{rank}
 
 \DeclareMathOperator{\verti}{Vert}
 \DeclareMathOperator{\coeffs}{coeffs}
@@ -443,8 +444,7 @@ Hence, the \emph{decision problem} that is considered in this thesis is the foll
 
 Since $\mathbb{R}[\mathbf{x}]_{n, 2d}$ forms a vector space, we use tools from linear algebra 
 to analyze its structure and properties.
-Besides, both semidefinite programming and the measurement of stability of system require some tools from linear algebra. 
-Thus, we devote this subsection introducing all the required tools. 
+Thus, we devote this subsection introducing all required tools. 
 
 \begin{definition}
      Given a matrix $A \in \mathbb{R}^{n \times n}$, we say it is \emph{symmetric} if $A^T = A$. We denote the set of \emph{symmetric matrix} as $\mathcal{S}^n$.  
@@ -462,7 +462,7 @@ A famous result of \emph{symmetric matrices} is:
 
 \smallskip
 
-Now, we introduce the key idea relating to semidefinite programming --- \emph{positive semidefinite matrix}.
+Now, we introduce the key idea relating to semidefinite programming --- \emph{positive semidefinite matrices}.
 
 \begin{definition}
      A matrix $A \in \mathbb{R}^{n \times n}$ is \emph{positive semidefinite (psd)} if $A$ is symmetric and \begin{equation*}
@@ -491,15 +491,28 @@ Now, we introduce the key idea relating to semidefinite programming --- \emph{po
      \label{def: mtx_inner_product}
      Given $A, B \in \mathbb{R}^{m \times n}$, then the \emph{Frobenius inner product}\\ $\langle \cdot, \cdot \rangle: \mathbb{R}^{m \times n} \times \mathbb{R}^{m \times n} \to \mathbb{R}$ is defined as
      \begin{equation*}
-          \langle A, B \rangle = Tr(A^TB),
+          \langle A, B \rangle = \Tr(A^TB),
      \end{equation*}
-     where $Tr$ stands for the trace of the matrix.
+     where $\Tr$ stands for the trace of the matrix.
 \end{definition}
 
-It is natural to generalize the above definition by the following,
+We finally introduce the program that we want use to solve the optimization problem.
+\begin{definition}
+     \label{def:SDP}
+     A \emph{semidefinite program (SDP)} in standard primal form is the following optimization problem.
+     Given $A, C \in \mathbb{R}^{n \times n}$, 
+     \begin{equation}\label{eq:SDP}
+          \begin{split}
+               \min_{X \in \mathcal{S}^n} \langle C, X \rangle & \quad \textit{subject to } \langle A_i, X \rangle = b_i, \quad i=1,...,k\\
+               & \quad \textit{\ \ \ \ \ \ \ \ \ \ \ \ \ \ } X \succcurlyeq 0 
+          \end{split}.
+     \end{equation}
+\end{definition}
+
+To compactly write the constraints, it is natural to generalize the above definition by the following:
 \begin{definition}
      \label{def: mtx_inner_product_concat}
-     Let $k$ be a positive integer, $A \in \mathbb{R}^{m \times kn}, B \in \mathbb{R}^{m \times n}$, then the \emph{inner product} between $A$ and $B$, $\langle \cdot, \cdot \rangle: \mathbb{R}^{m \times kn} \times \mathbb{R}^{m \times n} \to \mathbb{R}^k$ is defined as
+     Let $k$ be a positive integer, $A \in \mathbb{R}^{n \times kn}, B \in \mathbb{R}^{n \times n}$, then the \emph{inner product} between $A$ and $B$, $\langle \cdot, \cdot \rangle: \mathbb{R}^{n \times kn} \times \mathbb{R}^{n \times n} \to \mathbb{R}^k$ is defined as
      \begin{equation*}
           \langle A, B \rangle = \begin{bmatrix}
                \langle A_1, B \rangle \\
@@ -514,31 +527,23 @@ It is natural to generalize the above definition by the following,
      \end{bmatrix}$.
 \end{definition}
 
-\begin{definition}
-     \label{def:SDP}
-     A \emph{semidefinite program (SDP)} in standard primal form is the following optimization problem.
-     Given $A, C, X \in \mathbb{R}^{m \times n}$, 
-     \begin{equation}\label{eq:2.3}
-          \begin{split}
-               \textit{minimize } \langle C, X \rangle & \quad \textit{subject to } \langle A_i, X \rangle = b_i, \quad i=1,...,k \\
-               & \quad \textit{\ \ \ \ \ \ \ \ \ \ \ \ \ \ } X \succcurlyeq 0 
-          \end{split}.
-     \end{equation}
-\end{definition}
-
 %              \textit{minimize } \langle C, X \rangle & \textit{subject to } \langle A_i, X \rangle = b_i, i=1,...,k \\ X \succcurlyeq 0 
 
 \smallskip
 
-One can compactly write the constraint $\langle A_i, X \rangle = b_i$ compactly in a matrix form, we can collect all the constraints and write it is $ \langle A, X \rangle = \mathbf{b}$ 
-The aim of this thesis is to study the stability of this linear system. 
-The tool that to measure this stability is the \emph{condition numbers} of a matrix.
+Using Definition \ref{def: mtx_inner_product_concat}, we can rewrite the constraints $\langle A_i, X \rangle = b_i$ in \eqref{eq:SDP} as 
+\begin{equation}
+     \label{eq: the system}
+     \langle A, X \rangle = \mathbf{b}.
+\end{equation}
+The aim of this thesis is to study the stability of the System \eqref{eq: the system},
+where we measure stability using \emph{condition numbers} of a matrix.
 
 If $A$ is a square matrix, then the condition number can easily be calculated using its inverse. 
-However, if $A$ is rectangular, then we need to use its \emph{pesudo-inverse}, see the following definition.
+However, if $A$ is rectangular, then we need to use its \emph{pseudo-inverse}, see the following definition.
 
 \begin{definition}
-     Given a matrix $A \in \mathbb{R}^{m \times n}$, the \emph{pesudo-inverse},
+     Given a matrix $A \in \mathbb{R}^{m \times n}$, the \emph{pseudo-inverse},
      which is also knows as the \emph{Moore-Penrose} inverse of $A$, is the matrix
      $A^\dagger$ satisfying:
      \begin{itemize}
@@ -549,25 +554,25 @@ However, if $A$ is rectangular, then we need to use its \emph{pesudo-inverse}, s
         \end{itemize}
 \end{definition}
 
-Every matrix has its pesudo-inverse, and when $A \in \mathbb{R}^{m \times n}$ is \emph{full rank}, 
-that is $rank(A) = min\{n, m\}$, $A$ can be expressed in simple algebraic form.
+Every matrix has its pseudo-inverse, and when $A \in \mathbb{R}^{m \times n}$ is \emph{full rank}, 
+that is $\rank(A) = \min\{n, m\}$, $A$ can be expressed in simple algebraic form.
 
 In particular, when $A$ has linearly independent columns, $A^\dagger$ can be computed as
 \begin{equation*}
      A^\dagger = (A^T A)^{-1} A^T.
 \end{equation*}
-In this case, the pesudo-inverse is called the \emph{left inverse}, since $A^\dagger A = I$.
+In this case, the pseudo-inverse is called the \emph{left inverse}, since $A^\dagger A = I$, with $I$ being the identify matrix.
 
 \smallskip
 And when $A$ has linearly independent rows, $A^\dagger$ can be computed as
 \begin{equation*}
      A^\dagger = A^T (A A^T)^{-1},
 \end{equation*}
-and the pesudo-inverse is called the \emph{right inverse}, since $A A^\dagger = I$. 
+and the pseudo-inverse is called the \emph{right inverse}, since $A A^\dagger = I$. 
 
 \begin{definition}
      \label{def:COND}
-     Given a matrix $A \in \mathbb{R}^{m \times n}$, the condition number of $A$, $\kappa(A)$ is defined as
+     Given a matrix $A \in \mathbb{R}^{m \times n}$, the \emph{condition number} of $A$, $\kappa(A)$ is defined as
      \begin{equation*}
           \kappa(A) = \begin{cases}
                 ||A|| \cdot ||A^\dagger|| & \textit{ if } A \textit{ is full rank } \\
@@ -577,19 +582,21 @@ and the pesudo-inverse is called the \emph{right inverse}, since $A A^\dagger = 
      for any norm $|| \cdot ||$ imposed on $A$.
 \end{definition}
 
-To understand how the condition number is related to the stability of the system, we introduce another way to express it, namely
+To understand how the condition number is related to the stability of \eqref{eq: the system}, we introduce another way to express it, namely
 \begin{equation*}
-     \kappa(A) = \frac{\sigma_{max} (A)}{\sigma_{min} (A)}
+     \kappa(A) = \frac{\sigma_{\max} (A)}{\sigma_{\min} (A)},
 \end{equation*}
-where the $\sigma_{max}$ and $\sigma_{min}$ denotes the maximal and minimal singular values of $A$ respectively.
+where the $\sigma_{\max}$ and $\sigma_{\min}$ denote the maximal and minimal singular values of $A$ respectively.
 
-Intuitively, when the condition number is large, error in the input along the max direction of the singular value 
-would dominate the input that is along the direction of the minimum singular value. 
-Therefore, the smaller the condition number is the more stable our system is under fluctuations caused by noises.
-The rigorous explanation of the condition number can be found in \cite{Cheney:Kincaid}.
+Intuitively, when the condition number is large, an error in the input along the max direction of the singular value 
+would dominate "correct data" that is along the direction of the minimum singular value. 
+Therefore, if the condition number of \eqref{eq: the system} is small, this system is more stable under fluctuations caused by noises.
+A rigorous explanation of the condition number can be found in \cite{Cheney:Kincaid}.
 
 \subsection{Comparing of Coefficients Algorithm}
-With all the tools in hand, we are now ready to introduce the \emph{COC} algorithm that solves the 
+% TODO: With all the tools on hand or in hand???
+% With all the tools on hand, we are now ready 
+In this section, we introduce the \emph{COC} algorithm that solves the 
 decision problem described in \eqref{eq:dp}.
 
 The algorithm is build upon the following theorem that shows how to translate \eqref{eq:dp} into an SDP, the theorem is given in the third chapter of \cite{Blekherman:Parrilo:Thomas}.
@@ -642,7 +649,7 @@ The algorithm is build upon the following theorem that shows how to translate \e
 \smallskip
 Therefore, we have reduced our problem decision problem to finding a specific psd matrix. 
 Actually, it would be solving a feasibility of SDP problem.
-When examine the formulation of SDP in \eqref{eq:2.3}, we would minimize a target function subject to a set of linear constraints and the variable being a psd matrix. 
+When examine the formulation of SDP in \eqref{eq:SDP}, we would minimize a target function subject to a set of linear constraints and the variable being a psd matrix. 
 By examining \eqref{eq:2-4}, we can see that we have a set of constraints (later we translate this set of constraints exactly into the constraints in SDP) 
 and the requirement of $\mathcal{Q}$ being a psd.
 Therefore, we found that the existence condition that is provided in the Theorem \ref{thm:key} is the subpart of the SDP
@@ -662,14 +669,14 @@ To address how the constraints $\mathcal{B}_{n, d} ^ T \mathcal{Q} \mathcal{B}_{
      which when written separately in different rows is exactly the formulation in Definition \ref{def:SDP}.
 \end{prop}
 
-Notice that the constraints $p(x) = \langle Q, \mathbf{bb}^T \rangle$ requires us compare two polynomials to determine whether they are equal. 
+Notice that the constraints $p(x) = \langle \mathcal{Q}, \mathbf{bb}^T \rangle$ requires us compare two polynomials to determine whether they are equal. 
 By Theorem \ref{prop:vs}, polynomial form a vector space. 
 Thus, we have the equality of two polynomials is established by comparing the coordinates of the two polynomials when under the same basis. 
 Hence, when the basis of $p(x)$ is the same as the basis formed by the upper triangle of $\mathbf{bb}^T$, we can compare the 
 coordinates of the vectors to establish the equality. And the coordinates for polynomials are called their coefficients. 
 
 \begin{definition}
-     We define the above process as \emph{comparing of coefficients (COC)} and this thesis is designated to evaluate the stability of the constrants $p(x) = \langle Q, \mathbf{bb}^T \rangle$.
+     We define the above process as \emph{comparing of coefficients (COC)} and this thesis is designated to evaluate the stability of the constrants $p(x) = \langle \mathcal{Q}, \mathbf{bb}^T \rangle$.
 \end{definition}
 
 As we have mentioned, the stability is measured by the condition number of a matrix. 
@@ -682,7 +689,18 @@ To distinguish the choices of the involved basis in this process, we introduce t
 \end{definition}
 
 \begin{example}
-     Here is another place to do an example to illustrate moment matrix.
+     Consider the basis $\mathcal{B}_{1,2} = \{1, 2x, 4x^2 - 4\}$ of $\mathbf{R}[x]_{1, 2}$, one can easily verify this is a basis.
+
+     If we write $\mathbf{b} = \begin{bmatrix}
+          1 \\ 2x \\ 4x^2 - 4
+     \end{bmatrix}$, we have the moment matrix $\mathcal{M}$ be \begin{equation*} 
+          \mathcal{M} = \mathbf{b}^T\mathbf{b} = \begin{bmatrix}
+          1 & 2x & 4x^2 - 4 \\
+          2x & 4x^2 & 8x^3 - 8x \\
+          4x^2 - 4 & 8x^3 - 8x & 16x^4 - 32x^2 + 4
+          \end{bmatrix}. 
+     \end{equation*}     
+
 \end{example}
 
 \smallskip
@@ -710,7 +728,7 @@ Now, what if the $p(x)$ is written in a basis that is different from the basis c
 One might argue that we can simply apply a change of basis matrix to convert $p(x)$ into the basis that is used in moment matrix. 
 However, that is inefficient and inaccurate. 
 The reason is that a change of basis matrix would involve writing the basis of one polynomial in terms of the basis of the other. 
-This itself is a huge process of COC and would result in an increase of perturbation to the system because the condition number is never smaller than 1 \cite{golub1996matrix}.
+This itself is a process of COC and would result in an increase of perturbation to \eqref{eq: the system} because the condition number is never smaller than 1 \cite{golub1996matrix}.
 Therefore, we shall introduce the \emph{coefficient moment matrix}. In the remaining part of this section, we shall build our way to it.
 
 Suppose the moment matrix is constructed with the basis $\mathcal{B}_{n, d}$ and the polynomial $p(x)$ is written in the basis $\mathcal{B}'_{n, 2d}$. 
@@ -722,7 +740,7 @@ We define the \emph{coefficient extraction map} as the following map,
      \begin{split}
      \mathcal{C}: \mathbb{R}[x]_{\leq, 2d} \times \mathbb{R}[x]_{\leq, 2d} \rightarrow \mathbb{R} \\
      \mathcal{C}(p, b'_j) \mapsto c_j
-     \end{split}
+     \end{split}.
 \end{equation*}
 \end{definition}
 
@@ -733,23 +751,23 @@ When fixing $s_j$, we have the {coefficient extraction map} being a linear map w
           \mathcal{C}(\lambda p, b'_j) = \lambda \mathcal{C}(p, b'_j) \quad \lambda \in \mathbb{R}
           \\
           \mathcal{C}(p_1 + p_2, b'_j) = \mathcal{C}(p_1, b'_j) + \mathcal{C}(p_2, b_j)
-     \end{split}
+     \end{split}.
 \end{equation*}
 
 \begin{remark}
      When the $\mathcal{B'}_{n, 2d} = \{b'_1,... ,b'_k\}$ is an orthonormal basis, 
      i.e. $\langle b_i, b_j \rangle \delta_{i,j}$ (the Dirac delta function), where the inner product is defined as
      \begin{equation*} 
-          \langle p, q \rangle = \int_a^b p(x) q(x) d\alpha(x)
+          \langle p, q \rangle = \int_a^b p(x) q(x) d\alpha(x).
      \end{equation*}
      There is a natural concretely definition for the \emph{coefficients extraction map}. 
      That is
      \begin{equation*}
-          \mathcal{C}(p(x), b'_j) = \langle p(x), b'_j \rangle
+          \mathcal{C}(p(x), b'_j) = \langle p(x), b'_j \rangle.
      \end{equation*}
      When the basis is only orthogonal, we can still define the \emph{coefficients extraction map} concretely as,
      \begin{equation*}
-          \mathcal{C}(p(x), b'_j) = \frac{1}{||b'_j||}\langle p(x), b'_j \rangle 
+          \mathcal{C}(p(x), b'_j) = \frac{1}{||b'_j||}\langle p(x), b'_j \rangle, 
      \end{equation*}
      where the norm $|| \cdot ||$ is induced by the corresponding inner product.
 \end{remark}
@@ -777,7 +795,7 @@ We can generalize the {coefficient extraction map} to take in a matrix as the fi
                     & \vdots \\
                     \mathcal{C}(p_{m, 1}, b'_j) & ... &  \mathcal{C}(p_{m, n}, b'_j) \\
                     \end{bmatrix}
-          \end{split}
+          \end{split}.
      \end{equation*}
 \end{definition}
 
@@ -796,7 +814,7 @@ Then given $p(x)$ in $\mathcal{B}'_{n, 2d} = \{b'_0, ..., b'_k\}$, $p = c_0b'_0 
 given $Q \in \mathbb{R}^{l, l}$ be the change of basis matrix from $\mathcal{B}_{n, 2d}$ to $\mathcal{B}'_{n, 2d}$, 
 where $\mathcal{B}_{n, 2d}$ is generated by $\mathcal{B}_{n, d}$ using remark \ref{rem:upgrade}, we have
 \begin{equation}
-     c_j = \mathcal{C}(p, b'_j) = \mathcal{C}(\langle Q, M \rangle, b'_j ) = \langle Q, \mathcal{C}(M, b'_j) \rangle
+     c_j = \mathcal{C}(p, b'_j) = \mathcal{C}(\langle Q, M \rangle, b'_j ) = \langle Q, \mathcal{C}(M, b'_j) \rangle.
 \end{equation}
 
 \begin{definition}
@@ -813,7 +831,7 @@ Recall, the SOS problem is to decide, given a polynomial $p(x)$,
 whether there exists a $Q \succcurlyeq 0$ such that $p = \mathbf{b}^TQ \mathbf{b}$, where $\mathbf{b}$ be the vector generated by $\mathcal{B}_{n, d}$.
 Suppose $p(x)$ is given in $\mathcal{B'}_{n, 2d}$, we can then reformulate the constraints $\mathbf{b}^TQ \mathbf{b}$ using the {coefficient moment matrix} as
 \begin{equation}
-     \langle Q, \mathcal{A}_j \rangle = c_j \quad \forall j = 0,..., \mathcal{N}(2d)- 1
+     \langle Q, \mathcal{A}_j \rangle = c_j \quad \forall j = 0,..., \mathcal{N}(2d)- 1.
 \end{equation} 
 
 \smallskip
@@ -852,7 +870,7 @@ and set
      \end{bmatrix}\in \mathbb{R}^{l(l+1)/2}.
 \end{equation*}
 We can re-write the inner product $\langle Q, \mathcal{A}_j \rangle$ using the fact that both $\mathcal{A}_j$ and $Q$ are symmetric. \begin{equation*}
-     \langle Q, \mathcal{A}_j \rangle = \mathbf{q}^T \cdot \mathbf{a_j} = \mathbf{a_j}^T \cdot \mathbf{q}
+     \langle Q, \mathcal{A}_j \rangle = \mathbf{q}^T \cdot \mathbf{a_j} = \mathbf{a_j}^T \cdot \mathbf{q}.
 \end{equation*}
 
 \smallskip
@@ -866,7 +884,7 @@ Then, finally, we can re-write the constraint $p(x) = \mathbf{b}^T Q \mathbf{b}$
           c_0 \\
           \vdots \\
           c_l
-     \end{bmatrix} = \mathbf{c}
+     \end{bmatrix} = \mathbf{c}.
 \end{equation*}
 Thus, the numerical property of the SDP problem is completely captured by the condition number of $A$. 
 Therefore, we write code in \emph{python} to examine different combinations of bases under different degrees and number of variate in the Preliminaries sections. 
@@ -882,7 +900,7 @@ We also analyze the runtime of the {coefficient extraction map}.
 \label{alg:mcem}
 The most canonical basis for $\mathbb{R}[\mathbf{x}]_{n, d}$ is the monomial basis. 
 \begin{equation*}
-     \mathcal{B}_{n, d} = \{1, x_1, x_2, ..., x_1^2, x_1 x_2, ..., x_n^d\}
+     \mathcal{B}_{n, d} = \{1, x_1, x_2, ..., x_1^2, x_1 x_2, ..., x_n^d\}.
 \end{equation*}
 
 The {coefficient extraction map} associated to this basis is straightforward, 
@@ -932,7 +950,7 @@ The univariate \emph{Chebyshev Polynomial of the First Kind} can be constructed 
 \begin{align*} 
      &T_0(x) = 1 \\ 
      &T_1(x) = x \\
-     &T_{d+1}(x) = 2x T_d(x) - T_{d-1}(x)
+     &T_{d+1}(x) = 2x T_d(x) - T_{d-1}(x),
 \end{align*}
 where $T_d(x)$ denotes the $d$ degree univariate ChebyShev Polynomial of the First Kind.
 
@@ -995,7 +1013,7 @@ The univariate \emph{Chebyshev Polynomial of the Second Kind} can be constructed
 \begin{align*} 
      &U_0(x) = 1 \\ 
      &U_1(x) = 2x \\
-     &U_{d+1}(x) = 2x U_d(x) - U_{d-1}(x)
+     &U_{d+1}(x) = 2x U_d(x) - U_{d-1}(x),
 \end{align*}
 where $U_d(x)$ denotes the $d$ degree univariate ChebyShev polynomial of the Second Kind.
 
@@ -1029,7 +1047,7 @@ There are still many ways to construct the {Legendre polynomials}.
 In order to implement {Legendre polynomials}, we present the \emph{Rodrigues' formula}
 that generates univariate {Legendre polynomials}.
 \begin{equation*}
-     P_n(x) = \frac{1}{2^n n!} \frac{d^n}{dx^n} (x^2 - x)^n
+     P_n(x) = \frac{1}{2^n n!} \frac{d^n}{dx^n} (x^2 - x)^n,
 \end{equation*}
 where $P_n(x)$ denotes the univariate {Legendre polynomials} of degree $n$,
 $\frac{d^n}{dx^n}$ denotes the n'th derivative with respect to $x$. 
@@ -1091,11 +1109,42 @@ we have the {coefficient extraction map} associated to multivariate Jacobi polyn
 
 \subsection{Solving Semidefinite Program}
 \label{Sec:Solving Semidefinite Program}
+Lastly, we survey on what are the current methods of solving SDP.
+The most common algorithms utilize the duality theory. 
+Recall the formulation of SDP in \eqref{eq:SDP}. This is usually referred as the \emph{Primal} SDP.
+Then the \emph{Dual} SDP can be formulated as, 
+\begin{equation*}
+     \begin{split}
+          \min_{\mathbf{y} \in \mathbb{R}^k} \langle \mathbf{b}, \mathbf{y} \rangle & \quad \textit{subject to } \sum_{i=1}^k y_i A_i \preccurlyeq C \\
+     \end{split},
+\end{equation*}
+where $\mathbf{b} = \begin{bmatrix}
+     b_1 & \cdots & b_k
+\end{bmatrix}^T$, and the inner product is the regular vector inner product.
+We then device algoirthm to solve the dual problem because we can WLOG assume $k \leq n$ since otherwise we can fully determine $X$. 
+Then the dimension of the matrix in our problem become smaller, which leads to a faster running time. 
 
+In order to optimize the dual problem, the interior point method minimize the following barrier function 
+\begin{equation*}
+     \min_{\mathbf{y} \in \mathbb{R}^k} f_\eta(\mathbf{y}) = \eta \mathbf{b}^T\mathbf{y} + \phi(\mathbf{y}),
+\end{equation*}
+where $\eta > 0$ is a parameter and $\phi \colon \mathbf{R}^k \to \mathbf{R}$ is called a \emph{barrier} function that approaches infinity as $\mathbf{y}$ 
+approaches to the boundary of the feasible set. 
+A canonical barrier function is the \emph{log barrier} defined as $\phi(\mathbf{y}) = - \log \det(\sum_{i = 1}^k y_i A - C)$, where $\det$ stands for the determinant of the matrix.  
 
+Then the interior point algorithm starts with optimizing $f_\eta(\mathbf{y})$ using Newton's method with a $\eta$ that is very small. 
+This captures why the method name is called interior point method, as starting with $\eta$ small meaning we first
+devote in minimizing the barrier function, thus enforcing our $\mathbf{y}$ to be an interior point. 
+Then the result of the optimizer will then be used as the starting point in the next iteration in minimizing 
+$f_{(1+c)\eta}(\mathbf{y})$ with $c > 0$. After many iterations, when the parameter $\eta$ becomes sufficiently large,
+we have provable result indicating that the minimizer of $f_\eta$ is close to the optimal solution of the dual problem of SDP.
 
+Then if we further assume the \emph{strong duality} holds in the SDP that we are trying to solve, meaning
+the optimal value of the dual problem is equal to the optimal value of the primal problem, we can use KKT condition in 
+SDP form to solve the primal problem easily. 
 
-Toy examples maybe
+The above theory of solving SDP is captured in \cite{boyd2004convex}, and for a list of SDP solver that is available, see \cite[Chapter 2.2]{Blekherman:Parrilo:Thomas}. 
+
 
 \newpage
 \section{Numerical Results}

@@ -11,6 +11,10 @@
 Amir~Ali Ahmadi and Anirudha Majumdar, \emph{Some applications of polynomial
   optimization in operations research and real-time decision making}, 2015.
 
+\bibitem[Boy04]{boyd2004convex}
+Stephen Boyd, \emph{Convex optimization}, Cambridge University Press,
+  Cambridge, UK New York, 2004.
+
 \bibitem[BPT13]{Blekherman:Parrilo:Thomas}
 G.~Blekherman, P.A. Parrilo, and R.R. Thomas, \emph{Semidefinite optimization
   and convex algebraic geometry}, MOS-SIAM Series on Optimization, vol.~13,

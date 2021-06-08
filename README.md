@@ -35,8 +35,6 @@ pip install -r requirements.txt
 #### DONE
 - Met with Professor Dressler to discuss on the previous iteration of the writeup.
 
-a
-
 ### Mar 8 - Mar 14
 
 #### TODO
