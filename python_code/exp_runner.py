@@ -125,7 +125,6 @@ if __name__ == '__main__':
         a = 0
         b = 0
         if opt == '-h':
-            #print(desc_str)
             sys.exit()
         elif opt in ("-p", "--polynomial_basis"):
             pb = arg
